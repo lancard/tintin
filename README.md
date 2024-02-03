@@ -1,1 +1,0 @@
-# tintin 1.86 for ubuntu 22.04
