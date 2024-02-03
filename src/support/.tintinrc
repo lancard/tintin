@@ -1,0 +1,8 @@
+#nop {These commands are necessary if you want #path, #return, ... to work.}
+#nop {Please leave them in your alias file.}
+#pathdir {e} {w}
+#pathdir {w} {e}
+#pathdir {n} {s}
+#pathdir {s} {n}
+#pathdir {u} {d}
+#pathdir {d} {u}

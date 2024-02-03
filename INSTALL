@@ -1,0 +1,28 @@
+Installation is easy; cd to the src/ directory, then type this:
+
+./configure
+make
+make install
+
+If you put the readline library in a non standard location, you can
+do a ./configure --includedir=<location> --libdir=<location>/readline to 
+specify it. For example, if you put the readline library in /tmp/readline, 
+you can do
+
+./configure --includedir=/tmp --libdir=/tmp/readline
+
+
+Options configure current supports:
+--includedir    Additional include directory
+--bindir        Location you want tt++ to be installed (default is the src dir)
+--libdir	Addition library directory
+--enable-big5   To use the big5 encoding
+
+If you wish, you can edit src/Makefile.in before running ./configure.
+It shouldn't be necessary unless you have some unorthodox request
+(such as wanting to install tintin++ and its help file in /usr/local).
+
+If you have any trouble with installing/compiling tintin, you can use
+the gripe command in src/ directory to send email.  Please include
+the OS, compiler and the error message that you have.  Or you can email
+us at tintin@newclear.net.

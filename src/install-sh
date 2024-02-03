@@ -1,0 +1,107 @@
+#!/bin/sh
+# 
+#TinTin++
+#Copyright (C) 2001 Davin Chan, Robert Ellsworth, etc. (See CREDITS file)
+#
+#This program is protected under the GNU GPL (See COPYING)
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# The syntax that script: 
+#./install-sh <directory to install tt++> <directory for helpfile> <?>
+# Install the tintin++ executable and help file.
+#
+# Modified by Davin Chan
+
+echo "Do you want to strip the binary?  This will make the tt++ program"
+echo "smaller, but it makes debugging problems more difficult.  The only"
+echo "reason you would not want to strip the binary is if you want to"
+echo "debug tt++.  Otherwise, you would probably want to strip tt++."
+echo "(Y/N)?"
+read yesno
+case "$yesno" in
+y*|Y*) strip tt++;;
+*) echo "Did not strip tt++.";;
+esac
+
+case "$1" in
+.|./)	;;
+*)	echo Moving tt++ to $1/; mv -f tt++ $1/;;
+esac
+
+echo Copying the help file to $2/ 
+if [ -f `which bunzip2` ]
+then
+echo "Installing the bzip2 version of the help file."
+uncompress -c support/.tt_help.txt.Z | bzip2 > support/.tt_help.txt.bz2
+mv -f support/.tt_help.txt.bz2 $2/
+elif [ -f `which gunzip` ]
+then
+echo "Installing the gzip version of the help file."
+uncompress -c support/.tt_help.txt.Z | gzip > support/.tt_help.txt.gz
+mv -f support/.tt_help.txt.gz $2/
+else
+echo "Installing the compressed version of the help file."
+cp -f support/.tt_help.txt.Z $2/
+fi
+
+echo "Installing the chat.conf file to $2."
+cp -f support/tt.conf $2/
+
+cat <<EOF
+
+In this version of tintin++, you need to have certain
+#pathdir commands in your .tintinrc for #path, #return, etc
+to work correctly.
+I will automatically make sure you have them; don't worry.
+
+EOF
+
+if [ '!' -f $HOME/.tintinrc ]
+then
+cat <<EOF
+I see you do not have a .tintinrc in $HOME.
+I will copy a default one for you which has the right commands in it.
+EOF
+cp support/.tintinrc $HOME/
+else
+if grep pathdir $HOME/.tintinrc >/dev/null
+then
+cat <<EOF
+I see you already have #pathdir commands in $HOME/.tintinrc.
+You should leave them in there.
+If you are using some other alias file with tintin++, please
+copy those #pathdir commands to your other alias files too.
+EOF
+else
+cat <<EOF
+I see you already have a .tintinrc, but you do not have
+any #pathdir commands in it.
+I will add the appropriate commands to your .tintinrc.
+EOF
+cat support/.tintinrc >>$HOME/.tintinrc
+fi
+fi
+
+cat <<EOF
+
+Your installation of tintin++ is now complete.
+If you have any questions, problems, or comments,
+you may email us at the address listed in the README,
+or type ./gripe from the src/ directory.
+
+Enjoy!			-- The tintin++ development team
+EOF
+exit 0

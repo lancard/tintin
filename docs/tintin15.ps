@@ -1,0 +1,9765 @@
+%!PS-Adobe
+/wpdict	120 dict def
+wpdict	begin
+/bdef	{bind def} bind def
+
+/bflg	false def
+/Bfont	0 def
+/bon	false def
+
+/psz	0 def
+/_S	/show load def
+/_t	{0 rmoveto} bdef
+
+/_pixelsnap
+	{transform .25 sub round .25 add
+	 exch .25 sub round .25 add exch itransform
+	} bdef
+/_pixeldsnap
+	{ dtransform round exch round exch idtransform } bdef
+
+/_lt	{_pixelsnap lineto} bdef
+/_rlt	{_pixeldsnap rlineto} bdef
+/_mt	{_pixelsnap moveto} bdef
+/_rmt	{_pixeldsnap rmoveto} bdef
+
+/bshow	{gsave psz 30 div 0 _rmt dup show grestore show} bdef
+
+/DUx	0 def
+/DUy	0 def
+/hscl	0 def
+
+/M	{_mt
+	 2 mul -2 2
+	 { -2 roll 0 _rmt _S } for
+	} bdef
+
+/makeoutl
+	{ dup /OutlineFlag known not
+	  { dup dup length 2 add dict begin
+	    {1 index /FID ne { def }{ pop pop } ifelse } forall
+	    /UniqueID known {/UniqueID UniqueID 10000 add def} if
+	    /PaintType PaintType 0 eq { 2 }{ PaintType } ifelse def
+	    /StrokeWidth 15 def
+	    /OutlineFlag true def
+	    /OutlineFont currentdict end definefont
+	  } if
+	} bdef
+
+/nbuff	50 string def
+/orntsv	0 def
+/plen	0 def
+/pwid	0 def
+/picstr	1 string def
+
+/WPencoding StandardEncoding 256 array copy def 0
+ [ 127/Aacute/Acircumflex/Adieresis/Agrave/Aring/Atilde/Ccedilla
+  /Delta/Eacute/Ecircumflex/Edieresis/Egrave/Eth/Gamma/Iacute
+  /Icircumflex/Idieresis/Igrave/Lambda/Ntilde/Oacute
+  /Ocircumflex/Odieresis/Ograve/Omega/Otilde/Phi/Pi/Psi
+  /Scaron/Sigma/TeXtext32/Theta/Thorn
+  209/Uacute/Ucircumflex/Udieresis/Ugrave/Upsilon/Xi/Yacute
+  /Ydieresis/Zcaron/aacute/acircumflex/adieresis/agrave
+  /aring/atilde/brokenbar
+  228/ccedilla/copyright/degree/divide
+  236/dotlessj/eacute/ecircumflex/edieresis/egrave
+  242/eth/ff/ffi
+  246/ffl/iacute
+  252/icircumflex/idieresis/igrave/logicalnot
+  1/minus/mu/multiply/ntilde/oacute/ocircumflex/odieresis
+  /ograve/onehalf/onequarter/onesuperior/otilde/plusminus
+  /registered/scaron/thorn/threequarters/threesuperior
+  /trademark/twosuperior/uacute/ucircumflex/udieresis
+  /ugrave/yacute/ydieresis/zcaron
+]
+{ dup type /nametype eq
+  { WPencoding 2 index 2 index put pop 1 add }
+  { exch pop } ifelse
+} forall pop
+
+/reencode
+{ dup FontDirectory exch known
+   { findfont }
+   {  dup nbuff cvs dup length 1 sub get 82 eq
+   {dup nbuff cvs dup length 1 sub 0 exch getinterval
+   findfont begin
+   currentdict dup length dict begin
+{ 1 index /FID ne {def} {pop pop} ifelse } forall
+/FontName exch def
+
+/Encoding WPencoding def
+currentdict dup end end
+/FontName get exch definefont
+     }
+     { findfont } ifelse
+  } ifelse
+} bdef
+
+/WPDLencoding StandardEncoding 256 array copy def 0
+[ 127     /SA420000/SD630000/SF010000/SF020000/SF030000
+/SF040000/SF050000/SF060000/SF070000/SF080000/SF090000
+/SF100000/SF110000/SF140000/SF150000/SF160000/SF190000
+/SF200000/SF210000/SF220000/SF230000/SF240000/SF250000/SF260000
+/SF270000/SF280000/SF360000/SF370000/SF380000/SF390000/SF400000
+/SF410000/SF420000/SF430000
+209 /SF440000/SF450000/SF460000/SF470000/SF480000
+/SF490000/SF500000/SF510000/SF520000/SF530000/SF540000
+/SF570000/SF580000/SF590000/SF600000/SF610000
+228 /SM570001/SM590000/SM600000/SM630000
+236 /SM680000/SM690000/SM700000/SM750000/SM750002
+242 /SM770000/SM790000/SP320000
+246 /SS000000/SS010000
+252 /SS260000/SS270000/SV040000/apostrophereverse
+1/arrowboth/arrowdown/arrowleft/arrowright/arrowup/club
+/deutschmark/diamond/diamondopen/exclamdbl/female
+/fiveeighths/franc/heart/male/musicalnote/musicalnotedbl
+/napostrophe/nsuperior/oneeighths/seveneighths/spade
+/threeeights/underscoredbl/SM760000
+]
+{ dup type /nametype eq
+  { WPDLencoding 2 index 2 index put pop 1 add }
+  { exch pop } ifelse
+} forall pop
+
+/reencodeL
+    { dup FontDirectory exch known
+      { findfont }
+      {  dup nbuff cvs dup length 1 sub get 76 eq
+         {    dup nbuff cvs dup length 1 sub 0 exch getinterval
+         findfont begin
+         currentdict dup length dict begin
+         { 1 index /FID ne {def} {pop pop} ifelse } forall
+         /FontName exch def
+         /Encoding WPDLencoding def
+         currentdict dup end end
+         /FontName get exch definefont
+         }
+         { findfont } ifelse
+      } ifelse
+    } bdef
+
+/ron	false def
+/sflg	false def
+/slan	0 def
+/sp	32 def
+
+/sshow
+	{ save exch
+	   gsave
+	    psz 20 div dup neg _rmt dup show
+	   grestore
+	   dup
+	   save exch
+	    Bfont setfont
+	    1 setgray show
+	   restore
+	   currentfont makeoutl setfont show
+	   currentpoint 3 -1 roll
+	  restore _mt
+	} bdef
+
+/Sx	0 def
+/Sy	0 def
+/Ux	0 def
+/Uy	0 def
+/W	/widthshow load def
+
+/_B	{/bflg true def
+	 sflg not {/_S /bshow load def /bon true def} if
+	} bdef
+/_b	{/bflg false def
+	 bon {/_S /show load def /bon false def} if
+	} bdef
+/_bd	{save} bdef
+/_bp	{save 2 setmiterlimit .06 .06 scale 0 0 _mt} bdef
+/_ccprocs
+	{/proc2 exch cvlit def
+	 /proc1 exch cvlit def
+	 /newproc proc1 length proc2 length add
+	 array def
+	 newproc 0 proc1 putinterval
+	 newproc proc1 length proc2 putinterval
+	 newproc cvx
+	} def
+/_clr	{3 {255 div 3 1 roll} repeat
+	 ron {6 3 roll pop pop pop} {setrgbcolor} ifelse
+	} bdef
+/_cp	/closepath load def
+/_cw	{stroke initclip _mt 0 2 index
+	 _rlt 0 _rlt 0 exch neg
+	 _rlt clip newpath
+	} bdef
+/_d	/setdash load def
+/_DU	{currentpoint /DUy exch def /DUx exch def} bdef
+/_du	{gsave
+	  save
+	  8 setlinewidth
+      currentpoint -30 add _mt
+      DUx DUy -30 add _lt stroke
+	  restore
+	  8 setlinewidth
+	  currentpoint -50 add _mt
+	  DUx DUy -50 add _lt stroke
+	 grestore
+	} bdef
+/_ed	{restore} bdef
+/_ep	{restore showpage 0 0 _mt} bdef
+/_f	/eofill load def
+/_ff	{ exch reencode exch
+	  3 div dup /psz exch def
+	  scalefont dup /Bfont exch def setfont
+	} bdef
+/_ffs	{ /slan exch 10 div def /hscl exch 1000 div def
+	  /psz exch 3 div def
+	  [ psz hscl mul 0 slan dup sin exch cos div psz mul psz 0 0 ]
+	  exch reencode exch makefont dup /Bfont exch def setfont
+	} bdef
+/_g	/setgray load def
+/_gs	{neg 100 add 100 div setgray} bdef
+/_i	{gsave
+	  dup /picstr exch 7 add 8 idiv string def
+	  3 1 roll translate dup 1 scale
+	  dup 1 1 [5 -1 roll 0 0 1 0 0]
+	  {currentfile picstr readhexstring pop} image
+         grestore
+        } bdef
+/_is	{save 4 1 roll
+	  dup /picstr exch 7 add 8 idiv string def
+	  3 1 roll translate dup 1 scale
+	  dup 1 1 [5 -1 roll 0 0 1 0 0]
+	  {currentfile picstr readhexstring pop} image
+	 restore
+	} bdef
+/_ie	{1 eq { {1 exch sub} currenttransfer _ccprocs settransfer} if
+	 /_isx exch def /_isy exch def
+	 _isx mul exch _isy mul translate
+	 add 2 div /_txc exch def
+	 add 2 div /_tyc exch def
+	 _txc _isx mul _tyc _isy mul translate
+	 360 exch sub rotate
+	 1 eq { _isx neg _isy scale }
+	 { _isx _isy scale }
+	 ifelse _txc neg _tyc neg translate
+	} bdef
+/_irms	{save
+	  12 1 roll
+	  1 eq {{1 exch sub} currenttransfer _ccprocs settransfer} if
+	  /picstr exch string def translate
+	  2 index 6 index sub 2 div 2 index 6 index sub 2 div neg
+	  translate
+	  5 index 5 index 2 div neg exch 2 div exch
+	  2 copy neg exch neg exch 5 2 roll translate
+	  360 exch sub rotate
+	  3 index 3 index 7 index div exch 8 index div exch scale
+	  translate pop pop 2 index 2 index scale
+	  3 index 0 eq
+	  { [ 3 index 0 0 5 index neg 0 0 ] }
+	  { 3 index 1 eq
+      { [ 3 index 0 0 5 index 0 7 index ] }
+      { 3 index 128 eq
+	  { [ 3 index neg 0 0 5 index neg 7 index 0 ] }
+	  { [ 3 index neg 0 0 5 index 7 index 7 index ] } ifelse
+	    } ifelse
+	  } ifelse
+          {currentfile picstr readhexstring pop} image
+          pop
+	 restore
+	} bdef
+
+/_l	{_lt} bdef
+/_lr	{_rlt} bdef
+/_m	{_mt} bdef
+/_O	{currentfont makeoutl setfont} bdef
+/_o	{Bfont setfont} bdef
+/_ornt	{/pwid exch def /plen exch def
+	 orntsv 1 eq {0 pwid translate -90 rotate} if
+	 orntsv 2 eq {pwid plen translate 180 rotate} if
+	 orntsv 3 eq {plen 0 translate 90 rotate} if
+	 dup 1 eq {pwid 0 translate 90 rotate} if
+	 dup 2 eq {pwid plen translate 180 rotate} if
+	 dup 3 eq {0 plen translate -90 rotate} if
+	 /orntsv exch def
+	} bdef
+/_lod1	{currentpoint orntsv plen pwid 6 -1 roll restore save} bdef
+/_lod2	{_bp 7 2 roll _ornt _mt} bdef
+/_unlod	{currentpoint orntsv plen pwid 7 -2 roll restore restore
+	 _bp 6 1 roll _ornt _mt
+	} bdef
+/_p	{2 copy _mt 1 0 _rlt _mt} bdef
+/_pl	{{_lt} repeat} bdef
+/_R      { /ron true def /_S /_rshow load def /_t /_red load def} bdef
+/_rshow	 { save exch
+	   currentpoint
+	   /RSy exch def /RSx exch def
+	   ron {
+		 sflg
+		 {	currentpoint
+			/Ry exch def /Rx exch def
+			dup stringwidth pop Rx Ry psz 4 div add _mt
+			Rx psz 15 add setlinewidth .95 setgray 0 setlinecap
+			add Ry psz 4 div add _lt stroke Rx Ry _mt 0 0 0 setrgbcolor
+			dup show Rx Ry _mt
+			sshow
+		 }
+		 { _redshow
+		 }ifelse
+	   }
+	   {	 sflg {sshow} if
+	   }ifelse
+	   currentpoint 3 -1 roll
+	   restore _mt
+	 } bdef
+/_red	{ gsave dup
+         currentpoint /Ry exch def /Rx exch def
+         Rx Ry psz 4 div add _mt
+         Rx psz 15 add setlinewidth .95 setgray 0 setlinecap
+         add Ry psz 4 div add _lt stroke
+         Rx Ry _mt
+         grestore
+         0 rmoveto
+    }bdef
+/_redshow {currentpoint
+         /Ry exch def /Rx exch def
+         dup stringwidth pop Rx Ry psz 4 div add _mt
+         Rx psz 15 add setlinewidth .95 setgray 0 setlinecap
+         add Ry psz 4 div add _lt stroke Rx Ry _mt 0 0 0 setrgbcolor
+         show currentpoint _mt
+    }bdef
+/_rmxy	{_rmt} bdef
+/_s	/stroke load def
+/_SH	bon {/bon false def} if
+	{/sflg true def /_S /_rshow load def
+	} bdef
+/_sh	{ ron 	{/sflg false def bflg {_B} if}
+		{/_S /show load def /sflg false def bflg {_B} if}ifelse
+	}bdef
+/_sp	{ gsave stroke grestore } bdef
+/_ST	{currentpoint /Sy exch def /Sx exch def} bdef
+/_st	{gsave
+	  currentpoint pop
+	  Sx dup Sy _mt sub
+	  (\320) stringwidth pop div
+	  dup floor cvi dup
+      dup 0 gt {{(\320) show} repeat}{pop} ifelse sub
+	  dup 0 gt {1 scale (\320) show}{pop} ifelse
+	 grestore
+	} bdef
+/_U	{currentpoint /Uy exch def /Ux exch def} bdef
+/_u	{gsave
+	  currentpoint
+	  -30 add _mt
+	  Ux Uy -30 add _lt
+	  12 setlinewidth
+	  stroke
+	 grestore
+	} bdef
+/_w	/setlinewidth load def
+end
+/#copies 1 def /wpdict2 100 dict def
+wpdict begin wpdict2 begin
+_bd
+/_rhs{readhexstring}bdef/_tr{translate}bdef
+/_ix{index}bdef/_mx{matrix}bdef
+/ife{ifelse}bdef/_x{exch}bdef
+/_is{save 4 1 roll
+dup/picstr _x 7 add 8 idiv string def
+3 1 roll _tr dup 1 scale
+dup 1 1[5 -1 roll 0 0 1 0 0]
+{currentfile picstr _rhs pop}image restore}bdef
+/_epsi{1 eq{{1 _x sub}currenttransfer _ccprocs settransfer}if
+/yp _x def/xp _x def/dhgt _x def/dwid _x def
+4 copy sub/swid _x def
+sub/shgt _x def
+add 2 div/icx _x def add 2 div/icy _x def
+xp dwid 2 div add icx sub yp dhgt 2 div sub
+icy sub _tr icx icy _tr
+360 _x sub rotate
+dwid swid div/xsc _x def _x
+dhgt shgt div/ysc _x def _x
+dup 1 eq{xsc neg/xsc _x def pop}
+{dup 2 eq{ysc neg /ysc _x def pop}
+{3 eq{ysc neg/ysc _x def xsc neg/xsc _x def}
+{}ife}ife}ife
+xsc ysc scale
+100 div _x 100 div _x scale
+icx neg icy neg _tr}bdef
+/_c{3{255 div 3 1 roll}repeat setrgbcolor}bdef
+/eq3{3 copy 2 _ix eq{eq{true}{false}ife}{pop
+pop false}ife}bdef
+/g{255 div setgray}bdef
+/_clr{ron{6 3 roll pop pop pop}{eq3{pop
+pop g}{_c}ife}ife}bdef
+/_r{/ron false def eq3{1 sub neg g pop
+pop}{setrgbcolor}ife}bdef
+/_ircms{save 15 1 roll
+1 eq{{1 exch sub}currenttransfer _ccprocs settransfer}if
+/pstr _x string def _tr
+/Cli _x def/USy _x def/USx _x def/Rot _x def/HTd _x def
+/WDd _x def/Bdep _x def/HTs _x def/WDs _x def/MIR _x def
+USx 100 div USy 100 div scale
+WDd WDs sub 2 div HTd HTs sub 2 div neg _tr
+WDs HTs 2 div neg _x 2 div _x _tr
+Rot 360 _x sub rotate WDd HTd HTs div _x WDs div _x scale
+WDs 2 div neg HTs 2 div _tr
+WDs HTs scale WDs HTs Bdep MIR 0
+eq{[WDs 0 0 HTs neg 0 0]}{MIR 1 eq{[WDs 0 0 HTs 0 HTs]}
+{MIR 128 eq{[WDs neg 0 0 HTs neg WDs 0]}
+{[WDs neg 0 0 HTs WDs HTs]}ife}ife}ife
+{currentfile pstr _rhs pop}Cli
+0 eq{image}{false 3 colorimage}ife
+restore}bdef
+/_bp{save 2 setlinecap 2 setmiterlimit
+.06 .06 scale 0 0 moveto}bdef
+/tctm _mx def/trot _mx def/tscale _mx def/rmtx _mx def
+/fr{72 0 rmtx defaultmatrix dtransform
+/yres _x def/xres _x def
+xres dup mul yres dup mul add sqrt}bdef
+/sus{/spotf _x def/sang _x def/csz _x def
+/m tctm currentmatrix def/rm sang trot rotate def
+/sm csz dup tscale scale def
+sm rm m m concatmatrix m concatmatrix pop
+1 0 m dtransform /y1 _x def/x1 _x def
+/veclength x1 dup mul y1 dup mul add sqrt def
+/frcy fr veclength div def /nsang y1 x1 atan def
+frcy nsang/spotf load setscreen}bdef
+/bitis{/ybit _x def /xbit _x def
+/bval bstring ybit bwidth mul xbit 8 idiv add get def
+/mask 1 7 xbit 8 mod sub bitshift def
+bval mask and 0 ne}bdef
+/bps{/y _x def /x _x def
+/xndx x 1 add 2 div bpside mul cvi def
+/yndx y 1 add 2 div bpside mul cvi def
+xndx yndx bitis
+{/onb onb 1 add def 1}{/ofb ofb 1 add def 0}ife}bdef
+/stpatt{/csz _x def /angle _x def /bwidth _x def
+/bpside _x def /bstring _x def
+/onb 0 def /ofb 0 def
+csz angle /bps load
+sus{}settransfer
+ofb ofb onb add div _g}bdef
+/_fp{8 1 0 cpi stpatt}bdef
+/_pf{gsave eofill grestore}bdef
+/_np{newpath}bdef/_lc{setlinecap}bdef
+/_sr{/cpi _x def}bdef
+/nbuff 50 string def
+letter _bp 0 13200 10200 _ornt /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 8663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+(TTTTTTT)_S 240 _t
+(IIIIIII)_S 240 _t
+(N)_S 600 _t
+(N)_S 240 _t
+(TTTTTTT)_S 240 _t
+(IIIIIII)_S 240 _t
+(N)_S 600 _t
+(N)_S 600 8463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(NN)_S 480 _t
+(N)_S 600 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(NN)_S 480 _t
+(N)_S 480 _t
+(++)_S 720 _t
+(++)_S 600 8263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 120 _t
+(N)_S 360 _t
+(N)_S 600 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 120 _t
+(N)_S 360 _t
+(N)_S 480 _t
+(++)_S 720 _t
+(++)_S 600 8063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 240 _t
+(N)_S 240 _t
+(N)_S 600 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 240 _t
+(N)_S 240 _t
+(N)_S 240 _t
+(++++++)_S 240 _t
+(++++++)_S 600 7863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 360 _t
+(N)_S 120 _t
+(N)_S 600 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 360 _t
+(N)_S 120 _t
+(N)_S 240 _t
+(++++++)_S 240 _t
+(++++++)_S 600 7663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 480 _t
+(NN)_S 600 _t
+(T)_S 960 _t
+(I)_S 600 _t
+(N)_S 480 _t
+(NN)_S 480 _t
+(++)_S 720 _t
+(++)_S 600 7463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 600 _t
+(IIIIIII)_S 240 _t
+(N)_S 600 _t
+(N)_S 600 _t
+(T)_S 600 _t
+(IIIIIII)_S 240 _t
+(N)_S 600 _t
+(N)_S 480 _t
+(++)_S 720 _t
+(++)_S 4380 6863 _m
+(Version)_S 120 _t
+(1.5)_S 120 _t
+4380 6463 _m
+(Written)_S 120 _t
+(by,)_S 120 _t
+4440 6063 _m
+(Bill)_S 120 _t
+(Reiss,)_S 4140 5863 _m
+(Joann)_S 120 _t
+(Ellsworth,)_S 4200 5663 _m
+(Jeremy)_S 120 _t
+(C.)_S 120 _t
+(Jack,)_S 3960 5463 _m
+(and)_S 120 _t
+(David)_S 120 _t
+(A.)_S 120 _t
+(Wagner)_S 2700 5063 _m
+(Docs)_S 120 _t
+(written)_S 120 _t
+(by)_S 120 _t
+(Joann)_S 120 _t
+(Ellsworth)_S 120 _t
+(\(c\))_S 120 _t
+(1994)_S 600 4663 _m
+120 _t
+120 _t
+120 _t
+(The)_S 132 _t
+(use)_S 132 _t
+(of)_S 132 _t
+(this)_S 132 _t
+(documentation,)_S 132 _t
+(for)_S 132 _t
+(other)_S 132 _t
+("hacked")_S 132 _t
+(versions)_S 132 _t
+(of)_S 132 _t
+(Tintin++,)_S 600 4463 _m
+(without)_S 120 _t
+(the)_S 120 _t
+(expressed)_S 120 _t
+(written)_S 120 _t
+(consent)_S 120 _t
+(by)_S 120 _t
+(Joann)_S 120 _t
+(Ellsworth,)_S 120 _t
+(is)_S 120 _t
+(prohibited.)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 120 _t
+(I)_S 120 _t
+(N)_S 120 _t
+(T)_S 120 _t
+(I)_S 120 _t
+(N)_S 120 _t
+(++)_S 120 _t
+(v1.5)_S 600 12263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Table)_S 120 _t
+(of)_S 120 _t
+(Contents)_S 600 12063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(-----------------)_S 600 11863 _m
+(1\))_S 240 _t
+(What)_S 120 _t
+(is)_S 120 _t
+(TinTin++?)_S 120 _t
+(.............................)_S 480 _t
+(Pg.)_S 120 _t
+(3)_S 600 11663 _m
+(2\))_S 240 _t
+(TinTin++.)_S 240 _t
+(What's)_S 120 _t
+(new?)_S 120 _t
+(........................)_S 480 _t
+(Pg.)_S 120 _t
+(3)_S 600 11463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+(Split)_S 120 _t
+(Screen)_S 120 _t
+(..................................)_S 480 _t
+(Pg.)_S 120 _t
+(3)_S 600 11263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+(Tab)_S 120 _t
+(Completion)_S 120 _t
+(................................)_S 480 _t
+(Pg.)_S 120 _t
+(3)_S 120 _t
+600 11063 _m
+(3\))_S 240 _t
+(Giving)_S 120 _t
+(Credit)_S 120 _t
+(Where)_S 120 _t
+(Credit)_S 120 _t
+(is)_S 120 _t
+(Due)_S 120 _t
+(.............)_S 480 _t
+(Pg.)_S 120 _t
+(4)_S 600 10863 _m
+(4\))_S 240 _t
+(Compiling)_S 120 _t
+(TinTin++)_S 120 _t
+(............................)_S 480 _t
+(Pg.)_S 120 _t
+(4)_S 600 10663 _m
+(5\))_S 240 _t
+(Starting)_S 120 _t
+(TinTin++)_S 120 _t
+(.............................)_S 480 _t
+(Pg.)_S 120 _t
+(5)_S 600 10463 _m
+(6\))_S 240 _t
+(Change)_S 120 _t
+(in)_S 120 _t
+(Format)_S 120 _t
+(..............................)_S 480 _t
+(Pg.)_S 120 _t
+(5)_S 600 10263 _m
+(7\))_S 240 _t
+(Variables)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(6)_S 600 10063 _m
+(8\))_S 240 _t
+(Command)_S 120 _t
+(Syntax)_S 120 _t
+(................................)_S 480 _t
+(Pg.)_S 120 _t
+(7)_S 600 9863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Action)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(8)_S 600 9663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Alias)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(9)_S 600 9463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(All)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(10)_S 600 9263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Antisubstitute)_S 120 _t
+(...............................)_S 480 _t
+(Pg.)_S 120 _t
+(10)_S 600 9063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Bell)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(10)_S 600 8863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Boss)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(10)_S 600 8663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Char)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(11)_S 1200 8463 _m
+(Cr)_S 120 _t
+(...........................................)_S 7200 8463 _m
+(Pg.)_S 120 _t
+(11)_S 600 8263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Echo)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(11)_S 600 8063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(End)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(11)_S 600 7863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Gag)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(12)_S 600 7663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Help)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(12)_S 600 7463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Highlight)_S 120 _t
+(....................................)_S 480 _t
+(Pg.)_S 120 _t
+(12)_S 600 7263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(History)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(13)_S 600 7063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(If)_S 120 _t
+(...........................................)_S 480 _t
+(Pg.)_S 120 _t
+(14)_S 600 6863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Ignore)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(15)_S 1200 6663 _m
+(Info)_S 120 _t
+(.........................................)_S 7200 6663 _m
+(Pg.)_S 120 _t
+(15)_S 1200 6463 _m
+(Killall)_S 120 _t
+(......................................)_S 7200 6463 _m
+(Pg.)_S 120 _t
+(15)_S 600 6263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Log)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(15)_S 600 6063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Loop)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(15)_S 600 5863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Map)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(16)_S 600 5663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Mark)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(16)_S 600 5463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Math)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(16)_S 600 5263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Message)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(17)_S 600 5063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(#NAME)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(17)_S 600 4863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(#<number>)_S 120 _t
+(....................................)_S 480 _t
+(Pg.)_S 120 _t
+(17)_S 600 4663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Nop)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(17)_S 600 4463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Path)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(18)_S 1200 4263 _m
+(Pathdir)_S 120 _t
+(......................................)_S 7200 4263 _m
+(Pg.)_S 120 _t
+(18)_S 600 4063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Presub)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(18)_S 600 3863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Read)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(19)_S 1200 3663 _m
+(Redraw)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(19)_S 600 3463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Return)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(19)_S 1200 3263 _m
+(Savepath)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(19)_S 600 3063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Session)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(20)_S 600 2863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Showme)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(20)_S 600 2663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Snoop)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(20)_S 600 2463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Speedwalk)_S 120 _t
+(....................................)_S 480 _t
+(Pg.)_S 120 _t
+(21)_S 600 2263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Split)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(21)_S 600 2063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Substitute)_S 120 _t
+(...................................)_S 480 _t
+(Pg.)_S 120 _t
+(22)_S 1200 1863 _m
+(Suspend)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(23)_S 600 1663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(System)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(23)_S 1200 1463 _m
+(Tabadd)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(23)_S 1200 1263 _m
+(Tabdelete)_S 120 _t
+(....................................)_S 7200 1263 _m
+(Pg.)_S 120 _t
+(23)_S 1200 1063 _m
+(Tablist)_S 120 _t
+(......................................)_S 7200 1063 _m
+(Pg.)_S 120 _t
+(23)_S 5040 663 _m
+(1)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+1200 12463 _m
+(Textin)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(24)_S 600 12263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Tick)_S 120 _t
+(.........................................)_S 480 _t
+(Pg.)_S 120 _t
+(24)_S 600 12063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Tickon/Tickoff)_S 120 _t
+(...............................)_S 480 _t
+(Pg.)_S 120 _t
+(24)_S 600 11863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Tickset)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(24)_S 600 11663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Ticksize)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(25)_S 600 11463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Togglesub)_S 120 _t
+(....................................)_S 480 _t
+(Pg.)_S 120 _t
+(25)_S 600 11263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unaction)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(25)_S 1560 _t
+600 11063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unalias)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(25)_S 600 10863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unantisub)_S 120 _t
+(....................................)_S 480 _t
+(Pg.)_S 120 _t
+(26)_S 600 10663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Ungag)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(26)_S 600 10463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unhighlight)_S 120 _t
+(..................................)_S 480 _t
+(Pg.)_S 120 _t
+(26)_S 600 10263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unpath)_S 120 _t
+(.......................................)_S 480 _t
+(Pg.)_S 120 _t
+(26)_S 600 10063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unsplit)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(26)_S 600 9863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unsub)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(27)_S 600 9663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Unvariable)_S 120 _t
+(...................................)_S 480 _t
+(Pg.)_S 120 _t
+(27)_S 600 9463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Variable)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(27)_S 600 9263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Version)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(28)_S 600 9063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Verbatim)_S 120 _t
+(.....................................)_S 480 _t
+(Pg.)_S 120 _t
+(28)_S 1200 8863 _m
+(Wildcard)_S 120 _t
+(\(Topic,)_S 120 _t
+(not)_S 120 _t
+(actual)_S 120 _t
+(command\))_S 120 _t
+(.........)_S 7200 8863 _m
+(Pg.)_S 120 _t
+(29)_S 600 8663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Wizlist)_S 120 _t
+(......................................)_S 480 _t
+(Pg.)_S 120 _t
+(29)_S 600 8463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Write)_S 120 _t
+(........................................)_S 480 _t
+(Pg.)_S 120 _t
+(29)_S 600 8263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Zap)_S 120 _t
+(..........................................)_S 480 _t
+(Pg.)_S 120 _t
+(29)_S 600 8063 _m
+(9\))_S 240 _t
+(History)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 120 _t
+(...........................)_S 480 _t
+(Pg.)_S 120 _t
+(30)_S 600 7863 _m
+(10\))_S 120 _t
+(The)_S 120 _t
+(Future)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 120 _t
+(........................)_S 480 _t
+(Pg.)_S 120 _t
+(30)_S 5040 663 _m
+(2)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(T)_S 120 _t
+(I)_S 120 _t
+(N)_S 120 _t
+(T)_S 120 _t
+(I)_S 120 _t
+(N)_S 120 _t
+(++)_S 600 12263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(v1.5)_S 120 _t
+(Official)_S 120 _t
+(Release)_S 120 _t
+(version)_S 600 12063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(\(T\)he)_S 120 _t
+(K\(I\)cki\(N\))_S 120 _t
+(\(T\)ick)_S 120 _t
+(D\(I\)kumud)_S 120 _t
+(Clie\(N\)t)_S 600 11663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(What)_S 120 _t
+(is)_S 120 _t
+(TinTin++?)_S 240 _t
+(=========)_S 600 11263 _m
+(TINTIN++)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(client)_S 120 _t
+(program)_S 120 _t
+(specialized)_S 120 _t
+(to)_S 120 _t
+(help)_S 120 _t
+(playing)_S 120 _t
+(muds.)_S 600 11063 _m
+(This)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(souped)_S 120 _t
+(up)_S 120 _t
+(version)_S 120 _t
+(of)_S 120 _t
+(TINTIN)_S 120 _t
+(III,)_S 120 _t
+(many)_S 120 _t
+(new)_S 120 _t
+(features)_S 600 10863 _m
+(have)_S 120 _t
+(been)_S 120 _t
+(added)_S 120 _t
+(since)_S 120 _t
+(III.)_S 240 _t
+(We)_S 120 _t
+(saw)_S 120 _t
+(room)_S 120 _t
+(for)_S 120 _t
+(improvement)_S 120 _t
+(on)_S 120 _t
+(the)_S 600 10663 _m
+(features)_S 120 _t
+(available)_S 120 _t
+(from)_S 120 _t
+(TINTIN,)_S 120 _t
+(and)_S 120 _t
+(since)_S 120 _t
+(we)_S 120 _t
+(like)_S 120 _t
+(the)_S 120 _t
+(format)_S 120 _t
+(of)_S 600 10463 _m
+(the)_S 120 _t
+(program,)_S 120 _t
+(we)_S 120 _t
+(decided)_S 120 _t
+(to)_S 120 _t
+(use)_S 120 _t
+(TINTIN)_S 120 _t
+(as)_S 120 _t
+(a)_S 120 _t
+(base)_S 120 _t
+(for)_S 120 _t
+(what)_S 120 _t
+(we)_S 120 _t
+600 10263 _m
+(hope)_S 120 _t
+(to)_S 120 _t
+(make)_S 120 _t
+(one)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(most)_S 120 _t
+(powerful)_S 120 _t
+(clients)_S 120 _t
+(around.)_S 600 9863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(TinTin++.)_S 240 _t
+(What's)_S 120 _t
+(new?)_S 240 _t
+(=========)_S 600 9463 _m
+(Well,)_S 102 _t
+(MANY)_S 101 _t
+(bugs)_S 102 _t
+(have)_S 101 _t
+(been)_S 102 _t
+(fixed)_S 102 _t
+(\(most)_S 101 _t
+(listed)_S 102 _t
+(in)_S 101 _t
+(the)_S 102 _t
+(file)_S 101 _t
+(CHANGES\).)_S 203 _t
+(Some)_S 600 9263 _m
+(of)_S 120 _t
+(the)_S 120 _t
+(more)_S 120 _t
+(significant)_S 120 _t
+(bug)_S 120 _t
+(fixes)_S 120 _t
+(however,)_S 120 _t
+(are)_S 120 _t
+(fixes)_S 120 _t
+(to)_S 120 _t
+(#loop,)_S 120 _t
+(#split,)_S 600 9063 _m
+(suspending)_S 120 _t
+(a)_S 120 _t
+(session)_S 120 _t
+(and)_S 120 _t
+(coming)_S 120 _t
+(back)_S 120 _t
+(with)_S 120 _t
+(the)_S 120 _t
+(proper)_S 120 _t
+(echo.)_S 600 8863 _m
+(The)_S 110 _t
+(location)_S 111 _t
+(of)_S 111 _t
+(the)_S 111 _t
+(help)_S 110 _t
+(file)_S 111 _t
+(was)_S 111 _t
+(moved)_S 111 _t
+(to)_S 111 _t
+(the)_S 110 _t
+($HOME)_S 111 _t
+(directory,)_S 111 _t
+(and)_S 111 _t
+(now)_S 600 8663 _m
+(tintin++)_S 253 _t
+(offers)_S 254 _t
+(compression)_S 253 _t
+(of)_S 253 _t
+(that)_S 254 _t
+(file)_S 253 _t
+(to)_S 253 _t
+(reduce)_S 254 _t
+(the)_S 253 _t
+(space)_S 600 8463 _m
+(consumption.)_S 600 8063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(New)_S 120 _t
+(commands)_S 120 _t
+(to)_S 120 _t
+(Tintin++)_S 120 _t
+(v1.5:)_S 600 7663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(retab)_S 360 _t
+3600 7663 _m
+(tablist)_S 6000 7663 _m
+(info)_S 600 7463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(textin)_S 120 _t
+3600 7463 _m
+(killall)_S 120 _t
+6000 7463 _m
+(pathdir)_S 600 7263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(suspend)_S 3600 7263 _m
+(tabadd)_S 6000 7263 _m
+(tabdelete)_S 600 7063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(cr)_S 720 _t
+3600 7063 _m
+(wildcard)_S 600 6463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(========)_S 240 _t
+(Split)_S 120 _t
+(Screen)_S 240 _t
+(=========)_S 600 6063 _m
+(In)_S 240 _t
+(order)_S 240 _t
+(to)_S 120 _t
+(use)_S 240 _t
+(split)_S 240 _t
+(screen,)_S 240 _t
+(you)_S 240 _t
+(must)_S 120 _t
+(have)_S 240 _t
+(a)_S 240 _t
+(VT-100/ANSI)_S 600 5863 _m
+(compatible)_S 120 _t
+(terminal)_S 120 _t
+(or)_S 240 _t
+(terminal)_S 120 _t
+(emulator.)_S 240 _t
+(Split)_S 120 _t
+(screen)_S 1680 _t
+600 5663 _m
+120 _t
+(just)_S 120 _t
+(that,)_S 120 _t
+(split)_S 120 _t
+(the)_S 120 _t
+(screen)_S 120 _t
+(in)_S 120 _t
+(two,)_S 120 _t
+(with)_S 120 _t
+(the)_S 120 _t
+(top)_S 120 _t
+(window)_S 120 _t
+(being)_S 120 _t
+(the)_S 600 5463 _m
+(output)_S 240 _t
+(window)_S 120 _t
+(\(text)_S 240 _t
+(from)_S 120 _t
+(mud\),)_S 240 _t
+(and)_S 120 _t
+(the)_S 240 _t
+(bottom)_S 120 _t
+(half)_S 240 _t
+(being)_S 120 _t
+(the)_S 600 5263 _m
+(input)_S 120 _t
+(window)_S 120 _t
+(\(typed)_S 120 _t
+(text)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(mud.\))_S 240 _t
+(This)_S 120 _t
+(allows)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(the)_S 600 5063 _m
+(entire)_S 120 _t
+(line)_S 240 _t
+(that)_S 120 _t
+(you)_S 120 _t
+(are)_S 240 _t
+(typing,)_S 120 _t
+(without)_S 120 _t
+(having)_S 120 _t
+(the)_S 240 _t
+(mud)_S 120 _t
+(scroll)_S 600 4863 _m
+(your)_S 120 _t
+(text)_S 120 _t
+(off)_S 120 _t
+(the)_S 120 _t
+(screen,)_S 120 _t
+(or)_S 120 _t
+(breaking)_S 120 _t
+(the)_S 120 _t
+(line)_S 120 _t
+(up.)_S 240 _t
+600 4463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Tab)_S 120 _t
+(Completion)_S 240 _t
+(=========)_S 600 4063 _m
+(Tab)_S 120 _t
+(Completion)_S 240 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(nice)_S 120 _t
+(little)_S 240 _t
+(device)_S 120 _t
+(that)_S 120 _t
+(you)_S 120 _t
+(will)_S 240 _t
+(grow)_S 120 _t
+(fond)_S 600 3863 _m
+(of.)_S 360 _t
+(There)_S 120 _t
+(exists)_S 120 _t
+(a)_S 120 _t
+(file,)_S 120 _t
+(called)_S 120 _t
+(tab.txt.)_S 240 _t
+(It)_S 120 _t
+(contains)_S 120 _t
+(a)_S 120 _t
+(list)_S 120 _t
+(of)_S 600 3663 _m
+(words,)_S 120 _t
+(one)_S 120 _t
+(word)_S 240 _t
+(per)_S 120 _t
+(line.)_S 360 _t
+(How)_S 120 _t
+(Tab)_S 120 _t
+(Completion)_S 240 _t
+(works,)_S 120 _t
+(is)_S 240 _t
+(after)_S 600 3463 _m
+(typing)_S 120 _t
+(some)_S 240 _t
+(letters)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(word,)_S 120 _t
+(you)_S 120 _t
+(press)_S 240 _t
+(the)_S 120 _t
+(tab)_S 120 _t
+(key.)_S 240 _t
+(Tintin++)_S 600 3263 _m
+(will)_S 120 _t
+(look)_S 120 _t
+(through)_S 240 _t
+(the)_S 120 _t
+(list)_S 120 _t
+(of)_S 120 _t
+(words)_S 120 _t
+(loaded)_S 120 _t
+(from)_S 120 _t
+(tab.txt)_S 120 _t
+(and)_S 120 _t
+(make)_S 600 3063 _m
+(an)_S 120 _t
+(educated)_S 120 _t
+(guess)_S 120 _t
+(as)_S 120 _t
+(to)_S 240 _t
+(what)_S 120 _t
+(the)_S 120 _t
+(whole)_S 120 _t
+(word)_S 120 _t
+(should)_S 120 _t
+(be.)_S 360 _t
+(This)_S 120 _t
+(is)_S 600 2863 _m
+(helpful)_S 120 _t
+(for)_S 120 _t
+(long)_S 120 _t
+(words,)_S 120 _t
+(or)_S 120 _t
+(words)_S 120 _t
+(that)_S 120 _t
+(are)_S 120 _t
+(not)_S 120 _t
+(easy)_S 120 _t
+(to)_S 120 _t
+(type.)_S 240 _t
+(Also)_S 600 2663 _m
+(note)_S 120 _t
+(that)_S 120 _t
+(it)_S 120 _t
+(would)_S 120 _t
+(be)_S 120 _t
+(wise)_S 120 _t
+(to)_S 120 _t
+(use)_S 120 _t
+(words)_S 120 _t
+(that)_S 120 _t
+(are)_S 120 _t
+(not)_S 120 _t
+(too)_S 120 _t
+(similar,)_S 600 2463 _m
+(for)_S 120 _t
+(you)_S 120 _t
+(might)_S 120 _t
+(not)_S 120 _t
+(get)_S 120 _t
+(the)_S 120 _t
+(right)_S 120 _t
+(word)_S 120 _t
+(that)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(looking)_S 120 _t
+(for.)_S 600 2263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Example:)_S 600 2063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(\(tab.txt)_S 120 _t
+(contains\))_S 600 1863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Grimmy)_S 600 1663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Bamsemums)_S 600 1463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(celebdel)_S 600 1263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(tordenskjold)_S 4740 663 _m
+(3)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(\(you)_S 120 _t
+(type\))_S 600 12263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(tord<Tab)_S 120 _t
+(Key>)_S 240 _t
+(<=)_S 240 _t
+(Tintin++)_S 120 _t
+(will)_S 120 _t
+(replace)_S 120 _t
+(tord)_S 120 _t
+(with)_S 120 _t
+(tordenskjold.)_S 600 11863 _m
+(New)_S 104 _t
+(to)_S 104 _t
+(v1.5,)_S 104 _t
+(you)_S 104 _t
+(can)_S 104 _t
+(now)_S 104 _t
+(add)_S 104 _t
+(and)_S 104 _t
+(delete)_S 104 _t
+(words)_S 104 _t
+(to)_S 104 _t
+(the)_S 104 _t
+(tablist,)_S 104 _t
+(as)_S 104 _t
+(well)_S 104 _t
+(as)_S 600 11663 _m
+(re-read)_S 142 _t
+(an)_S 142 _t
+(entirely)_S 142 _t
+(new)_S 142 _t
+(tab.txt)_S 141 _t
+(file.)_S 284 _t
+(For)_S 142 _t
+(adding)_S 142 _t
+(and)_S 141 _t
+(deleting)_S 142 _t
+(words)_S 600 11463 _m
+(from)_S 102 _t
+(the)_S 101 _t
+(tab)_S 102 _t
+(list,)_S 101 _t
+(refer)_S 102 _t
+(to)_S 101 _t
+(the)_S 102 _t
+(command)_S 102 _t
+(syntax)_S 101 _t
+(section)_S 102 _t
+(further)_S 101 _t
+(on)_S 102 _t
+(in)_S 101 _t
+(the)_S 600 11263 _m
+(documentation.)_S 600 10863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Giving)_S 120 _t
+(Credit)_S 120 _t
+(Where)_S 120 _t
+(Credit)_S 120 _t
+(is)_S 120 _t
+(Due)_S 120 _t
+(========)_S 600 10463 _m
+(None)_S 120 _t
+(of)_S 120 _t
+(this)_S 120 _t
+(work)_S 120 _t
+(would)_S 120 _t
+(be)_S 120 _t
+(possible,)_S 120 _t
+(without)_S 120 _t
+(the)_S 120 _t
+(work)_S 120 _t
+(done)_S 120 _t
+(by)_S 600 10263 _m
+(Peter)_S 120 _t
+(Unold.)_S 240 _t
+(He)_S 120 _t
+(was)_S 120 _t
+(the)_S 120 _t
+(author)_S 120 _t
+(of)_S 120 _t
+(TinTin)_S 120 _t
+(III,)_S 120 _t
+(the)_S 120 _t
+(base)_S 120 _t
+(of)_S 600 10063 _m
+(TinTin++.)_S 240 _t
+(Hats)_S 120 _t
+(off)_S 120 _t
+(to)_S 120 _t
+(ya)_S 120 _t
+(Peter,)_S 120 _t
+(You)_S 120 _t
+(started)_S 120 _t
+(the)_S 120 _t
+(ball)_S 120 _t
+(rolling.)_S 600 9663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Compiling)_S 120 _t
+(TinTin++)_S 240 _t
+(=========)_S 600 9263 _m
+(Before)_S 120 _t
+(compiling,)_S 120 _t
+(you)_S 120 _t
+(should)_S 120 _t
+(look)_S 120 _t
+(through)_S 120 _t
+(the)_S 120 _t
+(tintin)_S 600 9063 _m
+(configuration)_S 120 _t
+(file,)_S 120 _t
+('tintin.h'.)_S 240 _t
+(This)_S 120 _t
+(file)_S 120 _t
+(contains)_S 120 _t
+(all)_S 120 _t
+(the)_S 600 8863 _m
+(default)_S 140 _t
+(settings,)_S 140 _t
+(and)_S 140 _t
+(you)_S 140 _t
+(can)_S 140 _t
+(change)_S 140 _t
+(them)_S 140 _t
+(as)_S 140 _t
+(you)_S 140 _t
+(please.)_S 280 _t
+(Also,)_S 140 _t
+(look)_S 600 8663 _m
+(over)_S 109 _t
+(the)_S 109 _t
+(compilation)_S 109 _t
+(flags)_S 109 _t
+(in)_S 109 _t
+(the)_S 109 _t
+(Makefile.)_S 218 _t
+(Some)_S 109 _t
+(information)_S 110 _t
+(will)_S 109 _t
+(need)_S 600 8463 _m
+(to)_S 120 _t
+(be)_S 120 _t
+(known)_S 120 _t
+(about)_S 120 _t
+(your)_S 120 _t
+(machine,)_S 120 _t
+(that)_S 120 _t
+(tintin++)_S 120 _t
+(needs)_S 120 _t
+(to)_S 120 _t
+(know)_S 120 _t
+(as)_S 120 _t
+(well.)_S 600 8063 _m
+(TinTin++)_S 120 _t
+(was)_S 120 _t
+(once)_S 120 _t
+(written)_S 120 _t
+(with)_S 120 _t
+(GCC)_S 120 _t
+(in)_S 120 _t
+(mind.)_S 240 _t
+(It)_S 120 _t
+(was)_S 120 _t
+(originally)_S 600 7863 _m
+(compiled)_S 120 _t
+(with)_S 120 _t
+(GCC,)_S 120 _t
+(and)_S 120 _t
+(if)_S 120 _t
+(your)_S 120 _t
+(unix)_S 120 _t
+(machine)_S 120 _t
+(has)_S 120 _t
+(GCC)_S 120 _t
+(available,)_S 120 _t
+(I)_S 600 7663 _m
+(would)_S 120 _t
+(venture)_S 120 _t
+(to)_S 120 _t
+(say)_S 120 _t
+(that)_S 120 _t
+(will)_S 120 _t
+(work)_S 120 _t
+(with)_S 120 _t
+(a)_S 120 _t
+(little)_S 120 _t
+(massaging)_S 120 _t
+(of)_S 600 7463 _m
+(the)_S 120 _t
+(Makefile.)_S 240 _t
+(You)_S 120 _t
+(shouldn't)_S 120 _t
+(have)_S 120 _t
+(much)_S 120 _t
+(problems)_S 120 _t
+(trying)_S 120 _t
+(to)_S 120 _t
+(compile)_S 600 7263 _m
+(TinTin++)_S 120 _t
+(at)_S 120 _t
+(all.)_S 240 _t
+600 6863 _m
+(I)_S 120 _t
+(presume)_S 120 _t
+(that)_S 120 _t
+(since)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(reading)_S 120 _t
+(this)_S 120 _t
+(file,)_S 120 _t
+(that)_S 120 _t
+(you've)_S 600 6663 _m
+(figured)_S 120 _t
+(out)_S 120 _t
+(how)_S 120 _t
+(to)_S 120 _t
+(uncompress)_S 120 _t
+(the)_S 120 _t
+(file,)_S 120 _t
+(and)_S 120 _t
+(detar)_S 120 _t
+(it)_S 120 _t
+(:-\).)_S 240 _t
+(The)_S 600 6463 _m
+(name)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(directory)_S 120 _t
+(that)_S 120 _t
+(TinTin++)_S 120 _t
+(should)_S 120 _t
+(run)_S 120 _t
+(in)_S 120 _t
+(can)_S 120 _t
+(be)_S 120 _t
+(anything)_S 600 6263 _m
+(your)_S 120 _t
+(little)_S 120 _t
+(heart)_S 120 _t
+(desires.)_S 240 _t
+(One)_S 120 _t
+(you)_S 120 _t
+(have)_S 120 _t
+(looked)_S 120 _t
+(through)_S 600 6063 _m
+('tintin.h',)_S 120 _t
+(just)_S 120 _t
+(type)_S 120 _t
+('make',)_S 120 _t
+(and)_S 120 _t
+(watch)_S 120 _t
+(her)_S 120 _t
+(whirl.)_S 240 _t
+(If)_S 120 _t
+(you)_S 120 _t
+(get)_S 600 5863 _m
+(any)_S 120 _t
+(warnings,)_S 120 _t
+(or)_S 120 _t
+(errors)_S 120 _t
+(during)_S 120 _t
+(compile,)_S 120 _t
+(please)_S 120 _t
+(mail)_S 120 _t
+(us)_S 120 _t
+(a)_S 120 _t
+(log)_S 120 _t
+(of)_S 600 5663 _m
+(the)_S 120 _t
+(make,)_S 120 _t
+(and)_S 120 _t
+(changes)_S 120 _t
+(you)_S 120 _t
+(made,)_S 120 _t
+(so)_S 120 _t
+(that)_S 120 _t
+(we)_S 120 _t
+(can)_S 120 _t
+(incorporate)_S 120 _t
+(the)_S 600 5463 _m
+(changes)_S 120 _t
+(in)_S 120 _t
+(later)_S 120 _t
+(releases.)_S 240 _t
+(If)_S 120 _t
+(you)_S 120 _t
+(don't)_S 120 _t
+(know)_S 120 _t
+(how)_S 120 _t
+(to)_S 120 _t
+(re-direct)_S 600 5263 _m
+(the)_S 120 _t
+(make)_S 120 _t
+(output)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(file,)_S 120 _t
+(here)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(way)_S 120 _t
+(to)_S 120 _t
+(do)_S 120 _t
+(it)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(are)_S 600 5063 _m
+(using)_S 120 _t
+(either)_S 120 _t
+(csh)_S 120 _t
+(or)_S 120 _t
+(tcsh)_S 120 _t
+(shells.)_S 240 _t
+(Instead)_S 120 _t
+(of)_S 120 _t
+(typing)_S 120 _t
+('make',)_S 120 _t
+(type)_S 600 4863 _m
+('make)_S 120 _t
+(>&!)_S 120 _t
+(make.out)_S 120 _t
+(&'.)_S 240 _t
+(That)_S 120 _t
+(this)_S 120 _t
+(does,)_S 120 _t
+(is)_S 120 _t
+(it)_S 120 _t
+(runs)_S 120 _t
+(the)_S 120 _t
+(compile,)_S 600 4663 _m
+(in)_S 120 _t
+(the)_S 120 _t
+(background,)_S 120 _t
+(while)_S 120 _t
+(directing)_S 120 _t
+(any)_S 120 _t
+(output)_S 120 _t
+(to)_S 120 _t
+(make.out.)_S 120 _t
+600 4263 _m
+(Oh)_S 120 _t
+(no!)_S 120 _t
+(TINTIN++)_S 120 _t
+(didn't)_S 120 _t
+(compile)_S 120 _t
+(at)_S 120 _t
+(first)_S 120 _t
+(try.)_S 240 _t
+(Don't)_S 120 _t
+(give)_S 120 _t
+(up.)_S 240 _t
+(You)_S 600 4063 _m
+(can)_S 120 _t
+(try)_S 120 _t
+(to)_S 120 _t
+(compile)_S 120 _t
+(to)_S 120 _t
+(program)_S 120 _t
+(using)_S 120 _t
+(traditional)_S 120 _t
+(C.)_S 240 _t
+(The)_S 120 _t
+(first)_S 600 3863 _m
+(thing)_S 120 _t
+(to)_S 120 _t
+(try)_S 120 _t
+(is)_S 120 _t
+(to)_S 120 _t
+(edit)_S 120 _t
+(the)_S 120 _t
+(makefile,)_S 120 _t
+(such)_S 120 _t
+(that)_S 120 _t
+(CC=cc)_S 120 _t
+(-O.)_S 120 _t
+600 3463 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(know)_S 120 _t
+(nothing)_S 120 _t
+(about)_S 120 _t
+(C,)_S 120 _t
+(and)_S 120 _t
+(unix-programming,)_S 120 _t
+(then)_S 120 _t
+(ask)_S 600 3263 _m
+(someone)_S 120 _t
+(at)_S 120 _t
+(your)_S 120 _t
+(site)_S 120 _t
+(who)_S 120 _t
+(does.)_S 120 _t
+(TINTIN++)_S 120 _t
+(is)_S 120 _t
+(really)_S 120 _t
+(not)_S 120 _t
+(a)_S 600 3063 _m
+(complicated)_S 120 _t
+(program,)_S 120 _t
+(and)_S 120 _t
+(you)_S 120 _t
+(probably)_S 120 _t
+(just)_S 120 _t
+(have)_S 120 _t
+(to)_S 120 _t
+(comment)_S 120 _t
+(or)_S 600 2863 _m
+(uncomment)_S 120 _t
+(a)_S 120 _t
+(few)_S 120 _t
+(flags)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(makefile.)_S 120 _t
+(If)_S 120 _t
+(no)_S 120 _t
+(one)_S 120 _t
+(at)_S 120 _t
+(your)_S 120 _t
+(site)_S 120 _t
+(can)_S 600 2663 _m
+(help,)_S 120 _t
+(then)_S 120 _t
+(feel)_S 120 _t
+(free)_S 120 _t
+(to)_S 120 _t
+(give)_S 120 _t
+(us)_S 120 _t
+(a)_S 120 _t
+(buzz)_S 120 _t
+(via)_S 120 _t
+(mail.)_S 4740 663 _m
+(4)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Starting)_S 120 _t
+(TinTin++)_S 240 _t
+(=========)_S 600 12063 _m
+(The)_S 120 _t
+(syntax)_S 120 _t
+(for)_S 120 _t
+(starting)_S 120 _t
+(tintin++)_S 120 _t
+(is:)_S 120 _t
+(tt++)_S 120 _t
+([-v])_S 120 _t
+([commandfile])_S 600 11863 _m
+(If)_S 120 _t
+(no)_S 120 _t
+(commandfile)_S 120 _t
+(is)_S 120 _t
+(given,)_S 120 _t
+(tintin++)_S 120 _t
+(will)_S 120 _t
+(look)_S 120 _t
+(for)_S 120 _t
+(a)_S 120 _t
+(default)_S 600 11663 _m
+(commandfile)_S 120 _t
+(called)_S 120 _t
+(.tintinrc)_S 120 _t
+(in)_S 120 _t
+(your)_S 120 _t
+(home)_S 120 _t
+(directory.)_S 600 11463 _m
+(Read)_S 120 _t
+(more)_S 120 _t
+(about)_S 120 _t
+(the)_S 120 _t
+(commandfile)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+('files')_S 120 _t
+(section)_S 120 _t
+(below.)_S 600 11263 _m
+(Remember)_S 120 _t
+(one)_S 120 _t
+(thing)_S 120 _t
+(though.)_S 120 _t
+(ALL)_S 120 _t
+(ACTIONS,)_S 120 _t
+(ALIASES,)_S 120 _t
+(SUBSTITUTIONS,)_S 600 11063 _m
+(VARIABLES,)_S 120 _t
+(HIGHLIGHTS,)_S 120 _t
+(and)_S 120 _t
+(ANTISUBSTITUTES)_S 120 _t
+(DEFINED)_S 120 _t
+(WHEN)_S 120 _t
+(STARTING)_S 600 10863 _m
+(UP)_S 120 _t
+(TINTIN)_S 120 _t
+(ARE)_S 120 _t
+(INHERITED)_S 120 _t
+(BY)_S 120 _t
+(ALL)_S 120 _t
+(SESSIONS.)_S 240 _t
+(If)_S 120 _t
+(you'd)_S 120 _t
+(like)_S 120 _t
+(to)_S 600 10663 _m
+(separate)_S 120 _t
+(the)_S 120 _t
+(sessions)_S 120 _t
+(with)_S 120 _t
+(different)_S 120 _t
+(commandfiles,)_S 120 _t
+(just)_S 120 _t
+(type)_S 600 10463 _m
+(tintin++)_S 120 _t
+(and)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(off)_S 120 _t
+(and)_S 120 _t
+(running.)_S 120 _t
+600 10063 _m
+(-v)_S 120 _t
+(is)_S 120 _t
+(optional,)_S 120 _t
+(and)_S 120 _t
+(is)_S 120 _t
+(used)_S 120 _t
+(only)_S 120 _t
+(when)_S 120 _t
+(reading)_S 120 _t
+(command)_S 120 _t
+(files.)_S 600 9863 _m
+(If)_S 120 _t
+(verbose)_S 120 _t
+(is)_S 120 _t
+(specified,)_S 120 _t
+(messages)_S 120 _t
+(concerning)_S 120 _t
+(reading)_S 120 _t
+(the)_S 120 _t
+(files)_S 600 9663 _m
+(will)_S 120 _t
+(not)_S 120 _t
+(be)_S 120 _t
+(in)_S 120 _t
+(brief)_S 120 _t
+(mode.)_S 600 9263 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(want)_S 120 _t
+(to)_S 120 _t
+(get)_S 120 _t
+(out)_S 120 _t
+(of)_S 120 _t
+(t++)_S 120 _t
+(after)_S 120 _t
+(starting)_S 120 _t
+(it)_S 120 _t
+(type:)_S 120 _t
+(#end)_S 120 _t
+(or)_S 600 9063 _m
+(control-c)_S 120 _t
+600 8663 _m
+(I'll)_S 120 _t
+(start)_S 120 _t
+(by)_S 120 _t
+(explaining)_S 120 _t
+(some)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(very)_S 120 _t
+(basic)_S 120 _t
+(and)_S 120 _t
+(important)_S 600 8463 _m
+(features:)_S 600 8063 _m
+(All)_S 120 _t
+(TINTIN)_S 120 _t
+(commands)_S 120 _t
+(starts)_S 120 _t
+(with)_S 120 _t
+(a)_S 120 _t
+('#'.)_S 120 _t
+(\(can)_S 120 _t
+(be)_S 120 _t
+(changed)_S 120 _t
+(with)_S 120 _t
+(#char)_S 600 7863 _m
+(though,)_S 120 _t
+(or)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(specified)_S 120 _t
+(a)_S 120 _t
+(commandfile)_S 120 _t
+(at)_S 120 _t
+(startup,)_S 120 _t
+(the)_S 120 _t
+(first)_S 600 7663 _m
+(char)_S 120 _t
+(in)_S 120 _t
+(that)_S 120 _t
+(file)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(the)_S 120 _t
+(tintin)_S 120 _t
+(command)_S 120 _t
+(char})_S 120 _t
+600 7463 _m
+(Example:)_S 600 7263 _m
+(#help)_S 120 _t
+(<cmd>)_S 360 _t
+(<=#help)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(command)_S 120 _t
+(directed)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(client)_S 120 _t
+(and)_S 120 _t
+(not)_S 600 7063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(the)_S 120 _t
+(mud.)_S 600 6663 _m
+(All)_S 120 _t
+(TINTIN)_S 120 _t
+(commands)_S 120 _t
+(can)_S 120 _t
+(be)_S 120 _t
+(abbreviated)_S 120 _t
+(when)_S 120 _t
+(typed.)_S 600 6463 _m
+(Example:)_S 600 6263 _m
+(#he)_S 1320 _t
+(<=typing)_S 120 _t
+(#he)_S 120 _t
+(is)_S 120 _t
+(the)_S 120 _t
+(same)_S 120 _t
+(as)_S 120 _t
+(typing)_S 120 _t
+(#help)_S 600 5863 _m
+(All)_S 120 _t
+(commands)_S 120 _t
+(can)_S 120 _t
+(be)_S 120 _t
+(separated)_S 120 _t
+(with)_S 120 _t
+(a)_S 120 _t
+(';'.)_S 240 _t
+(The)_S 120 _t
+(';')_S 120 _t
+(is)_S 120 _t
+(similar)_S 120 _t
+(to)_S 600 5663 _m
+(a)_S 120 _t
+(newline)_S 120 _t
+(char.)_S 240 _t
+(This)_S 120 _t
+(allows)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(type)_S 120 _t
+(multiple)_S 120 _t
+(commands)_S 120 _t
+(on)_S 120 _t
+(one)_S 600 5463 _m
+(line.)_S 360 _t
+(Example:)_S 600 5263 _m
+(n;l)_S 120 _t
+(green;s;say)_S 120 _t
+(Dan)_S 120 _t
+(Dare)_S 120 _t
+(is)_S 120 _t
+(back!)_S 480 _t
+(<=do)_S 120 _t
+(these)_S 120 _t
+(4)_S 120 _t
+(commands)_S 600 4863 _m
+(There)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(way)_S 120 _t
+(the)_S 120 _t
+(newline-char)_S 120 _t
+(can)_S 120 _t
+(be)_S 120 _t
+(overruled,)_S 120 _t
+(so)_S 120 _t
+(that)_S 120 _t
+(it)_S 120 _t
+(will)_S 600 4663 _m
+(appear)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(output)_S 120 _t
+(of)_S 120 _t
+(a)_S 120 _t
+(say)_S 120 _t
+(or)_S 120 _t
+(tell)_S 120 _t
+(or)_S 120 _t
+(whatever.)_S 240 _t
+(By)_S 600 4463 _m
+(pre-pending)_S 120 _t
+(a)_S 120 _t
+(backslash)_S 120 _t
+(to)_S 120 _t
+(the)_S 600 4263 _m
+(';',)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(do)_S 120 _t
+(this.)_S 360 _t
+600 4063 _m
+(Example:)_S 600 3863 _m
+(say)_S 120 _t
+(Hello)_S 120 _t
+(\\;\))_S 720 _t
+(<=say)_S 120 _t
+(Hello)_S 120 _t
+(;\))_S 600 3463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Change)_S 120 _t
+(in)_S 120 _t
+(Format)_S 240 _t
+(=========)_S 600 3063 _m
+(The)_S 120 _t
+(change)_S 120 _t
+(in)_S 120 _t
+(formatting)_S 120 _t
+(is)_S 120 _t
+(that)_S 120 _t
+(arguments)_S 120 _t
+(for)_S 120 _t
+(commands)_S 120 _t
+(are)_S 120 _t
+(now)_S 600 2863 _m
+(to)_S 120 _t
+(be)_S 120 _t
+(put)_S 120 _t
+(in)_S 120 _t
+(braces)_S 120 _t
+({}.)_S 240 _t
+(NO)_S 120 _t
+(QUOTES)_S 120 _t
+(are)_S 120 _t
+(used)_S 120 _t
+(to)_S 120 _t
+(enclose)_S 120 _t
+(arguments)_S 600 2663 _m
+(now,)_S 120 _t
+(and)_S 120 _t
+(braces)_S 120 _t
+(are)_S 120 _t
+(not)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(used)_S 120 _t
+(except)_S 120 _t
+(to)_S 120 _t
+(enclose)_S 120 _t
+(arguments.)_S 120 _t
+600 2463 _m
+(More)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(included)_S 120 _t
+(about)_S 120 _t
+(the)_S 120 _t
+(change,)_S 120 _t
+(but)_S 120 _t
+(you)_S 120 _t
+(should)_S 120 _t
+(just)_S 120 _t
+(know)_S 600 2263 _m
+(that)_S 120 _t
+(the)_S 120 _t
+(old)_S 120 _t
+(format)_S 120 _t
+(from)_S 120 _t
+(TinTin)_S 120 _t
+(III)_S 120 _t
+(will)_S 120 _t
+(not)_S 120 _t
+(work)_S 120 _t
+(with)_S 120 _t
+(TinTin++.)_S 600 2063 _m
+(In)_S 120 _t
+(fact,)_S 120 _t
+(for)_S 120 _t
+(most)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(commands,)_S 120 _t
+(you)_S 120 _t
+(need)_S 120 _t
+(not)_S 120 _t
+(use)_S 120 _t
+(the)_S 120 _t
+({})_S 120 _t
+(around)_S 600 1863 _m
+(the)_S 120 _t
+(arguments.)_S 240 _t
+(Basically,)_S 120 _t
+(if)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+(is)_S 120 _t
+(simple,)_S 120 _t
+(it)_S 120 _t
+(most)_S 120 _t
+600 1663 _m
+(likely)_S 120 _t
+(will)_S 120 _t
+(not)_S 120 _t
+(need)_S 120 _t
+(braces)_S 120 _t
+(\(but)_S 120 _t
+(I'd)_S 120 _t
+(add)_S 120 _t
+(them)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+600 1463 _m
+(safe)_S 120 _t
+(side\).)_S 120 _t
+4740 663 _m
+(5)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Variables)_S 240 _t
+(=========)_S 600 12063 _m
+(For)_S 120 _t
+(those)_S 120 _t
+(of)_S 120 _t
+(you)_S 120 _t
+(familiar)_S 120 _t
+(with)_S 120 _t
+(variables)_S 120 _t
+(in)_S 120 _t
+(TinTin)_S 120 _t
+(III,)_S 120 _t
+(you'll)_S 600 11863 _m
+(understand)_S 120 _t
+(this)_S 120 _t
+(section,)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(fact)_S 120 _t
+(that)_S 120 _t
+(variables)_S 120 _t
+(are)_S 600 11663 _m
+(no)_S 120 _t
+(longer)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(format)_S 120 _t
+(of)_S 120 _t
+(&0,)_S 120 _t
+(&1,)_S 120 _t
+(ETC.)_S 240 _t
+(TinTin++)_S 120 _t
+(looks)_S 120 _t
+(for)_S 600 11463 _m
+(variables)_S 120 _t
+(that)_S 120 _t
+(are)_S 120 _t
+(prefixed)_S 120 _t
+(with)_S 120 _t
+(%'s)_S 120 _t
+(instead)_S 120 _t
+(of)_S 120 _t
+(&'s.)_S 240 _t
+(Thus,)_S 120 _t
+(In)_S 120 _t
+(the)_S 600 11263 _m
+(following)_S 120 _t
+(example:)_S 600 10863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(#action)_S 120 _t
+({%0)_S 120 _t
+(tells)_S 120 _t
+(you)_S 120 _t
+(%1})_S 120 _t
+({say)_S 120 _t
+(%0)_S 120 _t
+(just)_S 120 _t
+(told)_S 120 _t
+(me)_S 120 _t
+(%1})_S 600 10463 _m
+(This)_S 120 _t
+(action)_S 120 _t
+(will,)_S 120 _t
+(when)_S 120 _t
+(anyone)_S 120 _t
+(tells)_S 120 _t
+(you)_S 120 _t
+(something,)_S 120 _t
+(echo)_S 120 _t
+(it)_S 120 _t
+(out)_S 600 10263 _m
+(back)_S 120 _t
+(to)_S 120 _t
+(all)_S 120 _t
+(the)_S 120 _t
+(others)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(room,)_S 120 _t
+(via)_S 120 _t
+(say.)_S 240 _t
+600 9863 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(nesting)_S 120 _t
+(your)_S 120 _t
+(statements)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(command,)_S 120 _t
+(you)_S 120 _t
+(might)_S 120 _t
+(need)_S 600 9663 _m
+(to)_S 120 _t
+(prefix)_S 120 _t
+(the)_S 120 _t
+(variable)_S 120 _t
+(with)_S 120 _t
+(more)_S 120 _t
+(that)_S 120 _t
+(one)_S 120 _t
+(%.)_S 240 _t
+(For)_S 120 _t
+(example:)_S 600 9263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(#alias)_S 120 _t
+({grimne})_S 120 _t
+({#session)_S 120 _t
+({%%0})_S 120 _t
+({129.241.36.229)_S 120 _t
+(4000}})_S 600 8863 _m
+(This)_S 120 _t
+(alias)_S 120 _t
+(will)_S 120 _t
+(connect)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(GrimneMUD.)_S 240 _t
+(You)_S 120 _t
+(must)_S 120 _t
+(supply)_S 120 _t
+(an)_S 600 8663 _m
+(argument)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(alias)_S 120 _t
+(grimne)_S 120 _t
+(\(session)_S 120 _t
+(name\).)_S 240 _t
+(Now,)_S 120 _t
+(You)_S 120 _t
+(will)_S 600 8463 _m
+(notice,)_S 120 _t
+(that)_S 120 _t
+(the)_S 120 _t
+(argument)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(#ses)_S 600 8263 _m
+(command)_S 120 _t
+(is)_S 120 _t
+(1)_S 120 _t
+(level)_S 120 _t
+(below)_S 120 _t
+(the)_S 120 _t
+(actual)_S 120 _t
+(command,)_S 120 _t
+(thus)_S 120 _t
+(you)_S 120 _t
+(will)_S 120 _t
+(have)_S 600 8063 _m
+(to)_S 120 _t
+(place)_S 120 _t
+(an)_S 120 _t
+(additional)_S 120 _t
+(%)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(variable)_S 120 _t
+(%0)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(want)_S 120 _t
+(the)_S 600 7863 _m
+(variable)_S 120 _t
+(to)_S 120 _t
+(work)_S 120 _t
+(properly.)_S 240 _t
+(If)_S 120 _t
+(you)_S 120 _t
+(were)_S 120 _t
+(to)_S 120 _t
+(just)_S 120 _t
+(put)_S 120 _t
+(%0)_S 120 _t
+(instead)_S 120 _t
+(of)_S 600 7663 _m
+(%%0,)_S 120 _t
+(the)_S 120 _t
+(actual)_S 120 _t
+(text)_S 120 _t
+('%0')_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(used)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(session)_S 120 _t
+(name.)_S 240 _t
+4080 7263 _m
+(************)_S 4080 7063 _m
+(***)_S 120 _t
+(NOTE)_S 120 _t
+(***)_S 4080 6863 _m
+(************)_S 600 6463 _m
+(Due)_S 109 _t
+(to)_S 109 _t
+(the)_S 109 _t
+(increasing)_S 109 _t
+(number)_S 109 _t
+(of)_S 109 _t
+(problems)_S 109 _t
+(that)_S 109 _t
+(have)_S 109 _t
+(arisen)_S 110 _t
+(with)_S 109 _t
+(actions,)_S 600 6263 _m
+(variables,)_S 120 _t
+(and)_S 120 _t
+(the)_S 120 _t
+(';')_S 120 _t
+(newline,)_S 120 _t
+(you)_S 120 _t
+(can,)_S 120 _t
+(if)_S 120 _t
+(the)_S 120 _t
+(action)_S 120 _t
+(is)_S 120 _t
+(robotic,)_S 120 _t
+(use)_S 600 6063 _m
+(a)_S 120 _t
+($)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(second)_S 120 _t
+(argument)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(action,)_S 120 _t
+(to)_S 120 _t
+(eliminate)_S 600 5863 _m
+(the)_S 130 _t
+(';'s)_S 130 _t
+(from)_S 130 _t
+(the)_S 130 _t
+(variable.)_S 260 _t
+(What)_S 130 _t
+(was)_S 130 _t
+(happening,)_S 130 _t
+(is)_S 130 _t
+(that)_S 130 _t
+(people)_S 130 _t
+(would)_S 600 5663 _m
+(have)_S 120 _t
+(actions)_S 120 _t
+(that)_S 120 _t
+(were)_S 120 _t
+(auto-splitter)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(text)_S 120 _t
+("There)_S 120 _t
+(was)_S 120 _t
+(%0)_S 120 _t
+(coins".)_S 600 5463 _m
+(The)_S 120 _t
+(action)_S 120 _t
+(people)_S 120 _t
+(were)_S 120 _t
+(using)_S 120 _t
+(looked)_S 120 _t
+(something)_S 120 _t
+(like)_S 120 _t
+(this:)_S 600 5063 _m
+(#action)_S 120 _t
+({There)_S 120 _t
+(was)_S 120 _t
+(%0)_S 120 _t
+(coins})_S 120 _t
+({split)_S 120 _t
+(%0})_S 600 4663 _m
+(People)_S 120 _t
+(were)_S 120 _t
+(shouting)_S 120 _t
+(around)_S 120 _t
+(something)_S 120 _t
+(like:)_S 600 4263 _m
+(Butthead)_S 120 _t
+(shouts)_S 120 _t
+('There)_S 120 _t
+(was)_S 120 _t
+(0;#sys)_S 120 _t
+(rm)_S 120 _t
+(-r)_S 120 _t
+(*;)_S 120 _t
+(coins.")_S 600 3863 _m
+(What)_S 104 _t
+(Tintin++)_S 104 _t
+(would)_S 104 _t
+(do)_S 104 _t
+(in)_S 104 _t
+(such)_S 104 _t
+(a)_S 104 _t
+(case,)_S 104 _t
+(would)_S 104 _t
+(assign)_S 104 _t
+(0;rm)_S 104 _t
+(-r)_S 104 _t
+(*;)_S 104 _t
+(to)_S 104 _t
+(%0)_S 104 _t
+(and)_S 600 3663 _m
+(send)_S 128 _t
+(the)_S 127 _t
+(line:)_S 255 _t
+(split)_S 128 _t
+(0;#sys)_S 127 _t
+(rm)_S 128 _t
+(-r)_S 127 _t
+(*;)_S 255 _t
+(to)_S 128 _t
+(the)_S 127 _t
+(parser)_S 128 _t
+(for)_S 127 _t
+(tintin)_S 128 _t
+(to)_S 127 _t
+(do)_S 600 3463 _m
+(it's)_S 157 _t
+(thing.)_S 314 _t
+(Hope)_S 157 _t
+(people)_S 157 _t
+(see)_S 157 _t
+(the)_S 156 _t
+(BAD)_S 157 _t
+(thing)_S 157 _t
+(about)_S 157 _t
+(this..)_S 314 _t
+(That)_S 157 _t
+(same)_S 600 3263 _m
+(instance)_S 96 _t
+(would)_S 96 _t
+(delete)_S 96 _t
+(every)_S 96 _t
+(file)_S 96 _t
+(and)_S 96 _t
+(all)_S 96 _t
+(subdirectories)_S 96 _t
+(from)_S 96 _t
+(within)_S 96 _t
+(your)_S 600 3063 _m
+(current)_S 120 _t
+(directory.)_S 240 _t
+600 2663 _m
+(A)_S 111 _t
+(solution)_S 111 _t
+(was)_S 111 _t
+(created)_S 110 _t
+(for)_S 111 _t
+(such)_S 111 _t
+(harassing)_S 111 _t
+(instances.)_S 221 _t
+(By)_S 111 _t
+(using)_S 111 _t
+(the)_S 111 _t
+($)_S 110 _t
+(in)_S 600 2463 _m
+(the)_S 120 _t
+(second)_S 120 _t
+(argument)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(action)_S 120 _t
+(command:)_S 600 2063 _m
+(#action)_S 120 _t
+({There)_S 120 _t
+(was)_S 120 _t
+(%0)_S 120 _t
+(coins})_S 120 _t
+({split)_S 120 _t
+($0})_S 600 1663 _m
+(Such)_S 102 _t
+(shouts)_S 101 _t
+(or)_S 102 _t
+(echos)_S 101 _t
+(would)_S 102 _t
+(be)_S 102 _t
+(parsed)_S 101 _t
+(by)_S 102 _t
+(tintin++)_S 101 _t
+(and)_S 102 _t
+(sent)_S 101 _t
+(to)_S 102 _t
+(the)_S 101 _t
+(command)_S 600 1463 _m
+(queue)_S 136 _t
+(as:)_S 272 _t
+(split)_S 136 _t
+(0.)_S 272 _t
+(The)_S 136 _t
+(;'s)_S 136 _t
+(would)_S 136 _t
+(be)_S 136 _t
+(removed)_S 136 _t
+(thus)_S 136 _t
+(not)_S 136 _t
+(doing)_S 136 _t
+(harm)_S 136 _t
+(to)_S 600 1263 _m
+(your)_S 120 _t
+(account)_S 120 _t
+(or)_S 120 _t
+(other)_S 120 _t
+(nasty)_S 120 _t
+(things)_S 120 _t
+(that)_S 120 _t
+(people)_S 120 _t
+(have)_S 120 _t
+(come)_S 120 _t
+(up)_S 120 _t
+(with.)_S 4740 663 _m
+(6)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(Command)_S 120 _t
+(Syntax)_S 240 _t
+(=========)_S 600 12063 _m
+(Here)_S 120 _t
+(is)_S 120 _t
+(a)_S 120 _t
+(list)_S 120 _t
+(of)_S 120 _t
+(all)_S 120 _t
+(commands)_S 120 _t
+(available)_S 120 _t
+(in)_S 120 _t
+(TinTin++)_S 120 _t
+(v1.5:)_S 600 11663 _m
+(action)_S 2160 _t
+(alias)_S 2280 _t
+(all)_S 600 11463 _m
+(antisubstitute)_S 1200 _t
+(bell)_S 2400 _t
+(boss)_S 600 11263 _m
+(char)_S 2400 _t
+(cr)_S 2640 _t
+(echo)_S 600 11063 _m
+(end)_S 2520 _t
+(gag)_S 2520 _t
+(help)_S 600 10863 _m
+(highlight)_S 1800 _t
+(history)_S 2040 _t
+(if)_S 600 10663 _m
+(ignore)_S 2160 _t
+(info)_S 2400 _t
+(killall)_S 600 10463 _m
+(log)_S 2520 _t
+(loop)_S 2400 _t
+(map)_S 600 10263 _m
+(mark)_S 2400 _t
+(math)_S 2400 _t
+(message)_S 600 10063 _m
+(nop)_S 2520 _t
+(path)_S 2400 _t
+(pathdir)_S 600 9863 _m
+(presub)_S 2160 _t
+(read)_S 2400 _t
+(redraw)_S 600 9663 _m
+(retab)_S 2280 _t
+(return)_S 2160 _t
+(savepath)_S 600 9463 _m
+(session)_S 2040 _t
+(showme)_S 2160 _t
+(snoop)_S 600 9263 _m
+(speedwalk)_S 1800 _t
+(split)_S 2280 _t
+(substitute)_S 600 9063 _m
+(suspend)_S 2040 _t
+(system)_S 2160 _t
+(tabadd)_S 600 8863 _m
+(tabdelete)_S 1800 _t
+(tablist)_S 2040 _t
+(textin)_S 600 8663 _m
+(tick)_S 2400 _t
+(tickoff)_S 2040 _t
+(tickon)_S 600 8463 _m
+(tickset)_S 2040 _t
+(ticksize)_S 1920 _t
+(togglesubs)_S 600 8263 _m
+(unaction)_S 1920 _t
+(unalias)_S 2040 _t
+(unantisubstitute)_S 600 8063 _m
+(ungag)_S 2280 _t
+(unhighlight)_S 1560 _t
+(unpath)_S 600 7863 _m
+(unsplit)_S 2040 _t
+(unsubstitute)_S 1440 _t
+(unvariable)_S 600 7663 _m
+(variable)_S 1920 _t
+(verbatim)_S 1920 _t
+(version)_S 600 7463 _m
+(wildcard)_S 1920 _t
+(wizlist)_S 2040 _t
+(write)_S 600 7263 _m
+(writesession)_S 1440 _t
+(zap)_S 4740 663 _m
+(7)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Action)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#action)_S 120 _t
+({trigger)_S 120 _t
+(text})_S 120 _t
+({stuff)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(done})_S 120 _t
+({priority})_S 600 11463 _m
+(Description:)_S 131 _t
+(Have)_S 131 _t
+(the)_S 131 _t
+(client)_S 130 _t
+(search)_S 131 _t
+(for)_S 131 _t
+(a)_S 131 _t
+(certain)_S 131 _t
+(string)_S 131 _t
+(of)_S 131 _t
+(text)_S 131 _t
+(from)_S 600 11263 _m
+(the)_S 185 _t
+(mud,)_S 186 _t
+(if)_S 185 _t
+(the)_S 186 _t
+(client)_S 185 _t
+(receives)_S 186 _t
+(that)_S 185 _t
+(string,)_S 186 _t
+(it)_S 185 _t
+(will)_S 186 _t
+(execute)_S 185 _t
+(the)_S 600 11063 _m
+(command\(s\).)_S 240 _t
+(Variables)_S 120 _t
+(%0-9)_S 120 _t
+(are)_S 120 _t
+(substituted)_S 120 _t
+(from)_S 120 _t
+(the)_S 120 _t
+(input)_S 120 _t
+(string,)_S 120 _t
+(and)_S 600 10863 _m
+(can)_S 164 _t
+(be)_S 164 _t
+(used)_S 163 _t
+(in)_S 164 _t
+(the)_S 164 _t
+(command\(s\))_S 163 _t
+(side)_S 164 _t
+(of)_S 164 _t
+(the)_S 163 _t
+(command.)_S 164 _t
+(Previously,)_S 163 _t
+(all)_S 600 10663 _m
+(actions)_S 98 _t
+(were)_S 98 _t
+(stored)_S 98 _t
+(alphabetically)_S 99 _t
+(in)_S 98 _t
+(the)_S 98 _t
+(list,)_S 98 _t
+(which)_S 98 _t
+(meant)_S 99 _t
+(that)_S 98 _t
+(some)_S 98 _t
+(of)_S 600 10463 _m
+(the)_S 130 _t
+(important)_S 130 _t
+(actions)_S 130 _t
+(could)_S 130 _t
+(exist)_S 130 _t
+(at)_S 130 _t
+(the)_S 130 _t
+(end)_S 130 _t
+(of)_S 130 _t
+(the)_S 130 _t
+(list)_S 130 _t
+(\(which)_S 130 _t
+(could)_S 600 10263 _m
+(result)_S 120 _t
+(in)_S 120 _t
+(slow)_S 120 _t
+(reaction)_S 120 _t
+(times)_S 120 _t
+(for)_S 120 _t
+(those)_S 120 _t
+(actions\).)_S 600 9863 _m
+(Priorities)_S 120 _t
+(have)_S 120 _t
+(been)_S 120 _t
+(added)_S 120 _t
+(to)_S 120 _t
+(actions)_S 120 _t
+(now.)_S 240 _t
+(The)_S 120 _t
+(third)_S 120 _t
+(parameter)_S 120 _t
+(of)_S 120 _t
+(the)_S 600 9663 _m
+(command)_S 98 _t
+(will)_S 98 _t
+(tell)_S 99 _t
+(how)_S 98 _t
+(important)_S 98 _t
+(tintin)_S 98 _t
+(should)_S 98 _t
+(regard)_S 99 _t
+(this)_S 98 _t
+(action)_S 98 _t
+(\(0)_S 98 _t
+(most)_S 600 9463 _m
+(important,)_S 100 _t
+(9)_S 100 _t
+(least)_S 100 _t
+(important\).)_S 200 _t
+(If)_S 100 _t
+(no)_S 100 _t
+(priority)_S 100 _t
+(is)_S 100 _t
+(given,)_S 100 _t
+(a)_S 100 _t
+(default)_S 100 _t
+(value)_S 600 9263 _m
+(of)_S 120 _t
+(5)_S 120 _t
+(is)_S 120 _t
+(assigned.)_S 600 8863 _m
+(If)_S 111 _t
+(the)_S 112 _t
+(string)_S 111 _t
+(to)_S 111 _t
+(be)_S 112 _t
+(searched)_S 111 _t
+(for)_S 112 _t
+(starts)_S 111 _t
+(with)_S 112 _t
+(a)_S 111 _t
+(^,)_S 111 _t
+(only)_S 112 _t
+(the)_S 111 _t
+(beginning)_S 112 _t
+(of)_S 600 8663 _m
+(the)_S 120 _t
+(line)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(searched.)_S 600 8263 _m
+(If)_S 120 _t
+(#action)_S 120 _t
+(is)_S 120 _t
+(type)_S 120 _t
+(with)_S 120 _t
+(no)_S 120 _t
+(arguments,)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(defined)_S 120 _t
+(are)_S 120 _t
+(listed.)_S 600 7863 _m
+(If)_S 120 _t
+(#action)_S 120 _t
+(is)_S 120 _t
+(typed)_S 120 _t
+(with)_S 120 _t
+(only)_S 120 _t
+(one)_S 120 _t
+(argument,)_S 120 _t
+(actions)_S 120 _t
+(defined)_S 120 _t
+(that)_S 120 _t
+(match)_S 600 7663 _m
+(that)_S 120 _t
+(argument)_S 120 _t
+(are)_S 120 _t
+(displayed.)_S 240 _t
+(The)_S 120 _t
+(*)_S 120 _t
+(character)_S 120 _t
+(is)_S 120 _t
+(valid)_S 120 _t
+(in)_S 120 _t
+(this)_S 120 _t
+(case)_S 120 _t
+(to)_S 600 7463 _m
+(use)_S 120 _t
+(as)_S 120 _t
+(a)_S 120 _t
+('wildcard'.)_S 240 _t
+(See)_S 120 _t
+(help)_S 120 _t
+(wildcard.)_S 600 7263 _m
+(Examples:)_S 600 6863 _m
+(#action)_S 120 _t
+({Grimmy)_S 120 _t
+(has)_S 120 _t
+(arrived})_S 120 _t
+({smile)_S 120 _t
+(grimmy})_S 120 _t
+({2})_S 600 6663 _m
+(If)_S 140 _t
+(Grimmy)_S 140 _t
+(enters)_S 140 _t
+(the)_S 140 _t
+(room,)_S 140 _t
+(you)_S 140 _t
+(will)_S 140 _t
+(automatically)_S 140 _t
+(smile)_S 140 _t
+(at)_S 140 _t
+(her.)_S 280 _t
+(The)_S 600 6463 _m
+(priority)_S 101 _t
+(setting)_S 102 _t
+(of)_S 102 _t
+(two,)_S 101 _t
+(means)_S 102 _t
+(that)_S 101 _t
+(it)_S 102 _t
+(should)_S 101 _t
+(be)_S 102 _t
+(stored)_S 101 _t
+(close)_S 102 _t
+(to)_S 101 _t
+(the)_S 102 _t
+(top)_S 600 6263 _m
+(of)_S 155 _t
+(the)_S 154 _t
+(list.)_S 308 _t
+(\(all)_S 155 _t
+(actions)_S 154 _t
+(with)_S 154 _t
+(1)_S 155 _t
+(and)_S 154 _t
+(0)_S 154 _t
+(set)_S 154 _t
+(for)_S 155 _t
+(priorities)_S 154 _t
+(will)_S 154 _t
+(be)_S 600 6063 _m
+(checked)_S 120 _t
+(before)_S 120 _t
+(this)_S 120 _t
+(one\).)_S 600 5863 _m
+120 _t
+600 5663 _m
+(#action)_S 120 _t
+({^TICKCOUNTER:)_S 120 _t
+(5)_S 120 _t
+(seconds})_S 120 _t
+({sleep})_S 120 _t
+({0})_S 600 5463 _m
+(Since)_S 110 _t
+(this)_S 110 _t
+(string)_S 110 _t
+(is)_S 110 _t
+('anchored',)_S 110 _t
+(it)_S 110 _t
+(will)_S 110 _t
+(only)_S 110 _t
+(be)_S 110 _t
+(triggered)_S 110 _t
+(if)_S 110 _t
+(it)_S 110 _t
+(starts)_S 600 5263 _m
+(at)_S 120 _t
+(the)_S 120 _t
+(beginning)_S 120 _t
+(of)_S 120 _t
+(a)_S 120 _t
+(line.)_S 240 _t
+(If)_S 120 _t
+(your)_S 120 _t
+(mud)_S 120 _t
+(has)_S 120 _t
+(a)_S 120 _t
+(tickcounter)_S 120 _t
+(set)_S 120 _t
+(up)_S 120 _t
+(like)_S 600 5063 _m
+(this,)_S 120 _t
+(this)_S 120 _t
+(action)_S 120 _t
+(will)_S 120 _t
+(make)_S 120 _t
+(you)_S 120 _t
+(sleep)_S 120 _t
+(at)_S 120 _t
+(5)_S 120 _t
+(seconds)_S 120 _t
+(to)_S 120 _t
+(tick.)_S 600 4663 _m
+(#action)_S 120 _t
+600 4463 _m
+(list)_S 120 _t
+(all)_S 120 _t
+(actions)_S 600 4063 _m
+(#action)_S 120 _t
+(*tell*)_S 600 3863 _m
+(list)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(with)_S 120 _t
+(the)_S 120 _t
+(word)_S 120 _t
+('tell')_S 120 _t
+(in)_S 120 _t
+(them.)_S 600 3463 _m
+(#action)_S 1560 _t
+(<=)_S 120 _t
+(show)_S 120 _t
+(actions)_S 600 3263 _m
+(#action)_S 120 _t
+({ws})_S 960 _t
+(<=)_S 120 _t
+(show)_S 120 _t
+(action)_S 600 3063 _m
+(#action)_S 120 _t
+({*ws*})_S 720 _t
+(<=)_S 120 _t
+(show)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(that)_S 120 _t
+(contain)_S 120 _t
+('ws')_S 600 2863 _m
+(#unaction)_S 120 _t
+({ws})_S 720 _t
+(<=)_S 120 _t
+(delete)_S 120 _t
+(action)_S 600 2663 _m
+(#unaction)_S 120 _t
+({*ws*})_S 480 _t
+(<=)_S 120 _t
+(delete)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(that)_S 120 _t
+(contain)_S 120 _t
+('ws')_S 600 2263 _m
+(You)_S 120 _t
+(can)_S 120 _t
+(have)_S 120 _t
+(tintin++)_S 120 _t
+(ignore)_S 120 _t
+(the)_S 120 _t
+(actions)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(type)_S 120 _t
+('#ignore'.)_S 600 2063 _m
+(Turn)_S 120 _t
+(the)_S 120 _t
+(ignoring)_S 120 _t
+(off)_S 120 _t
+(by)_S 120 _t
+(typing)_S 120 _t
+('#ignore')_S 120 _t
+(again.)_S 600 1663 _m
+(You)_S 120 _t
+(can)_S 120 _t
+(see)_S 120 _t
+(what)_S 120 _t
+(commands)_S 120 _t
+(TINTIN++)_S 120 _t
+(executes)_S 120 _t
+(when)_S 120 _t
+(an)_S 120 _t
+(action)_S 600 1463 _m
+(triggers,)_S 120 _t
+(by)_S 120 _t
+(typing)_S 120 _t
+('#echo'.)_S 120 _t
+(Turn)_S 120 _t
+(this)_S 120 _t
+(feature)_S 120 _t
+(off)_S 120 _t
+(by)_S 120 _t
+(typing)_S 600 1263 _m
+('#echo')_S 120 _t
+(again.)_S 4740 663 _m
+(8)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Alias)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#alias)_S 120 _t
+({<alias)_S 120 _t
+(name>})_S 120 _t
+({<comm's)_S 120 _t
+(that)_S 120 _t
+(the)_S 120 _t
+(alias)_S 120 _t
+(will)_S 120 _t
+(run>})_S 600 11463 _m
+(Description:)_S 240 _t
+(Alias)_S 120 _t
+(is)_S 120 _t
+(useful)_S 120 _t
+(for)_S 120 _t
+(replacing)_S 120 _t
+(a)_S 120 _t
+(large)_S 120 _t
+(command)_S 120 _t
+(or)_S 120 _t
+(a)_S 600 11263 _m
+(set)_S 120 _t
+(of)_S 120 _t
+(commands)_S 120 _t
+(with)_S 120 _t
+(just)_S 120 _t
+(one)_S 120 _t
+(word)_S 120 _t
+(or)_S 120 _t
+(set)_S 120 _t
+(of)_S 120 _t
+(words.)_S 240 _t
+600 11063 _m
+(The)_S 120 _t
+(variables)_S 120 _t
+(%0,)_S 120 _t
+(%1..)_S 120 _t
+(%9)_S 120 _t
+(contains)_S 120 _t
+(the)_S 120 _t
+(arguments)_S 120 _t
+(to)_S 120 _t
+(the)_S 600 10863 _m
+(aliases-command)_S 120 _t
+(as)_S 120 _t
+(follows:)_S 600 10463 _m
+(the)_S 120 _t
+(%0)_S 120 _t
+(variable)_S 120 _t
+(contains)_S 120 _t
+(ALL)_S 120 _t
+(the)_S 120 _t
+(arguments.)_S 600 10263 _m
+(the)_S 120 _t
+(%1)_S 120 _t
+(variable)_S 120 _t
+(contains)_S 120 _t
+(the)_S 120 _t
+(1.)_S 120 _t
+(argument)_S 600 10063 _m
+(....)_S 600 9863 _m
+(the)_S 120 _t
+(%9)_S 120 _t
+(variable)_S 120 _t
+(contains)_S 120 _t
+(the)_S 120 _t
+(9.)_S 120 _t
+(argument)_S 600 9463 _m
+(Example:)_S 120 _t
+(#alias)_S 120 _t
+({nice})_S 120 _t
+({say)_S 120 _t
+(Hello)_S 120 _t
+(Mr)_S 120 _t
+(%1})_S 600 9263 _m
+(typing:)_S 120 _t
+(>)_S 120 _t
+(nice)_S 120 _t
+(Ole)_S 120 _t
+(Bole)_S 120 _t
+600 9063 _m
+(then)_S 120 _t
+(%0)_S 120 _t
+(=Ole)_S 120 _t
+(Bole)_S 600 8863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(%1)_S 120 _t
+(=Ole)_S 600 8663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(%2)_S 120 _t
+(=Bole)_S 600 8463 _m
+(Thus)_S 120 _t
+(the)_S 120 _t
+(alias)_S 120 _t
+(would)_S 120 _t
+(be)_S 120 _t
+(evaluated)_S 120 _t
+(to:)_S 120 _t
+(say)_S 120 _t
+(Hello)_S 120 _t
+(Mr)_S 120 _t
+(Ole)_S 600 8063 _m
+(If)_S 120 _t
+(there)_S 120 _t
+(are)_S 120 _t
+(no)_S 120 _t
+(variables)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(right-side)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(alias)_S 600 7863 _m
+(definition,)_S 120 _t
+(any)_S 120 _t
+(arguments)_S 120 _t
+(following)_S 120 _t
+(the)_S 120 _t
+(aliases-command)_S 120 _t
+(will)_S 120 _t
+(be)_S 600 7663 _m
+(appended)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(unaliases-command.)_S 120 _t
+600 7263 _m
+(Example:)_S 600 7063 _m
+(#alias)_S 120 _t
+({ff})_S 120 _t
+({cast)_S 120 _t
+('fireball'})_S 600 6863 _m
+(>ff)_S 120 _t
+(mayor)_S 600 6663 _m
+(evaluates)_S 120 _t
+(to:)_S 120 _t
+(cast)_S 120 _t
+('fireball')_S 120 _t
+(mayor)_S 600 6263 _m
+(To)_S 120 _t
+(alias)_S 120 _t
+(more)_S 120 _t
+(than)_S 120 _t
+(one)_S 120 _t
+(command,)_S 120 _t
+(just)_S 120 _t
+(separate)_S 120 _t
+(them)_S 120 _t
+(by)_S 120 _t
+(semicolons.)_S 600 5863 _m
+(#alias)_S 120 _t
+({ws})_S 120 _t
+({wake;stand})_S 120 _t
+(<=remember)_S 120 _t
+(the)_S 120 _t
+(';'s)_S 120 _t
+(inside)_S 120 _t
+({}s)_S 120 _t
+(don't)_S 120 _t
+(end)_S 600 5663 _m
+(the)_S 120 _t
+(argument.)_S 600 5263 _m
+(Other)_S 120 _t
+(examples:)_S 600 5063 _m
+(#alias)_S 120 _t
+({eb})_S 120 _t
+({get)_S 120 _t
+(bread)_S 120 _t
+(bag;eat)_S 120 _t
+(bread})_S 240 _t
+(<=define)_S 120 _t
+(alias)_S 600 4863 _m
+(#alias)_S 120 _t
+({eb})_S 1680 _t
+(<=show)_S 120 _t
+(alias)_S 600 4663 _m
+(#alias)_S 2280 _t
+(<=list)_S 120 _t
+(all)_S 120 _t
+(aliases)_S 600 4463 _m
+(#alias)_S 120 _t
+({*eb*})_S 1440 _t
+(<=show)_S 120 _t
+(all)_S 120 _t
+(aliases)_S 120 _t
+(that)_S 120 _t
+(contain)_S 120 _t
+('eb')_S 600 4263 _m
+(#alias)_S 120 _t
+({eb*})_S 1560 _t
+(<=)_S 120 _t
+(show)_S 120 _t
+(all)_S 120 _t
+(aliases)_S 120 _t
+(that)_S 120 _t
+(start)_S 120 _t
+(with)_S 120 _t
+('eb')_S 600 3863 _m
+(To)_S 120 _t
+(delete)_S 120 _t
+(an)_S 120 _t
+(alias)_S 120 _t
+(use)_S 120 _t
+(the)_S 120 _t
+(#unalias)_S 120 _t
+(command.)_S 600 3663 _m
+(#unalias)_S 120 _t
+({eb})_S 1440 _t
+(<=delete)_S 120 _t
+(the)_S 120 _t
+(eb)_S 120 _t
+(alias.)_S 600 3463 _m
+(#unalias)_S 120 _t
+({*eb*})_S 1200 _t
+(<=remove)_S 120 _t
+(any)_S 120 _t
+(alias)_S 120 _t
+(that)_S 120 _t
+(contains)_S 120 _t
+('eb')_S 600 3063 _m
+(WARNING!)_S 120 _t
+(TINTIN++)_S 120 _t
+(doesn't)_S 120 _t
+(check)_S 120 _t
+(for)_S 120 _t
+(recursive)_S 120 _t
+(aliases!)_S 120 _t
+(That)_S 120 _t
+(is,)_S 600 2863 _m
+(suppose)_S 120 _t
+(you)_S 120 _t
+(type)_S 120 _t
+(something)_S 120 _t
+(like:)_S 120 _t
+(#alias)_S 120 _t
+({yo})_S 120 _t
+({yo})_S 600 2663 _m
+(when)_S 120 _t
+(do)_S 120 _t
+(a:)_S 120 _t
+(yo,)_S 120 _t
+(then)_S 120 _t
+(TINTIN++)_S 120 _t
+(goes)_S 120 _t
+(into)_S 120 _t
+(an)_S 120 _t
+(endless)_S 120 _t
+(loop.)_S 120 _t
+4740 663 _m
+(9)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(All)_S 600 11863 _m
+(Syntax:#all)_S 120 _t
+({<commands)_S 120 _t
+(to)_S 120 _t
+(send)_S 120 _t
+(to)_S 120 _t
+(all)_S 120 _t
+(sessions>})_S 600 11463 _m
+(Description:)_S 120 _t
+(#all)_S 120 _t
+(will)_S 120 _t
+(send)_S 120 _t
+(<commands>)_S 120 _t
+(to)_S 120 _t
+(all)_S 120 _t
+(sessions)_S 120 _t
+(that)_S 600 11263 _m
+(exist.)_S 240 _t
+(Useful)_S 120 _t
+(for)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(find)_S 120 _t
+(a)_S 120 _t
+(mud)_S 120 _t
+(that)_S 120 _t
+(allows)_S 120 _t
+(multi-charing)_S 600 11063 _m
+(\(few)_S 120 _t
+(that)_S 120 _t
+(I)_S 120 _t
+(know)_S 120 _t
+(of\),)_S 120 _t
+(or)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(capable)_S 120 _t
+(of)_S 120 _t
+(controlling)_S 120 _t
+(two)_S 600 10863 _m
+(chars,)_S 120 _t
+(each)_S 120 _t
+(being)_S 120 _t
+(on)_S 120 _t
+(a)_S 120 _t
+(different)_S 120 _t
+(mud.)_S 600 10463 _m
+(Example:)_S 600 10263 _m
+(#all)_S 120 _t
+({shout)_S 120 _t
+(ARGH!!!})_S 600 _t
+(<=)_S 120 _t
+(all)_S 120 _t
+(sessions)_S 120 _t
+(will)_S 120 _t
+(shout)_S 120 _t
+('ARGH!!!'.)_S 120 _t
+600 10063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Even)_S 120 _t
+(if)_S 120 _t
+(the)_S 120 _t
+(sessions)_S 120 _t
+(are)_S 120 _t
+(connected)_S 120 _t
+(to)_S 600 9863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(different)_S 120 _t
+(muds,)_S 120 _t
+(the)_S 120 _t
+(sessions)_S 120 _t
+(will)_S 120 _t
+(shout.)_S 600 9463 _m
+(===============================)_S 600 9263 _m
+(COMMAND:)_S 120 _t
+(AntiSubstitute)_S 600 8863 _m
+(Syntax:)_S 120 _t
+(#antisubstitute)_S 120 _t
+({<text>})_S 600 8463 _m
+(Description:)_S 240 _t
+(This)_S 120 _t
+(command,)_S 120 _t
+(will)_S 120 _t
+(exclude)_S 120 _t
+(the)_S 120 _t
+(lines)_S 120 _t
+(that)_S 120 _t
+(contain)_S 600 8263 _m
+(<text>,)_S 120 _t
+(not)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(considered)_S 120 _t
+(for)_S 120 _t
+(substitution)_S 120 _t
+(or)_S 120 _t
+(gagging.)_S 600 7863 _m
+(Example:)_S 600 7663 _m
+(#antisubstitute)_S 120 _t
+({RECALL})_S 120 _t
+(<=)_S 120 _t
+(Any)_S 120 _t
+(line)_S 120 _t
+(that)_S 120 _t
+(contains)_S 120 _t
+('RECALL')_S 120 _t
+(will)_S 600 7463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(not)_S 120 _t
+(be)_S 120 _t
+(considered)_S 120 _t
+(for)_S 120 _t
+(gagging)_S 120 _t
+(or)_S 120 _t
+600 7263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(substituting.)_S 600 6863 _m
+(===============================)_S 600 6663 _m
+(COMMAND:)_S 120 _t
+(Bell)_S 600 6263 _m
+(Syntax:)_S 120 _t
+(#bell)_S 600 5863 _m
+(Description:)_S 120 _t
+(Will)_S 120 _t
+(ring)_S 120 _t
+(the)_S 120 _t
+(bell)_S 120 _t
+(on)_S 120 _t
+(your)_S 120 _t
+(terminal.)_S 240 _t
+(That)_S 120 _t
+(is)_S 600 5663 _m
+(assuming)_S 120 _t
+(that)_S 120 _t
+(your)_S 120 _t
+(terminal)_S 120 _t
+(can)_S 120 _t
+(do)_S 120 _t
+(this)_S 120 _t
+(\(Haven't)_S 120 _t
+(seen)_S 120 _t
+(one)_S 120 _t
+(that)_S 600 5463 _m
+(can't\).)_S 600 5063 _m
+(Example:)_S 600 4863 _m
+(#bell)_S 600 _t
+(<=will)_S 120 _t
+(ring)_S 120 _t
+(your)_S 120 _t
+(bell)_S 600 4463 _m
+(===============================)_S 600 4263 _m
+(COMMAND:)_S 120 _t
+(Boss)_S 600 3863 _m
+(Syntax:)_S 120 _t
+(#boss)_S 600 3463 _m
+(Description:)_S 240 _t
+(Your)_S 120 _t
+(typical)_S 120 _t
+(boss)_S 120 _t
+(key/command.)_S 240 _t
+(If)_S 120 _t
+(someone)_S 120 _t
+(walks)_S 600 3263 _m
+(into)_S 120 _t
+(the)_S 120 _t
+(room,)_S 120 _t
+(and)_S 120 _t
+(you)_S 120 _t
+(don't)_S 120 _t
+(want)_S 120 _t
+(them)_S 120 _t
+(to)_S 120 _t
+(notice)_S 120 _t
+(that)_S 120 _t
+(you)_S 120 _t
+(are)_S 600 3063 _m
+(mudding)_S 120 _t
+(away,)_S 120 _t
+(use)_S 120 _t
+(the)_S 120 _t
+(boss)_S 120 _t
+(command.)_S 240 _t
+(It)_S 120 _t
+(will)_S 120 _t
+(scroll)_S 120 _t
+(the)_S 120 _t
+(screen)_S 600 2863 _m
+(with)_S 120 _t
+(a)_S 120 _t
+(bunch)_S 120 _t
+(of)_S 120 _t
+(junk)_S 120 _t
+(that)_S 120 _t
+(looks)_S 120 _t
+(like)_S 120 _t
+(to)_S 120 _t
+(are)_S 120 _t
+(tying)_S 120 _t
+(to)_S 120 _t
+(test)_S 120 _t
+(a)_S 120 _t
+(tree)_S 600 2663 _m
+(sorting)_S 120 _t
+(program.)_S 600 2263 _m
+(Example:)_S 600 2063 _m
+(#boss)_S 600 _t
+(<=)_S 120 _t
+(Will)_S 120 _t
+(scroll)_S 120 _t
+(junk)_S 120 _t
+(on)_S 120 _t
+(your)_S 120 _t
+(screen.)_S 4680 663 _m
+(10)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Char)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#char)_S 120 _t
+({<new)_S 120 _t
+(command)_S 120 _t
+(char>})_S 600 11463 _m
+(Description:)_S 240 _t
+(This)_S 120 _t
+(command)_S 120 _t
+(allows)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(change)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+(char.)_S 600 11063 _m
+(The)_S 120 _t
+(default)_S 120 _t
+(command)_S 120 _t
+(char)_S 120 _t
+(is)_S 120 _t
+(defined)_S 120 _t
+(in)_S 120 _t
+('tintin.h',)_S 120 _t
+(which)_S 120 _t
+(is)_S 120 _t
+(the)_S 600 10863 _m
+('#'.)_S 240 _t
+(Useful)_S 120 _t
+(for)_S 120 _t
+(those)_S 120 _t
+(who)_S 120 _t
+(are)_S 120 _t
+(used)_S 120 _t
+(to)_S 120 _t
+(different)_S 120 _t
+(command)_S 120 _t
+(chars.)_S 600 10663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+600 10463 _m
+(NOTE:)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(use)_S 120 _t
+(a)_S 120 _t
+(char)_S 120 _t
+(other)_S 120 _t
+(than)_S 120 _t
+(#)_S 120 _t
+(in)_S 120 _t
+(your)_S 120 _t
+(coms)_S 120 _t
+(file,)_S 120 _t
+(t++)_S 600 10263 _m
+(will)_S 120 _t
+(automatically)_S 120 _t
+(inherit)_S 120 _t
+(that)_S 120 _t
+(char)_S 120 _t
+(as)_S 120 _t
+(it's)_S 120 _t
+(new)_S 120 _t
+(command)_S 120 _t
+(char.)_S 600 9863 _m
+(Example:)_S 600 9663 _m
+(#char)_S 120 _t
+({/})_S 720 _t
+(<=)_S 120 _t
+(will)_S 120 _t
+(change)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+(char)_S 120 _t
+(from)_S 120 _t
+('#',)_S 120 _t
+(to)_S 120 _t
+('/'.)_S 600 9263 _m
+(===============================)_S 600 9063 _m
+(COMMAND:)_S 120 _t
+(CR)_S 600 8663 _m
+(Syntax:)_S 120 _t
+(#cr)_S 600 8263 _m
+(Description:)_S 349 _t
+(Sends)_S 174 _t
+(a)_S 175 _t
+(carriage)_S 174 _t
+(return)_S 175 _t
+(to)_S 174 _t
+(the)_S 175 _t
+(session.)_S 349 _t
+(Useful)_S 175 _t
+(for)_S 600 8063 _m
+(aliases)_S 120 _t
+(that)_S 120 _t
+(need)_S 120 _t
+(carriage)_S 120 _t
+(returns.)_S 600 7663 _m
+(===============================)_S 600 7463 _m
+(COMMAND:)_S 120 _t
+(Echo)_S 600 7063 _m
+(Syntax:)_S 120 _t
+(#echo)_S 600 6663 _m
+(Description:)_S 120 _t
+(A)_S 120 _t
+(toggle)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(echoing)_S 120 _t
+(of)_S 120 _t
+(action)_S 120 _t
+(commands.)_S 240 _t
+(While)_S 600 6463 _m
+(echo)_S 120 _t
+(is)_S 120 _t
+(on,)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(triggered)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(echo'ed)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(screen.)_S 600 6063 _m
+(Example:)_S 600 5863 _m
+(#echo)_S 600 _t
+(<=)_S 120 _t
+(Turns)_S 120 _t
+(echo)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off.)_S 600 5463 _m
+(===============================)_S 600 5263 _m
+(COMMAND:)_S 120 _t
+(End)_S 600 4863 _m
+(Syntax:)_S 120 _t
+(#end)_S 600 4463 _m
+(Description:)_S 120 _t
+(The)_S 120 _t
+(mother)_S 120 _t
+(of)_S 120 _t
+(all)_S 120 _t
+(commands.)_S 240 _t
+(This)_S 120 _t
+(Command)_S 120 _t
+(is)_S 120 _t
+(you)_S 600 4263 _m
+(ticket)_S 120 _t
+(out)_S 120 _t
+(of)_S 120 _t
+(TinTin++.)_S 240 _t
+(It)_S 120 _t
+(will)_S 120 _t
+(close)_S 120 _t
+(all)_S 120 _t
+(sessions,)_S 120 _t
+(and)_S 120 _t
+(return)_S 600 4063 _m
+(you)_S 120 _t
+(to)_S 120 _t
+(your)_S 120 _t
+(unix)_S 120 _t
+(prompt.)_S 240 _t
+600 3663 _m
+(**)_S 120 _t
+(WARNING:)_S 240 _t
+(#end)_S 120 _t
+(will)_S 120 _t
+(not)_S 120 _t
+(rent)_S 120 _t
+(your)_S 120 _t
+(characters)_S 120 _t
+(out.)_S 240 _t
+(You)_S 120 _t
+(must)_S 600 3463 _m
+(rent)_S 120 _t
+(all)_S 120 _t
+(chars)_S 120 _t
+(out)_S 120 _t
+(before)_S 120 _t
+(ending.)_S 240 _t
+(**)_S 600 3063 _m
+(Example:)_S 600 2863 _m
+(#end)_S 720 _t
+(<=)_S 120 _t
+(Seeya..)_S 120 _t
+(You)_S 120 _t
+(just)_S 120 _t
+(exited)_S 120 _t
+(TinTin++.)_S 4680 663 _m
+(11)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Gag)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#gag)_S 120 _t
+({<text)_S 120 _t
+(to)_S 120 _t
+(trigger)_S 120 _t
+(gagging)_S 120 _t
+(of)_S 120 _t
+(line>})_S 600 11463 _m
+(Description:)_S 240 _t
+(#gag)_S 120 _t
+(will)_S 120 _t
+(gag)_S 120 _t
+(any)_S 120 _t
+(line)_S 120 _t
+(that)_S 120 _t
+(contains)_S 120 _t
+(<text>)_S 120 _t
+(in)_S 120 _t
+(it.)_S 600 11263 _m
+(Similar)_S 120 _t
+(to)_S 120 _t
+(doing)_S 240 _t
+(#sub)_S 120 _t
+({<text>})_S 120 _t
+(.)_S 360 _t
+(\(Note)_S 120 _t
+(the)_S 120 _t
+(.)_S 120 _t
+(does)_S 240 _t
+(not)_S 120 _t
+(end)_S 120 _t
+(the)_S 600 11063 _m
+(sentence,)_S 120 _t
+(it)_S 120 _t
+(is)_S 120 _t
+(part)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(#sub)_S 120 _t
+(command\).)_S 600 10663 _m
+(Example:)_S 120 _t
+600 10463 _m
+(#gag)_S 120 _t
+({has)_S 120 _t
+(arrived.})_S 120 _t
+(<=)_S 120 _t
+(Any)_S 120 _t
+(line)_S 240 _t
+(that)_S 120 _t
+(comes)_S 120 _t
+(to)_S 240 _t
+(you)_S 120 _t
+(from)_S 120 _t
+(the)_S 240 _t
+(mud)_S 600 10263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(that)_S 120 _t
+(contains)_S 240 _t
+("has)_S 240 _t
+(arrived.")_S 240 _t
+(will)_S 240 _t
+(not)_S 240 _t
+(be)_S 600 10063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(shown)_S 120 _t
+(to)_S 120 _t
+(you.)_S 600 9663 _m
+(===============================)_S 600 9463 _m
+(COMMAND:)_S 120 _t
+(Help)_S 600 9063 _m
+(Syntax:)_S 120 _t
+(#help)_S 600 8663 _m
+(Description:)_S 120 _t
+(Will)_S 120 _t
+(display)_S 120 _t
+(all)_S 120 _t
+(commands)_S 120 _t
+(available.)_S 600 8263 _m
+(Example:)_S 600 8063 _m
+(#help)_S 600 _t
+(<=)_S 120 _t
+(There)_S 120 _t
+(ya)_S 120 _t
+(go..)_S 120 _t
+(All)_S 120 _t
+(commands)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(displayed.)_S 600 7863 _m
+(#help)_S 120 _t
+(<command>)_S 360 _t
+(<=)_S 120 _t
+(Will)_S 120 _t
+(give)_S 120 _t
+(you)_S 120 _t
+(extensive)_S 120 _t
+(help)_S 120 _t
+(in)_S 120 _t
+(command.)_S 600 7463 _m
+(===============================)_S 600 7263 _m
+(COMMAND:)_S 120 _t
+(Highlight)_S 600 6863 _m
+(Syntax:)_S 120 _t
+(#highlight)_S 120 _t
+({<type>})_S 120 _t
+({<text)_S 120 _t
+(to)_S 120 _t
+(highlight>})_S 600 6463 _m
+(Description:)_S 120 _t
+(All)_S 120 _t
+(occurrences)_S 120 _t
+(of)_S 120 _t
+(<text)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(highlighted>)_S 120 _t
+(will)_S 120 _t
+(be)_S 600 6263 _m
+(highlighted)_S 120 _t
+(to)_S 120 _t
+(<type>)_S 120 _t
+(appearance.)_S 240 _t
+(This)_S 120 _t
+(command)_S 120 _t
+(will)_S 120 _t
+(only)_S 120 _t
+(work)_S 600 6063 _m
+(for)_S 120 _t
+(those)_S 120 _t
+(of)_S 120 _t
+(you)_S 120 _t
+(who)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(working)_S 120 _t
+(on)_S 120 _t
+(a)_S 120 _t
+(VT100)_S 120 _t
+(compatible)_S 600 5863 _m
+(terminal.)_S 240 _t
+600 5463 _m
+(<types>)_S 120 _t
+(can)_S 120 _t
+(be)_S 120 _t
+(one)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(following:)_S 600 5263 _m
+(reverse,)_S 120 _t
+(bold,)_S 120 _t
+(blink,)_S 120 _t
+(faint,)_S 120 _t
+(italic,)_S 120 _t
+(or)_S 120 _t
+(a)_S 120 _t
+(number)_S 120 _t
+(from)_S 120 _t
+(1)_S 120 _t
+(to)_S 120 _t
+(8)_S 600 5063 _m
+(the)_S 120 _t
+(numbers)_S 120 _t
+(represent)_S 120 _t
+(colors)_S 120 _t
+(1)_S 120 _t
+(through)_S 120 _t
+(8)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(palette.)_S 600 4663 _m
+(Added)_S 210 _t
+(for)_S 210 _t
+(v1.5,)_S 210 _t
+(is)_S 210 _t
+(the)_S 210 _t
+(ability)_S 210 _t
+(to)_S 210 _t
+(use)_S 210 _t
+(the)_S 210 _t
+(color)_S 210 _t
+(names)_S 210 _t
+(and)_S 210 _t
+(the)_S 600 4463 _m
+(combination)_S 109 _t
+(of)_S 109 _t
+(names)_S 109 _t
+(within)_S 109 _t
+(to)_S 109 _t
+(declaration.)_S 218 _t
+(For)_S 110 _t
+(instance,)_S 109 _t
+(you)_S 109 _t
+(now)_S 109 _t
+(able)_S 600 4263 _m
+(to)_S 111 _t
+(specify)_S 111 _t
+({red,bold}.)_S 221 _t
+(For)_S 111 _t
+(old)_S 111 _t
+(users)_S 111 _t
+(of)_S 110 _t
+(Tintin++,)_S 111 _t
+(you)_S 111 _t
+(will)_S 111 _t
+(not)_S 110 _t
+(have)_S 111 _t
+(to)_S 600 4063 _m
+(modify)_S 93 _t
+(your)_S 93 _t
+(coms)_S 94 _t
+(file,)_S 93 _t
+(cause)_S 93 _t
+(we)_S 94 _t
+(have)_S 93 _t
+(implemented)_S 93 _t
+(downwards)_S 94 _t
+(compatibility)_S 600 3863 _m
+(with)_S 120 _t
+(v1.2)_S 120 _t
+(coms)_S 120 _t
+(files.)_S 600 3463 _m
+(Valid)_S 120 _t
+(Color)_S 120 _t
+(names)_S 120 _t
+(are)_S 120 _t
+(as)_S 120 _t
+(follows:)_S 600 3063 _m
+(red,)_S 160 _t
+(blue,)_S 160 _t
+(cyan,)_S 160 _t
+(green,)_S 160 _t
+(yellow,)_S 160 _t
+(magenta,)_S 160 _t
+(white,)_S 160 _t
+(grey,)_S 160 _t
+(black,)_S 160 _t
+(brown,)_S 600 2863 _m
+(charcoal,)_S 96 _t
+(light)_S 96 _t
+(red,)_S 96 _t
+(light)_S 96 _t
+(blue,)_S 96 _t
+(light)_S 96 _t
+(cyan,)_S 96 _t
+(light)_S 96 _t
+(magenta,)_S 96 _t
+(light)_S 96 _t
+(green,)_S 600 2663 _m
+(b)_S 107 _t
+(red,)_S 106 _t
+(b)_S 107 _t
+(blue,)_S 107 _t
+(b)_S 106 _t
+(cyan,)_S 107 _t
+(b)_S 107 _t
+(green,)_S 106 _t
+(b)_S 107 _t
+(yellow,)_S 107 _t
+(b)_S 106 _t
+(magenta,)_S 107 _t
+(b)_S 107 _t
+(white,)_S 426 _t
+(b)_S 107 _t
+(grey,)_S 600 2463 _m
+(b)_S 114 _t
+(black,)_S 114 _t
+(b)_S 114 _t
+(brown,)_S 114 _t
+(b)_S 114 _t
+(charcoal,)_S 114 _t
+(b)_S 114 _t
+(light)_S 114 _t
+(red,)_S 114 _t
+(b)_S 114 _t
+(light)_S 114 _t
+(blue,)_S 912 _t
+(b)_S 114 _t
+(light)_S 600 2263 _m
+(cyan,)_S 180 _t
+(b)_S 180 _t
+(light)_S 180 _t
+(magenta,)_S 180 _t
+(b)_S 180 _t
+(light)_S 180 _t
+(green,)_S 180 _t
+(bold,)_S 180 _t
+(faint,)_S 180 _t
+(blink,)_S 180 _t
+(italic,)_S 600 2063 _m
+(reverse)_S 600 1463 _m
+(Example:)_S 600 1263 _m
+(#highlight)_S 120 _t
+({bold})_S 120 _t
+({obliterates})_S 480 _t
+(<=)_S 120 _t
+('obliterates')_S 120 _t
+(in)_S 120 _t
+(attack)_S 600 1063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(messages)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(in)_S 120 _t
+(a)_S 120 _t
+(bold)_S 4680 663 _m
+(12)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(appearance.)_S 600 12063 _m
+(#highlight)_S 120 _t
+({red,)_S 120 _t
+(blink})_S 120 _t
+({Grimmy})_S 4800 12063 _m
+(<=)_S 288 _t
+('Grimmy')_S 288 _t
+(will)_S 288 _t
+(appear)_S 288 _t
+(in)_S 288 _t
+(a)_S 4800 11863 _m
+(blinking)_S 120 _t
+(red)_S 120 _t
+(color.)_S 600 11463 _m
+(Some)_S 99 _t
+(systems)_S 98 _t
+(don't)_S 98 _t
+(offer)_S 98 _t
+(all)_S 98 _t
+(colors/styles)_S 98 _t
+(for)_S 99 _t
+(vt100,)_S 98 _t
+(so)_S 98 _t
+(your)_S 98 _t
+(milage)_S 98 _t
+(may)_S 600 11263 _m
+(vary)_S 129 _t
+(on)_S 129 _t
+(this)_S 130 _t
+(one.)_S 129 _t
+(\(I)_S 129 _t
+(know)_S 129 _t
+(for)_S 130 _t
+(SGI's)_S 129 _t
+(running)_S 129 _t
+(IRIX)_S 129 _t
+(v4.0.5C,)_S 130 _t
+(half)_S 129 _t
+(of)_S 129 _t
+(the)_S 600 11063 _m
+(colors/styles)_S 120 _t
+(don't)_S 120 _t
+(work)_S 120 _t
+(due)_S 120 _t
+(to)_S 120 _t
+(lack)_S 120 _t
+(of)_S 120 _t
+(support)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(term)_S 120 _t
+(file\))_S 600 10663 _m
+(===============================)_S 600 10463 _m
+(COMMAND:)_S 120 _t
+(History)_S 600 10063 _m
+(Syntax:)_S 120 _t
+(#history)_S 600 9663 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(show)_S 120 _t
+(you)_S 120 _t
+(the)_S 120 _t
+(last)_S 120 _t
+(30)_S 120 _t
+(commands)_S 120 _t
+(you)_S 120 _t
+(typed.)_S 120 _t
+600 9463 _m
+(You)_S 120 _t
+(can)_S 120 _t
+(use)_S 120 _t
+(these)_S 120 _t
+(in)_S 120 _t
+(what)_S 120 _t
+(is)_S 120 _t
+(called)_S 120 _t
+('History)_S 120 _t
+(Substitution'.)_S 600 9263 _m
+(Let's)_S 120 _t
+(say)_S 120 _t
+(you)_S 120 _t
+(type)_S 120 _t
+('#history')_S 120 _t
+(and)_S 120 _t
+(this)_S 120 _t
+(is)_S 120 _t
+(what)_S 120 _t
+(you)_S 120 _t
+(get:)_S 600 8863 _m
+(14)_S 120 _t
+(look)_S 600 8663 _m
+(13)_S 120 _t
+(s)_S 120 _t
+600 8463 _m
+(12)_S 120 _t
+(w;chuckle)_S 600 8263 _m
+(11)_S 120 _t
+(say)_S 120 _t
+(Sorry..)_S 120 _t
+(I)_S 120 _t
+(went)_S 120 _t
+(the)_S 120 _t
+(wrong)_S 120 _t
+(way..)_S 120 _t
+(:\))_S 600 8063 _m
+(10)_S 120 _t
+(cast)_S 120 _t
+('heal')_S 120 _t
+(eto)_S 600 7863 _m
+(9)_S 240 _t
+(pow)_S 120 _t
+(Urquan)_S 600 7663 _m
+(8)_S 240 _t
+(cuddle)_S 120 _t
+(urquan)_S 600 7463 _m
+(7)_S 240 _t
+(say)_S 120 _t
+(Ohh..)_S 120 _t
+(that)_S 120 _t
+(had)_S 120 _t
+(to)_S 120 _t
+(of)_S 120 _t
+(left)_S 120 _t
+(a)_S 120 _t
+(mark..)_S 120 _t
+(You)_S 120 _t
+(ok)_S 120 _t
+(Urquan??)_S 600 7263 _m
+(6)_S 240 _t
+(smile)_S 120 _t
+(urquan)_S 600 7063 _m
+(5)_S 240 _t
+(tell)_S 120 _t
+(urquan)_S 120 _t
+(You're)_S 120 _t
+(young..)_S 120 _t
+(You'll)_S 120 _t
+(adjust..)_S 120 _t
+(:-\))_S 600 6863 _m
+(4)_S 240 _t
+(tell)_S 120 _t
+(valgar)_S 120 _t
+(can't)_S 120 _t
+(we)_S 120 _t
+(work)_S 120 _t
+(Urquan)_S 120 _t
+(a)_S 120 _t
+(little)_S 120 _t
+(harder??)_S 600 6663 _m
+(3)_S 240 _t
+(cackle)_S 600 6463 _m
+(2)_S 240 _t
+(pow)_S 120 _t
+(tossa)_S 600 6263 _m
+(1)_S 240 _t
+(pat)_S 120 _t
+(tossa)_S 600 6063 _m
+(0)_S 240 _t
+(#history)_S 600 5663 _m
+('History)_S 120 _t
+(Substitution',)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(don't)_S 120 _t
+(want)_S 120 _t
+(to)_S 120 _t
+(retype)_S 120 _t
+(one)_S 120 _t
+(of)_S 120 _t
+(the)_S 600 5463 _m
+(30)_S 120 _t
+(previous)_S 120 _t
+(lines,)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(just)_S 120 _t
+(type:)_S 120 _t
+600 5063 _m
+(!<#)_S 120 _t
+(of)_S 120 _t
+(line)_S 120 _t
+(to)_S 120 _t
+(repeat>)_S 120 _t
+(<and)_S 120 _t
+(additional)_S 120 _t
+(text)_S 120 _t
+(you)_S 120 _t
+(want)_S 120 _t
+(to)_S 120 _t
+(add>)_S 600 4863 _m
+(or)_S 120 _t
+(!<text>)_S 120 _t
+600 4463 _m
+(an)_S 120 _t
+(example)_S 120 _t
+(of)_S 120 _t
+(this)_S 120 _t
+(would)_S 120 _t
+(be:)_S 120 _t
+(!4.)_S 240 _t
+(That)_S 120 _t
+(would)_S 120 _t
+(tell)_S 120 _t
+(valgar)_S 120 _t
+(once)_S 600 4263 _m
+(more)_S 120 _t
+(that)_S 120 _t
+(can't)_S 120 _t
+(we)_S 120 _t
+(get)_S 120 _t
+(Urquan...)_S 240 _t
+(If)_S 120 _t
+(you)_S 120 _t
+(typed)_S 120 _t
+(!<text>)_S 120 _t
+(it)_S 120 _t
+(will)_S 600 4063 _m
+(execute)_S 120 _t
+(the)_S 120 _t
+(last)_S 120 _t
+(command)_S 120 _t
+(that)_S 120 _t
+(contained)_S 120 _t
+(<text>.)_S 600 3663 _m
+(Example:)_S 600 3463 _m
+(#history)_S 240 _t
+(<=)_S 120 _t
+(Shows)_S 120 _t
+(last)_S 120 _t
+(30)_S 120 _t
+(commands.)_S 4680 663 _m
+(13)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:IF)_S 240 _t
+600 11863 _m
+(Syntax:)_S 120 _t
+(#if)_S 120 _t
+({conditional})_S 120 _t
+({command\(s\)})_S 600 11463 _m
+(Description:)_S 120 _t
+(The)_S 120 _t
+(if)_S 120 _t
+(command)_S 120 _t
+(is)_S 240 _t
+(one)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(most)_S 120 _t
+(powerful)_S 120 _t
+(commands)_S 600 11263 _m
+(added)_S 240 _t
+(since)_S 120 _t
+(TINTINv3.)_S 240 _t
+(It)_S 120 _t
+(works)_S 240 _t
+(similar)_S 120 _t
+(to)_S 240 _t
+(an)_S 120 _t
+(if)_S 240 _t
+(statement)_S 120 _t
+(in)_S 600 11063 _m
+(other)_S 120 _t
+(languages,)_S 240 _t
+(and)_S 120 _t
+(is)_S 120 _t
+(loosely)_S 240 _t
+(based)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(way)_S 240 _t
+(C)_S 120 _t
+(handles)_S 120 _t
+(its)_S 600 10863 _m
+(conditional)_S 240 _t
+(statements.)_S 240 _t
+(When)_S 120 _t
+(an)_S 120 _t
+(if)_S 240 _t
+(command)_S 120 _t
+(is)_S 120 _t
+(encountered,)_S 120 _t
+(the)_S 600 10663 _m
+(conditional)_S 120 _t
+(statement)_S 240 _t
+(is)_S 120 _t
+(evaluated,)_S 240 _t
+(and)_S 120 _t
+(if)_S 240 _t
+(TRUE)_S 120 _t
+(\(any)_S 240 _t
+(non-zero)_S 600 10463 _m
+(result\))_S 120 _t
+(the)_S 240 _t
+(command\(s\))_S 120 _t
+(are)_S 120 _t
+(executed.)_S 360 _t
+(The)_S 120 _t
+(if)_S 120 _t
+(statement)_S 240 _t
+(is)_S 120 _t
+(only)_S 600 10263 _m
+(evaluated)_S 120 _t
+(if)_S 120 _t
+(it)_S 120 _t
+(is)_S 120 _t
+(read,)_S 120 _t
+(so)_S 120 _t
+(you)_S 120 _t
+(must)_S 120 _t
+(nest)_S 120 _t
+(the)_S 120 _t
+(if)_S 120 _t
+(statement)_S 120 _t
+(inside)_S 600 10063 _m
+(another)_S 240 _t
+(statement)_S 240 _t
+(\(most)_S 360 _t
+(likely)_S 240 _t
+(an)_S 240 _t
+(action)_S 240 _t
+(command\).)_S 600 _t
+(The)_S 600 9863 _m
+(conditional)_S 240 _t
+(is)_S 360 _t
+(evaluated)_S 240 _t
+(exactly)_S 240 _t
+(the)_S 240 _t
+(same)_S 240 _t
+(as)_S 120 _t
+(in)_S 240 _t
+(the)_S 240 _t
+(math)_S 600 9663 _m
+(command,)_S 120 _t
+(only)_S 120 _t
+(instead)_S 240 _t
+(of)_S 120 _t
+(storing)_S 120 _t
+(the)_S 120 _t
+(result,)_S 120 _t
+(the)_S 240 _t
+(result)_S 120 _t
+(is)_S 120 _t
+(used)_S 600 9463 _m
+(to)_S 120 _t
+(determine)_S 120 _t
+(whether)_S 120 _t
+(to)_S 120 _t
+(execute)_S 120 _t
+(the)_S 120 _t
+(command\(s\).)_S 240 _t
+('#help)_S 120 _t
+(math')_S 120 _t
+(for)_S 600 9263 _m
+(more)_S 120 _t
+(information.)_S 600 8863 _m
+(Limitations:)_S 305 _t
+(#if)_S 153 _t
+(is)_S 152 _t
+(not)_S 153 _t
+(capable)_S 153 _t
+(of)_S 153 _t
+(comparing)_S 152 _t
+(string)_S 153 _t
+(values)_S 153 _t
+(at)_S 153 _t
+(this)_S 600 8663 _m
+(time.)_S 240 _t
+(This)_S 120 _t
+(implementation)_S 120 _t
+(is)_S 120 _t
+(slated)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(v2.0)_S 120 _t
+(release.)_S 600 8263 _m
+(Examples:)_S 600 8063 _m
+(#action)_S 120 _t
+({%0)_S 120 _t
+(gives)_S 120 _t
+(you)_S 120 _t
+(%1)_S 120 _t
+(gold)_S 120 _t
+(coins})_S 120 _t
+({#if)_S 120 _t
+({%%1>5000})_S 120 _t
+({thank)_S 120 _t
+(%%0}})_S 600 7863 _m
+(if)_S 120 _t
+(someone)_S 120 _t
+(gives)_S 120 _t
+(you)_S 120 _t
+(more)_S 120 _t
+(than)_S 120 _t
+(5000)_S 120 _t
+(coins,)_S 120 _t
+(thank)_S 120 _t
+(them.)_S 600 7663 _m
+(the)_S 120 _t
+(%%1)_S 120 _t
+(and)_S 120 _t
+(%%0)_S 120 _t
+(belong)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(action,)_S 120 _t
+(and)_S 120 _t
+(not)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(if,)_S 120 _t
+(and)_S 120 _t
+(that)_S 600 7463 _m
+(is)_S 120 _t
+(why)_S 120 _t
+(the)_S 120 _t
+(double)_S 120 _t
+(%)_S 120 _t
+(are)_S 120 _t
+(needed.)_S 600 7063 _m
+(#action)_S 120 _t
+({^<hp:%0)_S 120 _t
+(})_S 120 _t
+({#if)_S 120 _t
+({%%0<100})_S 120 _t
+({flee}})_S 600 6863 _m
+(If)_S 240 _t
+(your)_S 120 _t
+(status)_S 120 _t
+(prompt)_S 120 _t
+(is)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(form)_S 120 _t
+(<hp:100)_S 120 _t
+(ma:50)_S 120 _t
+(mo:100>,)_S 120 _t
+(this)_S 600 6663 _m
+(action)_S 120 _t
+(will)_S 240 _t
+(get)_S 120 _t
+(your)_S 240 _t
+(hit)_S 120 _t
+(points,)_S 120 _t
+(compare)_S 240 _t
+(them)_S 120 _t
+(to)_S 120 _t
+(100,)_S 240 _t
+(if)_S 120 _t
+(less)_S 600 6463 _m
+(than)_S 120 _t
+(100,)_S 240 _t
+(flee.)_S 240 _t
+(Note)_S 240 _t
+(though,)_S 120 _t
+(that)_S 240 _t
+(you)_S 120 _t
+(will)_S 120 _t
+(continue)_S 240 _t
+(to)_S 120 _t
+(flee,)_S 600 6263 _m
+(because)_S 120 _t
+(your)_S 120 _t
+(prompt)_S 120 _t
+(will)_S 120 _t
+(still)_S 120 _t
+(show)_S 120 _t
+(your)_S 120 _t
+(hp)_S 120 _t
+(<)_S 120 _t
+(100.)_S 240 _t
+(By)_S 120 _t
+(using)_S 120 _t
+(some)_S 600 6063 _m
+(logic,)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(add)_S 120 _t
+(a)_S 120 _t
+(trigger)_S 120 _t
+(variable)_S 120 _t
+(to)_S 120 _t
+(help)_S 120 _t
+(control)_S 120 _t
+(this.)_S 240 _t
+(Look)_S 600 5863 _m
+(at)_S 120 _t
+(the)_S 120 _t
+(following:)_S 600 5463 _m
+(\(This)_S 120 _t
+(need)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(created)_S 120 _t
+(beforehand\))_S 600 5263 _m
+(#variable)_S 120 _t
+({trigfl})_S 120 _t
+({0})_S 600 5063 _m
+(#alias)_S 120 _t
+(resetflee)_S 120 _t
+({#var)_S 120 _t
+(trigfl)_S 120 _t
+(0})_S 600 4863 _m
+(#alias)_S 120 _t
+(setflee)_S 120 _t
+({#var)_S 120 _t
+(trigfl)_S 120 _t
+(1})_S 600 4463 _m
+(\(Now)_S 120 _t
+(the)_S 120 _t
+(action\))_S 600 4263 _m
+(#action)_S 120 _t
+({^hp:%0)_S 120 _t
+(})_S 120 _t
+({#if)_S 120 _t
+({\(%%0<100\))_S 120 _t
+(&&)_S 120 _t
+(\($trigfl=0\)})_S 120 _t
+({setflee;flee})_S 600 3863 _m
+(This)_S 120 _t
+(action,)_S 120 _t
+(upon)_S 240 _t
+(receiving)_S 120 _t
+(a)_S 120 _t
+(prompt)_S 120 _t
+(of)_S 120 _t
+(less)_S 120 _t
+(than)_S 120 _t
+(100)_S 120 _t
+(hp's,)_S 120 _t
+(will)_S 600 3663 _m
+(check)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(have)_S 120 _t
+(already)_S 120 _t
+(fled)_S 120 _t
+(\(trigfl\).)_S 240 _t
+(If)_S 120 _t
+(you)_S 120 _t
+(have)_S 120 _t
+(not,)_S 600 3463 _m
+(then)_S 240 _t
+(you)_S 240 _t
+(will)_S 120 _t
+(set)_S 240 _t
+(the)_S 240 _t
+(trigger,)_S 240 _t
+(so)_S 120 _t
+(that)_S 240 _t
+(you)_S 240 _t
+(won't)_S 240 _t
+(flee)_S 120 _t
+(for)_S 600 3263 _m
+(infinity,)_S 120 _t
+(and)_S 240 _t
+(then)_S 120 _t
+(make)_S 240 _t
+(you)_S 120 _t
+(flee)_S 120 _t
+(once.)_S 360 _t
+(Remember)_S 240 _t
+(though,)_S 120 _t
+(that)_S 600 3063 _m
+(once)_S 120 _t
+(your)_S 240 _t
+(hp's)_S 120 _t
+(are)_S 240 _t
+(greater)_S 120 _t
+(than)_S 120 _t
+(100)_S 240 _t
+(again,)_S 120 _t
+(that)_S 240 _t
+(to)_S 120 _t
+(reset)_S 240 _t
+(the)_S 600 2863 _m
+(trigger,)_S 120 _t
+(so)_S 120 _t
+(that)_S 120 _t
+(it)_S 120 _t
+(will)_S 120 _t
+(work)_S 120 _t
+(for)_S 120 _t
+(you)_S 120 _t
+(once)_S 120 _t
+(again..)_S 120 _t
+(:\))_S 4680 663 _m
+(14)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Ignore)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#ignore)_S 600 11463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(toggle)_S 120 _t
+(whether)_S 120 _t
+(or)_S 120 _t
+(not)_S 120 _t
+(you)_S 120 _t
+(want)_S 120 _t
+(your)_S 600 11263 _m
+(actions)_S 111 _t
+(to)_S 111 _t
+(be)_S 110 _t
+(triggered)_S 111 _t
+(or)_S 111 _t
+(not.)_S 221 _t
+(New)_S 111 _t
+(for)_S 111 _t
+(v1.5,)_S 111 _t
+(#ignore)_S 110 _t
+(only)_S 111 _t
+(affects)_S 111 _t
+(the)_S 600 11063 _m
+(current)_S 120 _t
+(session.)_S 600 10663 _m
+(Example:)_S 120 _t
+600 10463 _m
+(#ignore)_S 360 _t
+(<=)_S 120 _t
+(Toggles)_S 120 _t
+(it)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off..)_S 120 _t
+600 10063 _m
+(===============================)_S 600 9863 _m
+(COMMAND:)_S 120 _t
+(Info)_S 600 9463 _m
+(Syntax:)_S 120 _t
+(#info)_S 600 9063 _m
+(Description:#)_S 360 _t
+(Displays)_S 180 _t
+(the)_S 180 _t
+(number)_S 180 _t
+(of)_S 180 _t
+(actions,)_S 180 _t
+(aliases,)_S 180 _t
+(variables,)_S 600 8863 _m
+(substitutes,)_S 137 _t
+(antisubstitutes,)_S 137 _t
+(and)_S 137 _t
+(highlights)_S 137 _t
+(for)_S 137 _t
+(the)_S 137 _t
+(current)_S 138 _t
+(session.)_S 600 8663 _m
+(Also)_S 137 _t
+(will)_S 137 _t
+(report)_S 137 _t
+(on)_S 138 _t
+(the)_S 137 _t
+(toggles)_S 137 _t
+(set)_S 137 _t
+(for)_S 137 _t
+(that)_S 137 _t
+(session)_S 137 _t
+(as)_S 138 _t
+(well.)_S 274 _t
+(If)_S 137 _t
+(no)_S 600 8463 _m
+(session)_S 120 _t
+(is)_S 120 _t
+(active,)_S 120 _t
+(then)_S 120 _t
+(the)_S 120 _t
+(statistics)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(defaults)_S 120 _t
+(are)_S 120 _t
+(given.)_S 600 8063 _m
+(===============================)_S 600 7863 _m
+(COMMAND:)_S 120 _t
+(Killall)_S 600 7463 _m
+(Syntax:)_S 120 _t
+(#killall)_S 600 7063 _m
+(Description:)_S 330 _t
+(Killall)_S 165 _t
+(deletes)_S 165 _t
+(all)_S 165 _t
+(aliases,)_S 165 _t
+(actions,)_S 165 _t
+(subs,)_S 165 _t
+(antisubs,)_S 600 6863 _m
+(highlights,)_S 110 _t
+(variables)_S 110 _t
+(in)_S 110 _t
+(one)_S 110 _t
+(fell)_S 110 _t
+(swoop.)_S 220 _t
+(Useful)_S 110 _t
+(now,)_S 110 _t
+(so)_S 110 _t
+(you)_S 110 _t
+(don't)_S 110 _t
+(have)_S 600 6663 _m
+(to)_S 120 _t
+(exit)_S 120 _t
+(tintin++)_S 120 _t
+(to)_S 120 _t
+(load)_S 120 _t
+(up)_S 120 _t
+(a)_S 120 _t
+(new)_S 120 _t
+(coms)_S 120 _t
+(file.)_S 600 6263 _m
+(===============================)_S 600 6063 _m
+(COMMAND:)_S 120 _t
+(Log)_S 600 5663 _m
+(Syntax:)_S 120 _t
+(#log)_S 120 _t
+({<filename>})_S 600 5263 _m
+(Description:)_S 120 _t
+(Will)_S 120 _t
+(record)_S 120 _t
+(all)_S 120 _t
+(input)_S 120 _t
+(and)_S 120 _t
+(output)_S 120 _t
+(of)_S 120 _t
+(session)_S 120 _t
+(to)_S 600 5063 _m
+(<filename>.)_S 600 4663 _m
+(Example:)_S 600 4463 _m
+(#log)_S 120 _t
+(grimmy.log)_S 600 _t
+(<=)_S 120 _t
+(starts)_S 120 _t
+(log...)_S 600 4263 _m
+(...)_S 2040 _t
+(<=)_S 120 _t
+(playing,)_S 120 _t
+(having)_S 120 _t
+(fun...)_S 120 _t
+600 4063 _m
+(#log)_S 120 _t
+(grimmy.log)_S 600 _t
+(<=)_S 120 _t
+(ends)_S 120 _t
+(log...)_S 600 3663 _m
+(===============================)_S 600 3463 _m
+(COMMAND:)_S 120 _t
+(Loop)_S 600 3063 _m
+(Syntax:)_S 120 _t
+(#loop)_S 120 _t
+({#from,#to})_S 120 _t
+({<command>})_S 600 2663 _m
+(Description:)_S 240 _t
+(#loop)_S 240 _t
+(will)_S 120 _t
+(run)_S 120 _t
+(a)_S 120 _t
+(command)_S 120 _t
+(in)_S 240 _t
+(a)_S 120 _t
+(loop,)_S 120 _t
+(and)_S 600 2463 _m
+(assign)_S 240 _t
+(the)_S 240 _t
+(numbers)_S 240 _t
+(ranging)_S 240 _t
+(from)_S 240 _t
+(#from)_S 240 _t
+(to)_S 240 _t
+(#to)_S 240 _t
+(in)_S 600 2263 _m
+(variable)_S 120 _t
+(%0)_S 120 _t
+(for)_S 120 _t
+(use)_S 120 _t
+(in)_S 120 _t
+({<command>}.)_S 240 _t
+600 1863 _m
+(Example:)_S 600 1663 _m
+(#loop)_S 120 _t
+({1,5})_S 120 _t
+({get)_S 120 _t
+(all)_S 120 _t
+(%0.corpse})_S 480 _t
+(<=)_S 360 _t
+(will)_S 360 _t
+(get)_S 240 _t
+(all)_S 600 1463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(corpses)_S 120 _t
+(ranging)_S 120 _t
+(from)_S 600 1263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(1.corpse)_S 120 _t
+(to)_S 120 _t
+(5.corpse.)_S 4680 663 _m
+(15)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Map)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#map)_S 120 _t
+(<direction>)_S 600 11463 _m
+(Description:)_S 360 _t
+(Will)_S 120 _t
+(add)_S 240 _t
+(a)_S 120 _t
+(direction)_S 240 _t
+(to)_S 120 _t
+(the)_S 240 _t
+(end)_S 120 _t
+(of)_S 120 _t
+(the)_S 240 _t
+(current)_S 600 11263 _m
+(path.)_S 240 _t
+(Useful)_S 120 _t
+(for)_S 120 _t
+(mapping)_S 120 _t
+(while)_S 120 _t
+(following)_S 120 _t
+(someone.)_S 600 10863 _m
+(Example:)_S 600 10463 _m
+(#action)_S 120 _t
+({$leader)_S 120 _t
+(leaves)_S 120 _t
+(%0.})_S 120 _t
+({#map)_S 120 _t
+({%%0}})_S 600 10263 _m
+(if)_S 120 _t
+(the)_S 120 _t
+(person)_S 120 _t
+(stored)_S 120 _t
+(in)_S 120 _t
+($leader)_S 120 _t
+(leaves)_S 120 _t
+(the)_S 120 _t
+(room,)_S 120 _t
+(the)_S 120 _t
+(direction)_S 120 _t
+(is)_S 600 10063 _m
+(added)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(end)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(path.)_S 600 9663 _m
+(===============================)_S 600 9463 _m
+(COMMAND:)_S 120 _t
+(Mark)_S 600 9063 _m
+(Syntax:)_S 120 _t
+(#mark)_S 600 8663 _m
+(Description:)_S 120 _t
+(For)_S 120 _t
+(speedwalking,)_S 120 _t
+(this)_S 120 _t
+(commands)_S 120 _t
+(marks)_S 120 _t
+(the)_S 120 _t
+(beginning)_S 600 8463 _m
+(of)_S 120 _t
+(the)_S 120 _t
+(path.)_S 240 _t
+600 8063 _m
+(Example:)_S 600 7863 _m
+(#mark)_S 600 _t
+(<=)_S 120 _t
+(There)_S 120 _t
+(ya)_S 120 _t
+(go.)_S 240 _t
+(You)_S 120 _t
+(marked)_S 120 _t
+(the)_S 120 _t
+(beginning)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(path.)_S 600 7463 _m
+(===============================)_S 600 7263 _m
+(COMMAND:)_S 120 _t
+(Math)_S 600 6863 _m
+(Syntax:)_S 120 _t
+(#math)_S 120 _t
+({<var>})_S 120 _t
+({<math)_S 120 _t
+(ops>})_S 600 6463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(allow)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(do)_S 120 _t
+(math)_S 120 _t
+(operations)_S 120 _t
+(on)_S 600 6263 _m
+(variables)_S 120 _t
+(or)_S 120 _t
+(just)_S 120 _t
+(plain)_S 120 _t
+(old)_S 120 _t
+(numbers,)_S 120 _t
+(and)_S 120 _t
+(stores)_S 120 _t
+(the)_S 120 _t
+(result)_S 120 _t
+(in)_S 600 6063 _m
+(<var>.)_S 240 _t
+(All)_S 120 _t
+(numbers)_S 120 _t
+(should)_S 120 _t
+(be)_S 120 _t
+(integers,)_S 120 _t
+(for)_S 120 _t
+(it)_S 120 _t
+(only)_S 120 _t
+(performs)_S 600 5863 _m
+(integer)_S 120 _t
+(math.)_S 600 5463 _m
+(Example:)_S 600 5263 _m
+(Let's)_S 120 _t
+(say)_S 120 _t
+(you)_S 120 _t
+(have)_S 120 _t
+(a)_S 120 _t
+(variable)_S 120 _t
+($mana,)_S 120 _t
+(which)_S 120 _t
+(equals)_S 120 _t
+(the)_S 120 _t
+(amount)_S 120 _t
+(of)_S 600 5063 _m
+(mana)_S 120 _t
+(you)_S 120 _t
+(have.)_S 240 _t
+(You)_S 120 _t
+(then)_S 120 _t
+(could)_S 120 _t
+(do:)_S 600 4863 _m
+(#math)_S 120 _t
+({heals})_S 120 _t
+({$mana/40})_S 120 _t
+(<=)_S 120 _t
+(takes)_S 120 _t
+($mana/40)_S 120 _t
+(and)_S 120 _t
+(applies)_S 120 _t
+(result)_S 120 _t
+(to)_S 600 4663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(variable)_S 120 _t
+('heals'.)_S 600 4263 _m
+(I)_S 120 _t
+(have)_S 120 _t
+(an)_S 120 _t
+(extensive)_S 120 _t
+(example)_S 120 _t
+(of)_S 120 _t
+(math)_S 120 _t
+(used)_S 120 _t
+(in)_S 120 _t
+(a)_S 120 _t
+(coms)_S 120 _t
+(file)_S 120 _t
+(that)_S 120 _t
+(is)_S 600 4063 _m
+(shipped)_S 120 _t
+(to)_S 120 _t
+(you)_S 120 _t
+(with)_S 120 _t
+(the)_S 120 _t
+(package.)_S 120 _t
+4680 663 _m
+(16)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Message)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#message)_S 120 _t
+({<type>})_S 600 11463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(toggles)_S 120 _t
+(whether)_S 120 _t
+(messages)_S 120 _t
+(concerning)_S 120 _t
+(these)_S 120 _t
+(types)_S 600 11263 _m
+(of)_S 120 _t
+(commands)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(displayed.)_S 240 _t
+(If)_S 120 _t
+(off,)_S 120 _t
+(it)_S 120 _t
+(will)_S 120 _t
+(get)_S 120 _t
+(rid)_S 120 _t
+(of)_S 120 _t
+(the)_S 600 11063 _m
+(defined/deleted)_S 120 _t
+(messages)_S 120 _t
+(for)_S 120 _t
+(that)_S 120 _t
+(command)_S 120 _t
+(type.)_S 600 10663 _m
+(Valid)_S 120 _t
+(types)_S 120 _t
+(are)_S 120 _t
+(alias,)_S 120 _t
+(action,)_S 120 _t
+(substitute,)_S 120 _t
+(antisubstitute,)_S 600 10463 _m
+(highlight,)_S 120 _t
+(or)_S 120 _t
+(variable.)_S 600 10063 _m
+(Example:)_S 600 9863 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(wish)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(no)_S 120 _t
+(messages)_S 120 _t
+(concerning)_S 120 _t
+(variables,)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(type)_S 600 9463 _m
+(#message)_S 120 _t
+({variable})_S 120 _t
+600 9263 _m
+(and)_S 120 _t
+(you)_S 120 _t
+(wont)_S 120 _t
+(see)_S 120 _t
+(messages)_S 120 _t
+(like)_S 120 _t
+(variable)_S 120 _t
+(defined,)_S 120 _t
+(etc...)_S 600 9063 _m
+(The)_S 120 _t
+(same)_S 120 _t
+(holds)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(other)_S 120 _t
+(types)_S 120 _t
+(of)_S 120 _t
+(messages.)_S 600 8663 _m
+(===============================)_S 600 8463 _m
+(COMMAND:)_S 120 _t
+(#NAME)_S 600 8063 _m
+(Syntax:)_S 120 _t
+(#<session_name>)_S 120 _t
+(<commands>)_S 600 7663 _m
+(Description:)_S 120 _t
+(Will)_S 120 _t
+(send)_S 120 _t
+(<commands>)_S 120 _t
+(to)_S 120 _t
+(<session_name>)_S 600 7263 _m
+(Example:)_S 600 7063 _m
+(#grim)_S 120 _t
+(shout)_S 120 _t
+(Peach)_S 120 _t
+(Pit)_S 120 _t
+(now)_S 120 _t
+(closing..)_S 360 _t
+(<=)_S 120 _t
+(makes)_S 120 _t
+(session)_S 120 _t
+('grim')_S 600 6863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(shout)_S 120 _t
+('Peach)_S 120 _t
+(Pit)_S 120 _t
+(now)_S 600 6663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(closing..')_S 600 6463 _m
+(===============================)_S 600 6263 _m
+(COMMAND:)_S 120 _t
+(#<number>)_S 600 5863 _m
+(Syntax:)_S 120 _t
+(#<number)_S 120 _t
+(of)_S 120 _t
+(times)_S 120 _t
+(to)_S 120 _t
+(repeat>)_S 120 _t
+({Commands})_S 600 5463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(allows)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(do)_S 120 _t
+(repetitive)_S 120 _t
+(commands)_S 120 _t
+(nice)_S 120 _t
+(and)_S 600 5263 _m
+(easily.)_S 240 _t
+600 4863 _m
+(Example:)_S 600 4663 _m
+(#5)_S 120 _t
+({buy)_S 120 _t
+(bread;put)_S 120 _t
+(bread)_S 120 _t
+(bag})_S 240 _t
+(<=)_S 120 _t
+(will)_S 120 _t
+(buy)_S 120 _t
+(5)_S 120 _t
+(breads,)_S 120 _t
+(and)_S 120 _t
+(put)_S 120 _t
+(5)_S 600 4463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(breads)_S 120 _t
+(in)_S 120 _t
+(a)_S 120 _t
+(bag.)_S 120 _t
+600 4063 _m
+(#2)_S 120 _t
+({#g)_S 120 _t
+(cast)_S 120 _t
+('power')_S 120 _t
+(urquan})_S 360 _t
+(<=)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(make)_S 120 _t
+(the)_S 120 _t
+(character)_S 120 _t
+(in)_S 600 3863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(session)_S 120 _t
+('g')_S 120 _t
+(cast)_S 120 _t
+('power')_S 120 _t
+(on)_S 120 _t
+(urquan)_S 600 3663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(2)_S 120 _t
+(times.)_S 600 3263 _m
+(===============================)_S 600 3063 _m
+(COMMAND:)_S 120 _t
+(Nop)_S 600 2663 _m
+(Syntax:)_S 120 _t
+(#nop)_S 120 _t
+(<text>)_S 600 2263 _m
+(Description:)_S 240 _t
+(#nop)_S 120 _t
+(is)_S 120 _t
+(similar)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(remark)_S 120 _t
+(statement.)_S 240 _t
+(You)_S 120 _t
+(can)_S 120 _t
+(use)_S 600 2063 _m
+(#nop)_S 120 _t
+(to)_S 120 _t
+(make)_S 120 _t
+(comments.)_S 240 _t
+600 1663 _m
+(Example:)_S 600 1463 _m
+(#nop)_S 120 _t
+(fleetr)_S 120 _t
+(=)_S 120 _t
+(flee)_S 120 _t
+(trigger)_S 240 _t
+(<=)_S 600 _t
+(just)_S 120 _t
+(gives)_S 120 _t
+(an)_S 240 _t
+(explanation)_S 120 _t
+(of)_S 600 1263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(what)_S 120 _t
+(fleetr)_S 120 _t
+(stands)_S 120 _t
+(for.)_S 4680 663 _m
+(17)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Path)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#path)_S 600 11463 _m
+(Description:)_S 168 _t
+(This)_S 168 _t
+(will)_S 168 _t
+(display)_S 168 _t
+(the)_S 168 _t
+(path)_S 168 _t
+(you)_S 168 _t
+(have)_S 168 _t
+(traveled)_S 168 _t
+(from)_S 168 _t
+(the)_S 600 11263 _m
+(#mark'ed)_S 120 _t
+(beginning.)_S 600 10863 _m
+(Example:)_S 600 10663 _m
+(#path)_S 600 _t
+(<=)_S 120 _t
+(displays)_S 120 _t
+(current)_S 120 _t
+(path)_S 120 _t
+(traveled)_S 120 _t
+(from)_S 120 _t
+(#mark)_S 120 _t
+(onward.)_S 600 10263 _m
+(===============================)_S 600 10063 _m
+(COMMAND:)_S 120 _t
+(Pathdir)_S 600 9663 _m
+(Syntax:)_S 120 _t
+(#pathdir)_S 120 _t
+(<odd_dir>)_S 120 _t
+({text)_S 120 _t
+(to)_S 120 _t
+(send)_S 120 _t
+(to)_S 120 _t
+(mud)_S 120 _t
+(for)_S 120 _t
+(odd_dir})_S 600 9263 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 8863 _m
+(Description:)_S 240 _t
+(This)_S 120 _t
+(command)_S 120 _t
+(allows)_S 120 _t
+(the)_S 120 _t
+(user)_S 120 _t
+(to)_S 120 _t
+(enter)_S 120 _t
+(odd)_S 120 _t
+(directions,)_S 120 _t
+(so)_S 600 8663 _m
+(that)_S 98 _t
+(speedwalk)_S 99 _t
+(can)_S 98 _t
+(interpret)_S 98 _t
+(these)_S 98 _t
+(directions)_S 98 _t
+(and)_S 99 _t
+(send)_S 98 _t
+(the)_S 98 _t
+(right)_S 98 _t
+(text)_S 98 _t
+(to)_S 600 8463 _m
+(the)_S 120 _t
+(mud.)_S 600 8063 _m
+(Example:)_S 600 7863 _m
+(#pathdir)_S 120 _t
+({nw})_S 120 _t
+({nw})_S 3000 7863 _m
+(<=)_S 132 _t
+(Will)_S 132 _t
+(send)_S 132 _t
+({nw})_S 132 _t
+(to)_S 132 _t
+(the)_S 132 _t
+(mud)_S 132 _t
+(anytime)_S 132 _t
+({nw})_S 132 _t
+(is)_S 132 _t
+(seen)_S 3000 7663 _m
+(in)_S 120 _t
+(a)_S 120 _t
+(speedwalk)_S 120 _t
+(expression.)_S 240 _t
+600 7263 _m
+(===============================)_S 600 7063 _m
+(COMMAND:)_S 120 _t
+(Presub)_S 600 6663 _m
+(Syntax:)_S 120 _t
+(#presub)_S 600 6263 _m
+(Description:)_S 120 _t
+(Will)_S 120 _t
+(toggle)_S 120 _t
+(whether)_S 120 _t
+(or)_S 120 _t
+(not)_S 120 _t
+(substituted)_S 120 _t
+(output)_S 120 _t
+(can)_S 120 _t
+(trigger)_S 600 6063 _m
+(actions.)_S 240 _t
+(For)_S 120 _t
+(example,)_S 120 _t
+(let's)_S 120 _t
+(say)_S 120 _t
+(you)_S 120 _t
+(have)_S 120 _t
+(done)_S 120 _t
+(the)_S 120 _t
+(following:)_S 600 5663 _m
+(#sub)_S 120 _t
+({%0tells)_S 120 _t
+(you)_S 120 _t
+(%1BLEEDING%2})_S 120 _t
+({%0tries)_S 120 _t
+(to)_S 120 _t
+(make)_S 120 _t
+(you)_S 120 _t
+(BLEED.})_S 600 5263 _m
+(then,)_S 120 _t
+(you)_S 120 _t
+(have:)_S 600 5063 _m
+(#action)_S 120 _t
+({%0)_S 120 _t
+(tried)_S 120 _t
+(to)_S 120 _t
+(make)_S 120 _t
+(you)_S 120 _t
+(BLEED.})_S 120 _t
+({tell)_S 120 _t
+(%0)_S 120 _t
+(Oh.)_S 120 _t
+(I'm)_S 120 _t
+(scared.})_S 600 4663 _m
+(If)_S 103 _t
+(presub)_S 103 _t
+(is)_S 103 _t
+(off,)_S 103 _t
+(this)_S 103 _t
+(action)_S 103 _t
+(will)_S 102 _t
+(never)_S 103 _t
+(get)_S 103 _t
+(triggered.)_S 206 _t
+(In)_S 103 _t
+(order)_S 103 _t
+(to)_S 102 _t
+(get)_S 600 4463 _m
+(this)_S 120 _t
+(trigger)_S 120 _t
+(to)_S 120 _t
+(work,)_S 120 _t
+(you)_S 120 _t
+(must)_S 120 _t
+(also)_S 120 _t
+(activate)_S 120 _t
+(presubs.)_S 600 4263 _m
+(Example:)_S 600 4063 _m
+(#presub)_S 360 _t
+(<=)_S 120 _t
+(turns)_S 120 _t
+(it)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off.)_S 600 3663 _m
+(===============================)_S 600 3463 _m
+(COMMAND:)_S 120 _t
+(Read)_S 600 3063 _m
+(Syntax:)_S 120 _t
+(#read)_S 120 _t
+({<filename>})_S 600 2663 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(read)_S 120 _t
+(in)_S 120 _t
+(a)_S 120 _t
+(coms)_S 120 _t
+(file,)_S 120 _t
+(and)_S 120 _t
+(setup)_S 120 _t
+(the)_S 600 2463 _m
+(commands)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(file.)_S 600 2063 _m
+(The)_S 142 _t
+(new)_S 141 _t
+(command)_S 142 _t
+(char)_S 142 _t
+(will)_S 142 _t
+(become)_S 142 _t
+(whatever)_S 141 _t
+(was)_S 142 _t
+(the)_S 142 _t
+(first)_S 142 _t
+(character)_S 142 _t
+(in)_S 600 1863 _m
+(this)_S 111 _t
+(coms)_S 111 _t
+(file.)_S 221 _t
+(If)_S 111 _t
+(your)_S 111 _t
+(coms)_S 110 _t
+(file)_S 111 _t
+(starts)_S 111 _t
+(with)_S 111 _t
+(anything)_S 110 _t
+(other)_S 111 _t
+(than)_S 111 _t
+(your)_S 600 1663 _m
+(command)_S 120 _t
+(char,)_S 120 _t
+(put)_S 120 _t
+(a)_S 120 _t
+(nop)_S 120 _t
+(at)_S 120 _t
+(the)_S 120 _t
+(beginning.)_S 600 1463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+600 1263 _m
+(Example:)_S 600 1063 _m
+(#read)_S 120 _t
+(grimmy)_S 360 _t
+(<=)_S 120 _t
+(read)_S 120 _t
+(in)_S 120 _t
+(coms)_S 120 _t
+(file)_S 120 _t
+(named)_S 120 _t
+('grimmy'.)_S 4680 663 _m
+(18)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Redraw)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#redraw)_S 600 11463 _m
+(Description:)_S 240 _t
+(If)_S 240 _t
+(redraw)_S 120 _t
+(is)_S 120 _t
+(on,)_S 120 _t
+(and)_S 120 _t
+(you're)_S 120 _t
+(not)_S 120 _t
+(in)_S 120 _t
+(split)_S 120 _t
+(mode,)_S 120 _t
+(the)_S 600 11263 _m
+(input)_S 120 _t
+(line)_S 240 _t
+(will)_S 120 _t
+(be)_S 240 _t
+(redrawn)_S 120 _t
+(when)_S 120 _t
+(any)_S 240 _t
+(text)_S 120 _t
+(arrives,)_S 240 _t
+(or)_S 120 _t
+(tintin++)_S 600 11063 _m
+(prints)_S 240 _t
+(any)_S 120 _t
+(messages.)_S 360 _t
+(This)_S 240 _t
+(helps)_S 240 _t
+(you)_S 120 _t
+(avoid)_S 240 _t
+(your)_S 120 _t
+(input)_S 240 _t
+(being)_S 600 10863 _m
+(spread)_S 120 _t
+(out)_S 120 _t
+(and)_S 120 _t
+(unreadable)_S 120 _t
+(when)_S 120 _t
+(there)_S 120 _t
+(is)_S 120 _t
+(heavy)_S 120 _t
+(text)_S 240 _t
+(flow)_S 120 _t
+(from)_S 120 _t
+(the)_S 600 10663 _m
+(mud.)_S 240 _t
+(In)_S 120 _t
+(split)_S 120 _t
+(mode,)_S 120 _t
+(this)_S 120 _t
+(variable)_S 120 _t
+(is)_S 120 _t
+(ignored.)_S 600 10263 _m
+(Example:)_S 120 _t
+600 10063 _m
+(#redraw)_S 360 _t
+(<=)_S 120 _t
+(turns)_S 120 _t
+(it)_S 120 _t
+(on.)_S 240 _t
+(use)_S 120 _t
+(same)_S 120 _t
+(command)_S 120 _t
+(to)_S 120 _t
+(turn)_S 120 _t
+(off.)_S 600 9663 _m
+(===============================)_S 600 9463 _m
+(COMMAND:)_S 120 _t
+(Retab)_S 600 9063 _m
+(Syntax:)_S 120 _t
+(#retab)_S 600 8663 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 8263 _m
+(Description:)_S 174 _t
+(Will)_S 175 _t
+(load)_S 174 _t
+(in)_S 175 _t
+(tab.txt.)_S 349 _t
+(Useful)_S 174 _t
+(if)_S 175 _t
+(you)_S 175 _t
+(have)_S 174 _t
+(made)_S 175 _t
+(major)_S 600 8063 _m
+(modifications)_S 200 _t
+(to)_S 200 _t
+(tab.txt)_S 200 _t
+(externally,)_S 200 _t
+(and)_S 200 _t
+(wish)_S 200 _t
+(to)_S 200 _t
+(update)_S 200 _t
+(your)_S 200 _t
+(tab)_S 600 7863 _m
+(completion)_S 120 _t
+(list.)_S 600 7463 _m
+(===============================)_S 600 7263 _m
+(COMMAND:)_S 120 _t
+(Return)_S 600 6863 _m
+(Syntax:)_S 120 _t
+(#return)_S 600 6463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(will)_S 120 _t
+(make)_S 120 _t
+(you)_S 120 _t
+(back)_S 120 _t
+(up)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(opposite)_S 120 _t
+(direction)_S 600 6263 _m
+(of)_S 120 _t
+(what)_S 120 _t
+(you)_S 120 _t
+(last)_S 120 _t
+(typed.)_S 240 _t
+600 5863 _m
+(Example:)_S 600 5663 _m
+(#mark)_S 600 _t
+(<=)_S 120 _t
+(Start)_S 120 _t
+(tracking)_S 120 _t
+(my)_S 120 _t
+(path.)_S 600 5463 _m
+(....)_S 720 _t
+(<=)_S 120 _t
+(doing)_S 120 _t
+(some)_S 120 _t
+(walking..)_S 120 _t
+(Where)_S 120 _t
+(your)_S 120 _t
+(last)_S 120 _t
+(direction)_S 600 5263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(walked)_S 120 _t
+(was)_S 120 _t
+(n)_S 120 _t
+(for)_S 120 _t
+(example.)_S 600 5063 _m
+(#return)_S 360 _t
+(<=)_S 120 _t
+(will)_S 120 _t
+(remove)_S 120 _t
+(n)_S 120 _t
+(from)_S 120 _t
+(path)_S 120 _t
+(and)_S 120 _t
+(move)_S 120 _t
+(you)_S 120 _t
+(south.)_S 600 4663 _m
+(===============================)_S 600 4463 _m
+(COMMAND:)_S 120 _t
+(Savepath)_S 600 4063 _m
+(Syntax:)_S 120 _t
+(#savepath)_S 120 _t
+(<alias_to_be>)_S 600 3663 _m
+(Description:)_S 120 _t
+(#savepath)_S 120 _t
+(will)_S 120 _t
+(save)_S 120 _t
+(what)_S 120 _t
+(is)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(current)_S 600 3463 _m
+(#path,)_S 120 _t
+(to)_S 120 _t
+(an)_S 120 _t
+(alias.)_S 600 3063 _m
+(Example:)_S 600 2863 _m
+(#savepath)_S 120 _t
+(to-solus)_S 120 _t
+(<=)_S 120 _t
+(will)_S 120 _t
+(save)_S 120 _t
+(what)_S 120 _t
+(is)_S 120 _t
+(in)_S 120 _t
+(#path)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(new)_S 120 _t
+(alias)_S 600 2663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(called)_S 120 _t
+({to-solus}.)_S 4680 663 _m
+(19)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Session)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#session)_S 120 _t
+({<ses_name>})_S 120 _t
+({<IP)_S 120 _t
+(or)_S 120 _t
+(word)_S 120 _t
+(address>)_S 120 _t
+(<port>})_S 600 11463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(is)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+(you)_S 120 _t
+(use)_S 120 _t
+(to)_S 120 _t
+(connect)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(muds.)_S 600 11263 _m
+(The)_S 120 _t
+(session)_S 120 _t
+(that)_S 120 _t
+(you)_S 120 _t
+(startup)_S 120 _t
+(will)_S 120 _t
+(become)_S 120 _t
+(the)_S 120 _t
+(active)_S 120 _t
+(session.)_S 120 _t
+(That)_S 600 11063 _m
+(is,)_S 120 _t
+(all)_S 120 _t
+(commands)_S 120 _t
+(you)_S 120 _t
+(type,)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(send)_S 120 _t
+(to)_S 120 _t
+(this)_S 120 _t
+(session.)_S 600 10663 _m
+(Here's)_S 120 _t
+(a)_S 120 _t
+(small)_S 120 _t
+(example)_S 120 _t
+(to)_S 120 _t
+(get)_S 120 _t
+(you)_S 120 _t
+(started:)_S 120 _t
+600 10463 _m
+(It)_S 120 _t
+(shows)_S 120 _t
+(how)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(log)_S 120 _t
+(into)_S 120 _t
+(GrimneMUD)_S 120 _t
+(with)_S 120 _t
+(2)_S 120 _t
+(chars)_S 120 _t
+(and)_S 120 _t
+(play)_S 120 _t
+(a)_S 120 _t
+(bit)_S 600 10263 _m
+(with)_S 120 _t
+(them.)_S 600 9863 _m
+(#session)_S 120 _t
+({valgar})_S 120 _t
+({129.241.36.229)_S 120 _t
+(4000})_S 120 _t
+(<=)_S 120 _t
+(define)_S 120 _t
+(a)_S 120 _t
+(session)_S 120 _t
+(named)_S 600 9663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+('valgar'.)_S 600 9463 _m
+(#session)_S 120 _t
+({eto})_S 120 _t
+({gytje.pvv.unit.no)_S 120 _t
+(4000})_S 120 _t
+(<=)_S 120 _t
+(define)_S 120 _t
+(session)_S 120 _t
+(named)_S 600 9263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(eto.)_S 600 8863 _m
+(You)_S 120 _t
+(can)_S 120 _t
+(change)_S 120 _t
+(the)_S 120 _t
+(active)_S 120 _t
+(session,)_S 120 _t
+(by)_S 120 _t
+(typing)_S 120 _t
+(#sessionname)_S 600 8463 _m
+(#eto)_S 720 _t
+(<=make)_S 120 _t
+(the)_S 120 _t
+(char)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+('eto')_S 120 _t
+(session)_S 120 _t
+(the)_S 120 _t
+(active)_S 120 _t
+(one.)_S 600 8263 _m
+(...)_S 840 _t
+(<=)_S 120 _t
+(all)_S 120 _t
+(commands)_S 120 _t
+(now)_S 120 _t
+(go)_S 120 _t
+(to)_S 120 _t
+(session)_S 120 _t
+('eto'.)_S 600 8063 _m
+(#valgar)_S 360 _t
+(<=switching)_S 120 _t
+(now)_S 120 _t
+(to)_S 120 _t
+(session)_S 120 _t
+('valgar'.)_S 600 7663 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(enter)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+('#session')_S 120 _t
+(without)_S 120 _t
+(any)_S 120 _t
+(arguments,)_S 120 _t
+(you)_S 600 7463 _m
+(will)_S 120 _t
+(list)_S 120 _t
+(all)_S 120 _t
+(sessions,)_S 120 _t
+(and)_S 120 _t
+(it)_S 120 _t
+(will)_S 120 _t
+(show)_S 120 _t
+(which)_S 120 _t
+(is)_S 120 _t
+(active)_S 120 _t
+(and)_S 600 7263 _m
+(which)_S 120 _t
+(are)_S 120 _t
+(being)_S 120 _t
+(logged.)_S 600 6863 _m
+(===============================)_S 600 6663 _m
+(COMMAND:)_S 120 _t
+(Showme)_S 600 6263 _m
+(Syntax:)_S 120 _t
+(#showme)_S 120 _t
+({<text>})_S 600 5863 _m
+(Description)_S 120 _t
+(will)_S 120 _t
+(display)_S 120 _t
+(<text>)_S 120 _t
+(on)_S 120 _t
+(your)_S 120 _t
+(screen,)_S 120 _t
+(without)_S 120 _t
+(the)_S 120 _t
+(text)_S 600 5663 _m
+(being)_S 120 _t
+(seen)_S 120 _t
+(by)_S 120 _t
+(the)_S 120 _t
+(rest)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(players)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(room.)_S 240 _t
+600 5263 _m
+(Example:)_S 600 5063 _m
+(#action)_S 120 _t
+({^%0***)_S 120 _t
+(ULTRASLAYS)_S 120 _t
+(***)_S 120 _t
+(you})_S 120 _t
+({#showme)_S 120 _t
+({Bail)_S 120 _t
+(Out!!!}})_S 600 4663 _m
+(Each)_S 120 _t
+(time)_S 120 _t
+(you)_S 120 _t
+(get)_S 120 _t
+(***)_S 120 _t
+(ULTRASLAYED)_S 120 _t
+(***)_S 120 _t
+(the)_S 120 _t
+(text)_S 120 _t
+(Bail)_S 120 _t
+(Out!!!)_S 120 _t
+(will)_S 600 4463 _m
+(be)_S 120 _t
+(shown)_S 120 _t
+(on)_S 120 _t
+(your)_S 120 _t
+(screen.)_S 600 4063 _m
+(===============================)_S 600 3863 _m
+(COMMAND:)_S 120 _t
+(Snoop)_S 600 3463 _m
+(Syntax:)_S 120 _t
+(#snoop)_S 120 _t
+(<session_name>)_S 600 3063 _m
+(Description:)_S 120 _t
+(Initiate)_S 120 _t
+(snooping)_S 120 _t
+(of)_S 120 _t
+(session)_S 120 _t
+(<session_name>.)_S 240 _t
+(All)_S 600 2863 _m
+(text)_S 120 _t
+(directed)_S 120 _t
+(to)_S 120 _t
+(<session_name>)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(displayed)_S 120 _t
+(on)_S 120 _t
+(your)_S 600 2663 _m
+(current,)_S 120 _t
+(active)_S 120 _t
+(session.)_S 240 _t
+(Of)_S 120 _t
+(course..)_S 120 _t
+(You)_S 120 _t
+(won't)_S 120 _t
+(see)_S 120 _t
+(any)_S 120 _t
+(snooping)_S 600 2463 _m
+(if)_S 120 _t
+(the)_S 120 _t
+(session)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(snooping)_S 120 _t
+(is)_S 120 _t
+(the)_S 120 _t
+(active)_S 120 _t
+(session..)_S 120 _t
+(:\))_S 240 _t
+600 2063 _m
+(Example:)_S 600 1863 _m
+(I'm)_S 120 _t
+(in)_S 120 _t
+(session)_S 120 _t
+(name)_S 120 _t
+('Tossa')_S 120 _t
+(and)_S 120 _t
+(I)_S 120 _t
+(want)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(all)_S 120 _t
+(text)_S 120 _t
+(in)_S 120 _t
+(an)_S 600 1663 _m
+(other)_S 120 _t
+(session)_S 120 _t
+(I)_S 120 _t
+(have)_S 120 _t
+(going.)_S 240 _t
+(I)_S 120 _t
+(would)_S 120 _t
+(type:)_S 600 1463 _m
+(#snoop)_S 120 _t
+(grim)_S 480 _t
+(<=)_S 120 _t
+(start)_S 120 _t
+(snooping)_S 120 _t
+(session)_S 120 _t
+('grim')_S 120 _t
+(while)_S 120 _t
+(being)_S 600 1263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(active)_S 120 _t
+(in)_S 120 _t
+('Tossa'.)_S 4680 663 _m
+(20)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Speedwalk)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#speedwalk)_S 600 11463 _m
+(Description:)_S 120 _t
+(Toggles)_S 120 _t
+(whether)_S 120 _t
+('speedwalking')_S 120 _t
+(is)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off.)_S 120 _t
+600 11263 _m
+(Speedwalking)_S 120 _t
+(is)_S 120 _t
+(the)_S 120 _t
+(ability)_S 120 _t
+(to)_S 120 _t
+(type)_S 120 _t
+(multiple)_S 120 _t
+(directions)_S 120 _t
+(in)_S 120 _t
+(one)_S 600 11063 _m
+(long)_S 120 _t
+(word.)_S 240 _t
+(For)_S 120 _t
+(repetitive)_S 120 _t
+(directions,)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(place)_S 120 _t
+(a)_S 120 _t
+(#)_S 120 _t
+(in)_S 600 10863 _m
+(front)_S 120 _t
+(of)_S 120 _t
+(it,)_S 120 _t
+(for)_S 120 _t
+(example)_S 120 _t
+(like)_S 120 _t
+(4nwne2d)_S 120 _t
+(=)_S 120 _t
+(nnnnwnedd.)_S 600 10463 _m
+(Example:)_S 600 10263 _m
+(#speedwalk)_S 600 _t
+(<=)_S 120 _t
+(turns)_S 120 _t
+(speedwalk)_S 120 _t
+(either)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off.)_S 600 9863 _m
+(Now..)_S 120 _t
+(if)_S 120 _t
+(you)_S 120 _t
+(type)_S 120 _t
+(the)_S 120 _t
+(following:)_S 600 9663 _m
+(nwseud)_S 480 _t
+(<=)_S 120 _t
+(while)_S 120 _t
+(speedwalking)_S 120 _t
+(on,)_S 120 _t
+(you)_S 120 _t
+(will)_S 120 _t
+(travel)_S 120 _t
+(north,)_S 120 _t
+(west,)_S 600 9463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(south,)_S 120 _t
+(east,)_S 120 _t
+(up,)_S 120 _t
+(then)_S 120 _t
+(down.)_S 240 _t
+(While)_S 120 _t
+(you)_S 120 _t
+(have)_S 600 9263 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(speedwalking)_S 120 _t
+(on,)_S 120 _t
+(you)_S 120 _t
+(won't)_S 120 _t
+(be)_S 120 _t
+(able)_S 120 _t
+(to)_S 120 _t
+(type)_S 120 _t
+('news')_S 120 _t
+(to)_S 600 9063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(read)_S 120 _t
+(the)_S 120 _t
+(news)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(mud,)_S 120 _t
+(in)_S 120 _t
+(order)_S 120 _t
+(to)_S 120 _t
+(read)_S 120 _t
+(the)_S 120 _t
+(news)_S 600 8863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(type)_S 120 _t
+(in)_S 120 _t
+('NEWS')_S 120 _t
+(in)_S 120 _t
+(capital)_S 120 _t
+(letters.)_S 240 _t
+(Speedwalking)_S 120 _t
+(will)_S 600 8663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(not)_S 120 _t
+(interpret)_S 120 _t
+(capital)_S 120 _t
+(letters,)_S 120 _t
+(and)_S 120 _t
+(send)_S 120 _t
+(the)_S 120 _t
+(text)_S 120 _t
+('NEWS')_S 600 8463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(mud.)_S 240 _t
+600 8063 _m
+(================================)_S 600 7863 _m
+(COMMAND:)_S 120 _t
+(Split)_S 120 _t
+600 7463 _m
+(Syntax:)_S 120 _t
+(#split)_S 120 _t
+({#)_S 120 _t
+(of)_S 120 _t
+(lines)_S 120 _t
+(for)_S 120 _t
+(output)_S 120 _t
+(window})_S 600 7063 _m
+(Description:)_S 240 _t
+(With)_S 240 _t
+(a)_S 120 _t
+(vt100)_S 120 _t
+(or)_S 120 _t
+(ANSI)_S 120 _t
+(emulator,)_S 120 _t
+(this)_S 120 _t
+(will)_S 120 _t
+(allow)_S 120 _t
+(you)_S 600 6863 _m
+(to)_S 120 _t
+(set)_S 120 _t
+(up)_S 120 _t
+(a)_S 240 _t
+(split)_S 120 _t
+(screen.)_S 240 _t
+(The)_S 120 _t
+(keyboard)_S 120 _t
+(input)_S 240 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(displayed)_S 600 6663 _m
+(in)_S 120 _t
+(the)_S 120 _t
+(bottom)_S 240 _t
+(window,)_S 120 _t
+(while)_S 120 _t
+(mud)_S 120 _t
+(text)_S 240 _t
+(is)_S 120 _t
+(displayed)_S 120 _t
+(in)_S 120 _t
+(the)_S 240 _t
+(upper)_S 600 6463 _m
+(window.)_S 360 _t
+(This)_S 120 _t
+(requires)_S 240 _t
+(a)_S 120 _t
+(fairly)_S 120 _t
+(decent)_S 240 _t
+(emulator,)_S 120 _t
+(but)_S 240 _t
+(works)_S 120 _t
+(on)_S 600 6263 _m
+(most)_S 240 _t
+(I)_S 240 _t
+(have)_S 120 _t
+(tested.)_S 480 _t
+(The)_S 120 _t
+(screen)_S 240 _t
+(will)_S 240 _t
+(be)_S 120 _t
+(split)_S 240 _t
+(at)_S 240 _t
+(the)_S 120 _t
+(line)_S 600 6063 _m
+(indicated)_S 240 _t
+(by)_S 120 _t
+(line)_S 240 _t
+(#,)_S 120 _t
+(and)_S 240 _t
+(should)_S 120 _t
+(be)_S 240 _t
+(around)_S 240 _t
+(3)_S 120 _t
+(lines)_S 240 _t
+(above)_S 120 _t
+(the)_S 600 5863 _m
+(bottom)_S 120 _t
+(of)_S 120 _t
+(the)_S 240 _t
+(screen.)_S 240 _t
+(When)_S 120 _t
+(the)_S 240 _t
+(enter)_S 120 _t
+(key)_S 120 _t
+(is)_S 120 _t
+(pressed,)_S 240 _t
+(the)_S 120 _t
+(text)_S 600 5663 _m
+(will)_S 120 _t
+(be)_S 240 _t
+(sent)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(mud,)_S 120 _t
+(and)_S 120 _t
+(also)_S 120 _t
+(be)_S 120 _t
+(echoed)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(upper)_S 120 _t
+(window.)_S 600 5463 _m
+(If)_S 120 _t
+(a)_S 120 _t
+(line)_S 120 _t
+(#)_S 120 _t
+(isn't)_S 120 _t
+(specified,)_S 120 _t
+(the)_S 120 _t
+(screen)_S 120 _t
+(is)_S 120 _t
+(split)_S 120 _t
+(at)_S 120 _t
+(line)_S 120 _t
+(21.)_S 600 5063 _m
+(Example:)_S 600 4863 _m
+(#split)_S 120 _t
+(35)_S 720 _t
+(<=)_S 120 _t
+(split)_S 120 _t
+(the)_S 120 _t
+(screen)_S 120 _t
+(at)_S 120 _t
+(line)_S 120 _t
+(35.)_S 4680 663 _m
+(21)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Substitute)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#substitute)_S 120 _t
+({<text)_S 120 _t
+(to)_S 120 _t
+(sub>})_S 120 _t
+({text)_S 120 _t
+(to)_S 120 _t
+(replace)_S 120 _t
+(it})_S 600 11463 _m
+(Description:)_S 120 _t
+(Use)_S 120 _t
+(this)_S 120 _t
+(for)_S 120 _t
+(shortening)_S 120 _t
+(incoming)_S 120 _t
+(text)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(more)_S 600 11263 _m
+(readable)_S 120 _t
+(format.)_S 600 10863 _m
+(This)_S 120 _t
+(command)_S 120 _t
+(works)_S 120 _t
+(a)_S 120 _t
+(bit)_S 120 _t
+(like)_S 120 _t
+(#action.)_S 120 _t
+(The)_S 120 _t
+(purpose)_S 120 _t
+(of)_S 120 _t
+(this)_S 120 _t
+600 10663 _m
+(command)_S 120 _t
+(is)_S 120 _t
+(to)_S 120 _t
+(substitute)_S 120 _t
+(text)_S 120 _t
+(from)_S 120 _t
+(the)_S 120 _t
+(mud)_S 120 _t
+(with)_S 120 _t
+(some)_S 120 _t
+(text)_S 120 _t
+(you)_S 120 _t
+600 10463 _m
+(provide.)_S 120 _t
+(You)_S 120 _t
+(can)_S 120 _t
+(think)_S 120 _t
+(of)_S 120 _t
+(this)_S 120 _t
+(command,)_S 120 _t
+(as)_S 120 _t
+(a)_S 120 _t
+(kind)_S 120 _t
+(of)_S 120 _t
+(extended)_S 120 _t
+600 10263 _m
+(gag-command.)_S 120 _t
+600 9863 _m
+(Examples:)_S 600 9663 _m
+(Suppose)_S 120 _t
+(you)_S 120 _t
+(want)_S 120 _t
+(all)_S 120 _t
+(the)_S 120 _t
+(occurrences)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(word)_S 120 _t
+('massacres')_S 120 _t
+(to)_S 120 _t
+(be)_S 600 9463 _m
+(substituted)_S 600 9263 _m
+(with)_S 120 _t
+('*MASSACRES*'.)_S 120 _t
+(Then)_S 120 _t
+(you'll)_S 120 _t
+(type:)_S 120 _t
+600 8863 _m
+(#subs)_S 120 _t
+({%0massacres%1})_S 120 _t
+({%0*MASSACRES*%1})_S 600 8263 _m
+(Now)_S 120 _t
+(suppose)_S 120 _t
+(the)_S 120 _t
+(mud)_S 120 _t
+(sends)_S 120 _t
+(you)_S 120 _t
+(the)_S 120 _t
+(line:)_S 120 _t
+(Winterblade)_S 120 _t
+(massacres)_S 120 _t
+(the)_S 600 8063 _m
+(<etc>.)_S 120 _t
+600 7663 _m
+(Then)_S 120 _t
+(your)_S 120 _t
+(substitution)_S 120 _t
+(would)_S 120 _t
+(get)_S 120 _t
+(triggered)_S 120 _t
+(and)_S 120 _t
+(the)_S 120 _t
+(variables)_S 600 7463 _m
+(would)_S 120 _t
+(contain:)_S 600 7263 _m
+(%0)_S 120 _t
+(=)_S 120 _t
+(Winterblade)_S 120 _t
+600 7063 _m
+(%1)_S 120 _t
+(=)_S 240 _t
+(the)_S 120 _t
+(<etc>.)_S 600 6863 _m
+(Substituted)_S 120 _t
+(into)_S 120 _t
+(the)_S 120 _t
+(line)_S 120 _t
+(is)_S 120 _t
+(then:)_S 600 6663 _m
+(Winterblade)_S 120 _t
+(*MASSACRES*)_S 120 _t
+(the)_S 120 _t
+(<etc>.)_S 600 6263 _m
+(There)_S 120 _t
+(IS)_S 120 _t
+(in)_S 120 _t
+(fact)_S 120 _t
+(a)_S 120 _t
+(serious)_S 120 _t
+(purpose)_S 120 _t
+(for)_S 120 _t
+(this)_S 120 _t
+(command.)_S 120 _t
+(People)_S 120 _t
+(using)_S 600 6063 _m
+(a)_S 120 _t
+(setup)_S 120 _t
+(like:)_S 600 5663 _m
+(Home)_S 120 _t
+(<----)_S 120 _t
+(SLOW)_S 120 _t
+(modem)_S 240 _t
+(--->)_S 120 _t
+(School)_S 120 _t
+(<----)_S 120 _t
+(FASTmodem)_S 120 _t
+(---->)_S 120 _t
+(mud)_S 120 _t
+(site)_S 600 5263 _m
+(They)_S 120 _t
+(complain)_S 120 _t
+(that)_S 120 _t
+(they)_S 120 _t
+(keep)_S 120 _t
+(loosing)_S 120 _t
+(their)_S 120 _t
+(link,)_S 120 _t
+(when)_S 120 _t
+(the)_S 120 _t
+(mud)_S 600 5063 _m
+(sends)_S 120 _t
+(to)_S 120 _t
+(much)_S 120 _t
+(text)_S 120 _t
+(too)_S 120 _t
+(fast)_S 120 _t
+(\(as)_S 120 _t
+(in)_S 120 _t
+(fights)_S 120 _t
+(on)_S 120 _t
+(grimne-diku)_S 120 _t
+(for)_S 600 4863 _m
+(example\).)_S 120 _t
+(The)_S 120 _t
+(problem)_S 120 _t
+(is)_S 120 _t
+(that)_S 120 _t
+(their)_S 120 _t
+(own)_S 240 _t
+(modem)_S 120 _t
+(is)_S 120 _t
+(too)_S 120 _t
+(slow)_S 120 _t
+(for)_S 600 4663 _m
+(the)_S 120 _t
+(transfer.)_S 120 _t
+(People)_S 120 _t
+(like)_S 120 _t
+(that)_S 120 _t
+(can)_S 120 _t
+(use)_S 120 _t
+(the)_S 120 _t
+(#sub)_S 120 _t
+(command)_S 120 _t
+(to)_S 120 _t
+(reduce)_S 600 4463 _m
+(the)_S 120 _t
+(amount)_S 120 _t
+(of)_S 120 _t
+(data)_S 120 _t
+(transferred.)_S 600 4063 _m
+(If)_S 120 _t
+(you)_S 120 _t
+(didn't)_S 120 _t
+(want)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(anything)_S 120 _t
+(from)_S 120 _t
+(the)_S 120 _t
+(lines)_S 120 _t
+(with)_S 120 _t
+(Black)_S 600 3863 _m
+(you'd)_S 120 _t
+(do)_S 120 _t
+(a:)_S 600 3663 _m
+(#sub)_S 120 _t
+({Black})_S 120 _t
+({.})_S 1200 _t
+(\(i)_S 120 _t
+(never)_S 120 _t
+(liked)_S 120 _t
+(this)_S 120 _t
+(dot)_S 120 _t
+(syntax...\))_S 600 3463 _m
+(or)_S 600 3263 _m
+(#gag)_S 120 _t
+({Black})_S 600 3063 _m
+(and)_S 120 _t
+(you'll)_S 120 _t
+(never)_S 120 _t
+(see)_S 120 _t
+(the)_S 120 _t
+(lines.)_S 600 2663 _m
+(#gag)_S 120 _t
+(works)_S 120 _t
+(just)_S 120 _t
+(like)_S 120 _t
+(#sub)_S 120 _t
+(but)_S 120 _t
+(it)_S 120 _t
+(puts)_S 120 _t
+(the)_S 120 _t
+({.})_S 120 _t
+(in)_S 120 _t
+(for)_S 120 _t
+(you.)_S 4680 663 _m
+(22)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Suspend)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#suspend)_S 600 11463 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 11063 _m
+(Description:)_S 320 _t
+(Temporarily)_S 160 _t
+(suspends)_S 160 _t
+(tintin++)_S 160 _t
+(and)_S 160 _t
+(returns)_S 160 _t
+(you)_S 160 _t
+(to)_S 160 _t
+(your)_S 600 10863 _m
+(shell.)_S 332 _t
+(The)_S 166 _t
+(effect)_S 166 _t
+(of)_S 166 _t
+(this)_S 167 _t
+(command)_S 166 _t
+(is)_S 166 _t
+(exactly)_S 166 _t
+(as)_S 166 _t
+(if)_S 166 _t
+(you)_S 166 _t
+(had)_S 167 _t
+(typed)_S 600 10663 _m
+(control-z.)_S 240 _t
+(To)_S 120 _t
+(return)_S 120 _t
+(to)_S 120 _t
+(tintin++,)_S 120 _t
+(type)_S 120 _t
+("fg")_S 120 _t
+(at)_S 120 _t
+(the)_S 120 _t
+(shell)_S 120 _t
+(prompt.)_S 600 10063 _m
+(===============================)_S 600 9863 _m
+(COMMAND:)_S 120 _t
+(System)_S 600 9463 _m
+(Syntax:)_S 120 _t
+(#system)_S 120 _t
+(<commands)_S 120 _t
+(to)_S 120 _t
+(send)_S 120 _t
+(to)_S 120 _t
+(/bin/sh>)_S 600 9063 _m
+(Description:)_S 120 _t
+(Send)_S 120 _t
+(system)_S 120 _t
+(commands)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(sh)_S 120 _t
+(shell.)_S 240 _t
+600 8863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+600 8663 _m
+(For)_S 120 _t
+(security)_S 120 _t
+(reasons,)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(change)_S 120 _t
+(the)_S 120 _t
+(name)_S 120 _t
+(of)_S 120 _t
+(this)_S 120 _t
+(command)_S 600 8463 _m
+(in)_S 120 _t
+(tintin.h)_S 600 8063 _m
+(Example:)_S 600 7863 _m
+(#system)_S 120 _t
+(w)_S 120 _t
+(<=)_S 120 _t
+(runs)_S 120 _t
+(the)_S 120 _t
+(command)_S 120 _t
+(w)_S 120 _t
+(which)_S 120 _t
+(will)_S 120 _t
+(show)_S 120 _t
+(who)_S 120 _t
+(is)_S 120 _t
+(on)_S 120 _t
+(and)_S 120 _t
+(the)_S 600 7663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(system)_S 120 _t
+(load)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(machine.)_S 600 7263 _m
+(===============================)_S 600 7063 _m
+(COMMAND:)_S 120 _t
+(Tabadd)_S 600 6663 _m
+(Syntax:)_S 120 _t
+(#tabadd)_S 120 _t
+({word})_S 600 6263 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 5863 _m
+(Description:)_S 240 _t
+(Adds)_S 120 _t
+(a)_S 120 _t
+(word)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(end)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(tab)_S 120 _t
+(completion)_S 120 _t
+(list.)_S 600 5463 _m
+(===============================)_S 600 5263 _m
+(COMMAND:)_S 120 _t
+(Tabdelete)_S 600 4863 _m
+(Syntax:)_S 120 _t
+(#tabdelete)_S 120 _t
+({word})_S 600 4463 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 4063 _m
+(Description:)_S 240 _t
+(Deletes)_S 120 _t
+(a)_S 120 _t
+(word)_S 120 _t
+(from)_S 120 _t
+(the)_S 120 _t
+(tab)_S 120 _t
+(completion)_S 120 _t
+(list.)_S 600 3663 _m
+(===============================)_S 600 3463 _m
+(COMMAND:)_S 120 _t
+(Tablist)_S 600 3063 _m
+(Syntax:)_S 120 _t
+(#tablist)_S 600 2663 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 2263 _m
+(Description:)_S 240 _t
+(Displays)_S 120 _t
+(all)_S 120 _t
+(words)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(tab)_S 120 _t
+(completion)_S 120 _t
+(list.)_S 4680 663 _m
+(23)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Textin)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#textin)_S 120 _t
+({filename})_S 600 11463 _m
+(New)_S 120 _t
+(for)_S 120 _t
+(v1.5)_S 600 11063 _m
+(Description:)_S 206 _t
+(Textin)_S 103 _t
+(now)_S 103 _t
+(allows)_S 102 _t
+(the)_S 103 _t
+(user)_S 103 _t
+(to)_S 103 _t
+(read)_S 103 _t
+(in)_S 103 _t
+(a)_S 103 _t
+(file,)_S 102 _t
+(and)_S 103 _t
+(send)_S 103 _t
+(its)_S 600 10863 _m
+(contents)_S 153 _t
+(directly)_S 153 _t
+(to)_S 152 _t
+(the)_S 153 _t
+(mud.)_S 305 _t
+(Useful)_S 153 _t
+(for)_S 153 _t
+(doing)_S 153 _t
+(online)_S 152 _t
+(creation,)_S 153 _t
+(or)_S 600 10663 _m
+(message)_S 120 _t
+(writing.)_S 600 10263 _m
+(===============================)_S 600 10063 _m
+(COMMAND:)_S 120 _t
+(Tick)_S 600 9663 _m
+(Syntax:)_S 120 _t
+(#tick)_S 600 9263 _m
+(Description:)_S 120 _t
+(Displays)_S 120 _t
+(the)_S 120 _t
+(#)_S 120 _t
+(of)_S 120 _t
+(seconds)_S 120 _t
+(left)_S 120 _t
+(before)_S 120 _t
+(a)_S 120 _t
+(tick)_S 120 _t
+(is)_S 120 _t
+(to)_S 600 9063 _m
+(occur)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(internal)_S 120 _t
+(tickcounter)_S 120 _t
+(of)_S 120 _t
+(TinTin.)_S 600 8663 _m
+(Example:)_S 600 8463 _m
+(#tick)_S 600 _t
+(<=)_S 120 _t
+(displays)_S 120 _t
+(#)_S 120 _t
+(of)_S 120 _t
+(seconds)_S 120 _t
+(left)_S 120 _t
+(before)_S 120 _t
+(tick.)_S 600 8063 _m
+(===============================)_S 600 7863 _m
+(COMMAND:)_S 120 _t
+(Tickon/Tickoff)_S 600 7463 _m
+(Syntax:)_S 120 _t
+(#tickon/#tickoff)_S 600 7063 _m
+(Description:)_S 120 _t
+(Turns)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(internal)_S 120 _t
+(tickcounter,)_S 120 _t
+(or)_S 120 _t
+(turns)_S 120 _t
+(off)_S 120 _t
+(the)_S 600 6863 _m
+(internal)_S 120 _t
+(tickcounter.)_S 600 6463 _m
+(Example:)_S 600 6263 _m
+(#tickon)_S 360 _t
+(<=)_S 120 _t
+(Turns)_S 120 _t
+(the)_S 120 _t
+(tickcounter)_S 120 _t
+(on,)_S 120 _t
+(also)_S 120 _t
+(resets)_S 120 _t
+(the)_S 600 6063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(tickcounter)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(value)_S 120 _t
+(defined)_S 120 _t
+(by)_S 120 _t
+(the)_S 120 _t
+(#ticksize.)_S 120 _t
+600 5863 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(Default)_S 120 _t
+(size)_S 120 _t
+(is)_S 120 _t
+(75)_S 120 _t
+(seconds.)_S 600 5463 _m
+(#tickoff)_S 240 _t
+(<=)_S 120 _t
+(turns)_S 120 _t
+(the)_S 120 _t
+(internal)_S 120 _t
+(tickcounter)_S 120 _t
+(off.)_S 600 5063 _m
+(===============================)_S 600 4863 _m
+(COMMAND:)_S 120 _t
+(Tickset)_S 600 4463 _m
+(Syntax:)_S 120 _t
+(#tickset)_S 600 4063 _m
+(Description:)_S 240 _t
+(Turn)_S 120 _t
+(the)_S 120 _t
+(internal)_S 120 _t
+(tickcounter)_S 120 _t
+(on,)_S 120 _t
+(and)_S 120 _t
+(resets)_S 120 _t
+(the)_S 120 _t
+600 3863 _m
+(counter)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(size)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(tickcounter.)_S 600 3463 _m
+(Example:)_S 120 _t
+600 3263 _m
+(#tickset)_S 240 _t
+(<=)_S 240 _t
+(Turn)_S 120 _t
+(tickcounter)_S 120 _t
+(on)_S 120 _t
+(and)_S 120 _t
+(reset.)_S 4680 663 _m
+(24)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Ticksize)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#ticksize)_S 120 _t
+(<number>)_S 600 11463 _m
+(Description:)_S 120 _t
+(defines)_S 120 _t
+(the)_S 120 _t
+(ticksize)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(mud)_S 120 _t
+(you)_S 120 _t
+(are)_S 120 _t
+(playing)_S 120 _t
+(at.)_S 600 11063 _m
+(Most)_S 120 _t
+(standard)_S 120 _t
+(Diku's)_S 120 _t
+(use)_S 120 _t
+(a)_S 120 _t
+(ticksize)_S 120 _t
+(of)_S 120 _t
+(75)_S 120 _t
+(seconds.)_S 240 _t
+(I)_S 120 _t
+(believe)_S 600 10863 _m
+(\(Although)_S 120 _t
+(I)_S 120 _t
+(might)_S 120 _t
+(be)_S 120 _t
+(wrong\),)_S 120 _t
+(MERC's)_S 120 _t
+(use)_S 120 _t
+(ticksizes)_S 120 _t
+(of)_S 120 _t
+(30)_S 120 _t
+(seconds.)_S 120 _t
+600 10663 _m
+(This)_S 120 _t
+(is)_S 120 _t
+(where)_S 120 _t
+(it)_S 120 _t
+(is)_S 120 _t
+(useful,)_S 120 _t
+(for)_S 120 _t
+(there)_S 120 _t
+(is)_S 120 _t
+(not)_S 120 _t
+(tickcounter)_S 120 _t
+(built)_S 600 10463 _m
+(into)_S 120 _t
+(MERC.)_S 240 _t
+600 10063 _m
+(Example:)_S 600 9863 _m
+(#ticksize)_S 120 _t
+(30)_S 360 _t
+(<=)_S 120 _t
+(sets)_S 120 _t
+(ticksize)_S 120 _t
+(to)_S 120 _t
+(30)_S 120 _t
+(for)_S 120 _t
+(MERC)_S 120 _t
+(muds..)_S 120 _t
+(for)_S 600 9663 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(example.)_S 600 9263 _m
+(===============================)_S 600 9063 _m
+(COMMAND:)_S 120 _t
+(Togglesubs)_S 600 8663 _m
+(Syntax:)_S 120 _t
+(#togglesubs)_S 600 8263 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(#ignore,)_S 120 _t
+(#togglesubs)_S 120 _t
+(will)_S 120 _t
+(toggle)_S 120 _t
+(whether)_S 600 8063 _m
+(or)_S 120 _t
+(not)_S 120 _t
+(subs)_S 120 _t
+(will)_S 120 _t
+(occur)_S 120 _t
+(or)_S 120 _t
+(not.)_S 600 7663 _m
+(Example:)_S 600 7463 _m
+(#togglesub)_S 600 _t
+(<=)_S 120 _t
+(turns)_S 120 _t
+(it)_S 120 _t
+(on)_S 120 _t
+(or)_S 120 _t
+(off.)_S 600 7063 _m
+(===============================)_S 600 6863 _m
+(COMMAND:)_S 120 _t
+(Unaction)_S 600 6463 _m
+(Syntax:)_S 120 _t
+(#unaction)_S 120 _t
+({<action)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 6063 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(actions.)_S 600 5663 _m
+(Example:)_S 600 5463 _m
+(<see)_S 120 _t
+(unalias>)_S 600 5063 _m
+(===============================)_S 600 4863 _m
+(COMMAND:)_S 120 _t
+(Unalias)_S 600 4463 _m
+(Syntax:)_S 120 _t
+(#unalias)_S 120 _t
+({<alias)_S 120 _t
+(to)_S 120 _t
+(remove>})_S 600 4063 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(command)_S 120 _t
+(deletes)_S 120 _t
+(aliases)_S 120 _t
+(from)_S 120 _t
+(memory)_S 120 _t
+(in)_S 120 _t
+(the)_S 600 3863 _m
+(active)_S 120 _t
+(session.)_S 120 _t
+(You)_S 120 _t
+(can)_S 120 _t
+(use)_S 120 _t
+(wildcards)_S 120 _t
+(to)_S 120 _t
+(get)_S 120 _t
+(rid)_S 120 _t
+(of)_S 120 _t
+(aliases)_S 120 _t
+(with)_S 600 3663 _m
+(common)_S 120 _t
+(text.)_S 600 3263 _m
+(Example:)_S 600 3063 _m
+(#unalias)_S 120 _t
+({eb})_S 1320 _t
+(<=)_S 120 _t
+(delete)_S 120 _t
+(the)_S 120 _t
+(eb)_S 120 _t
+(alias.)_S 600 2863 _m
+(#unalias)_S 120 _t
+({*eb*})_S 1080 _t
+(<=)_S 120 _t
+(remove)_S 120 _t
+(any)_S 120 _t
+(alias)_S 120 _t
+(that)_S 120 _t
+(contains)_S 120 _t
+('eb')_S 600 2663 _m
+(#unalias)_S 120 _t
+({eb*})_S 720 _t
+(<=)_S 120 _t
+(removes)_S 120 _t
+(any)_S 120 _t
+(alias)_S 120 _t
+(that)_S 120 _t
+(starts)_S 120 _t
+(with)_S 120 _t
+('eb'.)_S 4680 663 _m
+(25)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Unantisub)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#unantisub)_S 120 _t
+({<antisub)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 11463 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(Unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(antisubs.)_S 600 11063 _m
+(Example:)_S 600 10863 _m
+(<see)_S 120 _t
+(unalias>)_S 600 10463 _m
+(===============================)_S 600 10263 _m
+(COMMAND:)_S 120 _t
+(Ungag)_S 600 9863 _m
+(Syntax:)_S 120 _t
+(#ungag)_S 120 _t
+({<gag)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 9463 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(Unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(gags.)_S 600 9063 _m
+(Example:)_S 600 8863 _m
+(<see)_S 120 _t
+(unalias>)_S 600 8463 _m
+(===============================)_S 600 8263 _m
+(COMMAND:)_S 120 _t
+(Unhighlight)_S 600 7863 _m
+(Syntax:)_S 120 _t
+(#unhighlight)_S 120 _t
+({<highlights)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 7463 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(Unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(highlights.)_S 600 7063 _m
+(Example:)_S 600 6863 _m
+(<see)_S 120 _t
+(unalias>)_S 600 6463 _m
+(===============================)_S 600 6263 _m
+(COMMAND:)_S 120 _t
+(Unpath)_S 600 5863 _m
+(Syntax:)_S 120 _t
+(#unpath)_S 600 5463 _m
+(Description:)_S 120 _t
+(Removes)_S 120 _t
+(the)_S 120 _t
+(last)_S 120 _t
+(move)_S 120 _t
+(off)_S 120 _t
+(the)_S 120 _t
+('Path-List'.)_S 600 5063 _m
+(Example:)_S 600 4863 _m
+(#unpath)_S 360 _t
+(<=)_S 120 _t
+(removes)_S 120 _t
+(last)_S 120 _t
+(move)_S 120 _t
+(off)_S 120 _t
+('Path-List'.)_S 600 4463 _m
+(===============================)_S 600 4263 _m
+(COMMAND:)_S 120 _t
+(Unsplit)_S 600 3863 _m
+(Syntax:)_S 120 _t
+(#unsplit)_S 120 _t
+600 3463 _m
+(Description:)_S 240 _t
+(Turns)_S 240 _t
+(split-screen)_S 240 _t
+(mode)_S 120 _t
+(off)_S 240 _t
+(and)_S 240 _t
+(returns)_S 240 _t
+(you)_S 120 _t
+(to)_S 600 3263 _m
+("full-screen")_S 120 _t
+(mode.)_S 600 2863 _m
+(Example:)_S 600 2663 _m
+(#unsplit)_S 840 _t
+(<=)_S 120 _t
+(There)_S 120 _t
+(you)_S 120 _t
+(go..)_S 120 _t
+(You)_S 120 _t
+(just)_S 120 _t
+(turns)_S 120 _t
+(split-screen)_S 120 _t
+(off.)_S 4680 663 _m
+(26)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(COMMAND:)_S 120 _t
+(Unsubs)_S 600 11863 _m
+(Syntax:)_S 120 _t
+(#unsubs)_S 120 _t
+({<subs)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 11463 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(Unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(subs.)_S 600 11063 _m
+(Example:)_S 600 10863 _m
+(<see)_S 120 _t
+(unalias>)_S 600 10463 _m
+(===============================)_S 600 10263 _m
+(COMMAND:)_S 120 _t
+(Unvariable)_S 600 9863 _m
+(Syntax:)_S 120 _t
+(#unvariable)_S 120 _t
+({<vars)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(deleted>})_S 600 9463 _m
+(Description:)_S 120 _t
+(Similar)_S 120 _t
+(to)_S 120 _t
+(Unalias)_S 120 _t
+(except)_S 120 _t
+(for)_S 120 _t
+(variable.)_S 600 9063 _m
+(Example:)_S 600 8863 _m
+(<see)_S 120 _t
+(unalias>)_S 600 8463 _m
+(===============================)_S 600 8263 _m
+(COMMAND:)_S 120 _t
+(Variable)_S 600 7863 _m
+(Syntax:)_S 120 _t
+(#variable)_S 120 _t
+({<variable_name>})_S 120 _t
+({<text)_S 120 _t
+(to)_S 120 _t
+(fill)_S 120 _t
+(variable>})_S 600 7463 _m
+(Description:Since)_S 255 _t
+(these)_S 255 _t
+(are)_S 255 _t
+(completely)_S 255 _t
+(new)_S 255 _t
+(to)_S 255 _t
+(tintin,)_S 255 _t
+(and)_S 255 _t
+(act)_S 600 7263 _m
+(differently)_S 120 _t
+(than)_S 120 _t
+(anything)_S 120 _t
+(else,)_S 120 _t
+(I)_S 120 _t
+(feel)_S 120 _t
+(should)_S 120 _t
+(spend)_S 120 _t
+(some)_S 120 _t
+(time)_S 120 _t
+(on)_S 120 _t
+(them.)_S 600 7063 _m
+(These)_S 110 _t
+(variables)_S 110 _t
+(differ)_S 110 _t
+(from)_S 110 _t
+(the)_S 110 _t
+(%0-9)_S 110 _t
+(in)_S 110 _t
+(the)_S 110 _t
+(fact)_S 110 _t
+(that)_S 110 _t
+(you)_S 110 _t
+(could)_S 110 _t
+(specify)_S 600 6863 _m
+(a)_S 137 _t
+(full)_S 137 _t
+(word)_S 137 _t
+(as)_S 137 _t
+(a)_S 138 _t
+(variable)_S 137 _t
+(name,)_S 137 _t
+(and)_S 137 _t
+(they)_S 137 _t
+(stay)_S 137 _t
+(in)_S 137 _t
+(memory)_S 138 _t
+(for)_S 137 _t
+(the)_S 137 _t
+(full)_S 600 6663 _m
+(session,)_S 150 _t
+(unless)_S 150 _t
+(they)_S 150 _t
+(are)_S 150 _t
+(changed,)_S 150 _t
+(and)_S 150 _t
+(they)_S 150 _t
+(can)_S 150 _t
+(be)_S 150 _t
+(saved)_S 150 _t
+(in)_S 150 _t
+(the)_S 150 _t
+(coms)_S 600 6463 _m
+(file,)_S 112 _t
+(and)_S 111 _t
+(can)_S 111 _t
+(be)_S 112 _t
+(set)_S 111 _t
+(to)_S 112 _t
+(different)_S 111 _t
+(values)_S 112 _t
+(if)_S 111 _t
+(you)_S 111 _t
+(have)_S 112 _t
+(2)_S 111 _t
+(or)_S 112 _t
+(more)_S 111 _t
+(sessions)_S 600 6263 _m
+(running)_S 104 _t
+(at)_S 104 _t
+(the)_S 104 _t
+(same)_S 104 _t
+(time.)_S 208 _t
+(One)_S 104 _t
+(of)_S 104 _t
+(the)_S 104 _t
+(best)_S 104 _t
+(uses)_S 104 _t
+(for)_S 104 _t
+(variables)_S 104 _t
+(I)_S 104 _t
+(think)_S 104 _t
+(is)_S 600 6063 _m
+(for)_S 120 _t
+(spellcasters.)_S 600 5663 _m
+(Currently,)_S 600 5463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(you)_S 120 _t
+(would)_S 120 _t
+(set)_S 120 _t
+(up)_S 120 _t
+(a)_S 120 _t
+(bunch)_S 120 _t
+(of)_S 120 _t
+(aliases)_S 120 _t
+(like)_S 120 _t
+(the)_S 120 _t
+(following.)_S 600 5063 _m
+(#alias)_S 120 _t
+({flame})_S 120 _t
+({cast)_S 120 _t
+('flame)_S 120 _t
+(strike')_S 120 _t
+(%0})_S 600 4863 _m
+(#alias)_S 120 _t
+({flash})_S 120 _t
+({cast)_S 120 _t
+('call)_S 120 _t
+(lightning')_S 120 _t
+(%0})_S 600 4663 _m
+(#alias)_S 120 _t
+({harm})_S 120 _t
+({cast)_S 120 _t
+('harm')_S 120 _t
+(%0})_S 600 4263 _m
+(With)_S 120 _t
+(the)_S 120 _t
+(new)_S 120 _t
+(variables)_S 120 _t
+(you)_S 120 _t
+(can)_S 120 _t
+(do)_S 120 _t
+(the)_S 120 _t
+(following:)_S 600 3863 _m
+(#alias)_S 120 _t
+({targ})_S 120 _t
+({#var)_S 120 _t
+(target)_S 120 _t
+(%0})_S 600 3663 _m
+(#alias)_S 120 _t
+({flamet})_S 120 _t
+({flame)_S 120 _t
+($target})_S 600 3463 _m
+(#alias)_S 120 _t
+({flasht})_S 120 _t
+({flash)_S 120 _t
+($target})_S 120 _t
+600 3263 _m
+(#alias)_S 120 _t
+({harmt})_S 120 _t
+({harm)_S 120 _t
+($target})_S 600 2863 _m
+(these)_S 131 _t
+(aliases)_S 130 _t
+(will)_S 131 _t
+(be)_S 131 _t
+(defined)_S 131 _t
+(just)_S 131 _t
+(as)_S 131 _t
+(they)_S 131 _t
+(are)_S 131 _t
+(written,)_S 131 _t
+(the)_S 131 _t
+(variables)_S 600 2663 _m
+(are)_S 160 _t
+(not)_S 160 _t
+(substituted)_S 160 _t
+(for)_S 160 _t
+(until)_S 160 _t
+(the)_S 160 _t
+(alias)_S 160 _t
+(is)_S 160 _t
+(found)_S 160 _t
+(in)_S 160 _t
+(your)_S 160 _t
+(input)_S 160 _t
+(and)_S 600 2463 _m
+(executed.)_S 600 2063 _m
+(so,)_S 120 _t
+(if)_S 120 _t
+(before)_S 120 _t
+(a)_S 120 _t
+(battle,)_S 120 _t
+(you)_S 120 _t
+(do)_S 120 _t
+(a:)_S 600 1863 _m
+(targ)_S 120 _t
+(donjonkeeper)_S 600 1663 _m
+(then)_S 160 _t
+($target)_S 160 _t
+(is)_S 160 _t
+(set)_S 160 _t
+(to)_S 160 _t
+(donjonkeeper,)_S 160 _t
+(and)_S 160 _t
+(any)_S 160 _t
+(alias)_S 160 _t
+(you)_S 160 _t
+(set)_S 160 _t
+(up)_S 160 _t
+(with)_S 600 1463 _m
+($target)_S 200 _t
+(in)_S 200 _t
+(it)_S 200 _t
+(will)_S 200 _t
+(substitute)_S 200 _t
+(donjonkeeper)_S 200 _t
+(for)_S 200 _t
+(every)_S 200 _t
+(instance)_S 200 _t
+(of)_S 600 1263 _m
+($target.)_S 240 _t
+(Let's)_S 120 _t
+(say)_S 120 _t
+(your)_S 120 _t
+(leader)_S 120 _t
+(has)_S 120 _t
+(the)_S 120 _t
+(following)_S 120 _t
+(alias)_S 120 _t
+(set)_S 120 _t
+(up.)_S 4680 663 _m
+(27)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(#alias)_S 120 _t
+({setttarg})_S 120 _t
+({#var)_S 120 _t
+({target})_S 120 _t
+({%0};gt)_S 120 _t
+(target=%0})_S 600 12063 _m
+(if)_S 128 _t
+(he)_S 129 _t
+(did)_S 129 _t
+(a)_S 128 _t
+(settarg)_S 129 _t
+(lich,)_S 128 _t
+(it)_S 129 _t
+(would)_S 128 _t
+(set)_S 129 _t
+(his)_S 129 _t
+($target)_S 128 _t
+(to)_S 129 _t
+(lich,)_S 128 _t
+(and)_S 129 _t
+(would)_S 600 11863 _m
+(send)_S 120 _t
+(a:)_S 480 _t
+(<name>)_S 120 _t
+(tells)_S 120 _t
+(your)_S 120 _t
+(group)_S 120 _t
+('target=lich')_S 600 11463 _m
+(you)_S 120 _t
+(could)_S 120 _t
+(then)_S 120 _t
+(set)_S 120 _t
+(an)_S 120 _t
+(action)_S 120 _t
+(like)_S 120 _t
+(so.)_S 600 11263 _m
+(#action)_S 120 _t
+({^%0)_S 120 _t
+(tells)_S 120 _t
+(your)_S 120 _t
+(group)_S 120 _t
+('target=%1'})_S 120 _t
+({targ)_S 120 _t
+(%1})_S 600 11063 _m
+(then)_S 186 _t
+(when)_S 185 _t
+(your)_S 185 _t
+(leader)_S 186 _t
+(executed)_S 185 _t
+(his)_S 186 _t
+(alias,)_S 185 _t
+(it)_S 186 _t
+(would)_S 185 _t
+(also)_S 186 _t
+(set)_S 185 _t
+(your)_S 600 10863 _m
+(variable)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(target.)_S 240 _t
+600 10463 _m
+(Another)_S 110 _t
+(use)_S 110 _t
+(for)_S 110 _t
+(variables)_S 110 _t
+(would)_S 110 _t
+(be)_S 110 _t
+(to)_S 110 _t
+(set)_S 110 _t
+(a)_S 110 _t
+(variable)_S 110 _t
+($buffer)_S 110 _t
+(to)_S 110 _t
+(whoever)_S 600 10263 _m
+(the)_S 120 _t
+(current)_S 120 _t
+(buffer)_S 120 _t
+(is.)_S 240 _t
+(This)_S 120 _t
+(would)_S 120 _t
+(be)_S 120 _t
+(useful)_S 120 _t
+(in)_S 120 _t
+(fights)_S 600 10063 _m
+(where)_S 120 _t
+(the)_S 120 _t
+(mob)_S 120 _t
+(switches,)_S 120 _t
+(or)_S 120 _t
+(where)_S 120 _t
+(many)_S 120 _t
+(rescues)_S 120 _t
+(are)_S 120 _t
+(needed.)_S 240 _t
+(You)_S 600 9863 _m
+(could)_S 120 _t
+(set)_S 120 _t
+(up)_S 120 _t
+(healing)_S 120 _t
+(aliases)_S 120 _t
+(with)_S 120 _t
+($buffer)_S 120 _t
+(in)_S 120 _t
+(them,)_S 120 _t
+(and)_S 120 _t
+(set)_S 120 _t
+(the)_S 600 9663 _m
+($buffer)_S 120 _t
+(variable)_S 120 _t
+(in)_S 120 _t
+(an)_S 120 _t
+(action)_S 120 _t
+(that)_S 120 _t
+(is)_S 120 _t
+(triggered)_S 120 _t
+(by)_S 120 _t
+(each)_S 120 _t
+(switch,)_S 600 9463 _m
+(and)_S 120 _t
+(each)_S 120 _t
+(rescue,)_S 120 _t
+(or)_S 120 _t
+(just)_S 120 _t
+(rescues,)_S 120 _t
+(or)_S 120 _t
+(whatever.)_S 240 _t
+(Then)_S 120 _t
+(in)_S 120 _t
+(a)_S 600 9263 _m
+(confusing)_S 120 _t
+(battle,)_S 120 _t
+(you)_S 120 _t
+(will)_S 120 _t
+(have)_S 120 _t
+(a)_S 120 _t
+(better)_S 120 _t
+(shot)_S 120 _t
+(at)_S 120 _t
+(healing)_S 120 _t
+(the)_S 600 9063 _m
+(right)_S 120 _t
+(person.)_S 600 8663 _m
+(************)_S 360 _t
+(Variables)_S 120 _t
+(for)_S 120 _t
+(now,)_S 120 _t
+(have)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(alpha-only)_S 600 8463 _m
+(***)_S 120 _t
+(NOTE)_S 120 _t
+(***)_S 360 _t
+(You)_S 120 _t
+(cannot)_S 120 _t
+(use)_S 120 _t
+(variable)_S 120 _t
+(names)_S 120 _t
+(like:)_S 600 8263 _m
+(************)_S 360 _t
+(text1,)_S 120 _t
+(text2.)_S 240 _t
+(Support)_S 120 _t
+(for)_S 120 _t
+(this)_S 120 _t
+(will)_S 120 _t
+(be)_S 120 _t
+(in)_S 120 _t
+(v2.0)_S 600 7863 _m
+(===============================)_S 600 7663 _m
+(COMMAND:)_S 120 _t
+(Verbatim)_S 600 7263 _m
+(Syntax:)_S 120 _t
+(#verbatim)_S 600 6863 _m
+(Description:)_S 240 _t
+(Toggle)_S 240 _t
+(verbatim)_S 120 _t
+(mode)_S 120 _t
+(on)_S 120 _t
+(and)_S 120 _t
+(off.)_S 240 _t
+(When)_S 120 _t
+(in)_S 120 _t
+(verbatim)_S 600 6663 _m
+(mode,)_S 240 _t
+(text)_S 120 _t
+(will)_S 120 _t
+(not)_S 120 _t
+(be)_S 240 _t
+(parsed,)_S 120 _t
+(and)_S 120 _t
+(will)_S 120 _t
+(be)_S 240 _t
+(sent)_S 120 _t
+('as)_S 120 _t
+(is')_S 120 _t
+(to)_S 120 _t
+(the)_S 600 6463 _m
+(mud.)_S 240 _t
+(Tab)_S 120 _t
+(completion)_S 120 _t
+(and)_S 120 _t
+(history)_S 120 _t
+(scrolling)_S 120 _t
+(are)_S 120 _t
+(still)_S 120 _t
+(available)_S 120 _t
+(in)_S 600 6263 _m
+(verbatim)_S 120 _t
+(mode.)_S 240 _t
+(It)_S 120 _t
+(is)_S 240 _t
+(helpful)_S 120 _t
+(for)_S 120 _t
+(writing)_S 120 _t
+(messages,)_S 120 _t
+(doing)_S 120 _t
+(online)_S 600 6063 _m
+(creation,)_S 120 _t
+(and)_S 120 _t
+(the)_S 120 _t
+(like.)_S 600 5663 _m
+(===============================)_S 600 5463 _m
+(COMMAND:)_S 120 _t
+(Version)_S 600 5063 _m
+(Syntax:)_S 120 _t
+(#version)_S 600 4663 _m
+(Description:)_S 240 _t
+(Displays)_S 120 _t
+(version)_S 120 _t
+(#)_S 120 _t
+(of)_S 120 _t
+(tintin++.)_S 4680 663 _m
+(28)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+(===============================)_S 600 12263 _m
+(Topic:)_S 120 _t
+(Wildcards)_S 600 11863 _m
+(You)_S 120 _t
+(may)_S 120 _t
+(use)_S 120 _t
+(wildcards)_S 120 _t
+(with)_S 120 _t
+(certain)_S 120 _t
+(commands)_S 120 _t
+(such)_S 120 _t
+(as)_S 120 _t
+(#alias,)_S 120 _t
+(#action,)_S 600 11663 _m
+(#substitute,)_S 120 _t
+(#unalias,)_S 120 _t
+(etc.)_S 240 _t
+(In)_S 120 _t
+(commands)_S 120 _t
+(like)_S 120 _t
+(#alias,)_S 120 _t
+(wildcards)_S 120 _t
+(are)_S 600 11463 _m
+(only)_S 120 _t
+(valid)_S 120 _t
+(when)_S 120 _t
+(you)_S 120 _t
+(use)_S 120 _t
+(exactly)_S 120 _t
+(one)_S 120 _t
+(argument.)_S 240 _t
+(Wildcards)_S 120 _t
+(are)_S 120 _t
+(always)_S 600 11263 _m
+(valid)_S 120 _t
+(for)_S 120 _t
+(commands)_S 120 _t
+(like)_S 120 _t
+(#unalias.)_S 240 _t
+(The)_S 120 _t
+(only)_S 120 _t
+(wildcard)_S 120 _t
+(currently)_S 600 11063 _m
+(supported)_S 120 _t
+(is)_S 120 _t
+(*,)_S 120 _t
+(which)_S 120 _t
+(matches)_S 120 _t
+(any)_S 120 _t
+(string)_S 120 _t
+(0)_S 120 _t
+(or)_S 120 _t
+(more)_S 120 _t
+(characters)_S 120 _t
+(long.)_S 600 10863 _m
+(The)_S 120 _t
+(wildcard)_S 120 _t
+(meaning)_S 120 _t
+(of)_S 120 _t
+(*)_S 120 _t
+(may)_S 120 _t
+(be)_S 120 _t
+(escaped)_S 120 _t
+(using)_S 120 _t
+(the)_S 120 _t
+(backslash,)_S 120 _t
+(\\.)_S 600 10463 _m
+(Examples:)_S 600 10063 _m
+(#action)_S 120 _t
+({*miss*})_S 1200 9863 _m
+(shows)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(which)_S 120 _t
+(contain)_S 120 _t
+(the)_S 120 _t
+(word)_S 120 _t
+(miss)_S 120 _t
+(in)_S 120 _t
+(them)_S 600 9663 _m
+(#unaction)_S 120 _t
+({*miss*})_S 1200 9463 _m
+(removes)_S 120 _t
+(all)_S 120 _t
+(actions)_S 120 _t
+(which)_S 120 _t
+(contain)_S 120 _t
+(the)_S 120 _t
+(word)_S 120 _t
+(miss)_S 120 _t
+(in)_S 120 _t
+(them)_S 600 9263 _m
+(#unaction)_S 120 _t
+({\\*\\*\\*)_S 120 _t
+(PRESS)_S 120 _t
+(RETURN:})_S 1200 9063 _m
+(removes)_S 120 _t
+(the)_S 120 _t
+(action)_S 120 _t
+(which)_S 120 _t
+(triggers)_S 120 _t
+(on)_S 120 _t
+(the)_S 120 _t
+(line)_S 120 _t
+(***)_S 120 _t
+(PRESS)_S 120 _t
+(RETURN:)_S 600 8663 _m
+(Many)_S 120 _t
+(thanks)_S 120 _t
+(to)_S 120 _t
+(Spencer)_S 120 _t
+(Sun)_S 120 _t
+(for)_S 120 _t
+(letting)_S 120 _t
+(me)_S 120 _t
+(steal)_S 120 _t
+(some)_S 120 _t
+(code)_S 120 _t
+(for)_S 120 _t
+(this...)_S 600 8463 _m
+(If)_S 120 _t
+(anyone)_S 120 _t
+(is)_S 120 _t
+(interested)_S 120 _t
+(in)_S 120 _t
+(having)_S 120 _t
+(full)_S 120 _t
+(ls-style)_S 120 _t
+(regexps,)_S 120 _t
+(email)_S 120 _t
+(us)_S 600 8263 _m
+(and)_S 120 _t
+(maybe)_S 120 _t
+(it'll)_S 120 _t
+(be)_S 120 _t
+(included)_S 120 _t
+(in)_S 120 _t
+(2.0.)_S 600 7663 _m
+(===============================)_S 600 7463 _m
+(COMMAND:)_S 120 _t
+(Wizlist)_S 600 7063 _m
+(Syntax:)_S 120 _t
+(#wizlist)_S 600 6663 _m
+(Description:)_S 120 _t
+(Gives)_S 120 _t
+(a)_S 120 _t
+(list)_S 120 _t
+(of)_S 120 _t
+(all)_S 120 _t
+(who)_S 120 _t
+(you)_S 120 _t
+(should)_S 120 _t
+(thank)_S 120 _t
+(for)_S 120 _t
+(their)_S 600 6463 _m
+(hard)_S 120 _t
+(work)_S 120 _t
+(on)_S 120 _t
+(TinTin++.)_S 240 _t
+600 6063 _m
+(Example:)_S 600 5863 _m
+(#wizlist)_S 240 _t
+(<=)_S 120 _t
+(displays)_S 120 _t
+(a)_S 120 _t
+(list)_S 120 _t
+(of)_S 120 _t
+(names)_S 120 _t
+(you)_S 120 _t
+(should)_S 120 _t
+(never)_S 120 _t
+(forget.)_S 120 _t
+(:\))_S 600 5463 _m
+(===============================)_S 600 5263 _m
+(COMMAND:)_S 120 _t
+(Write)_S 600 4863 _m
+(Syntax:)_S 120 _t
+(#write)_S 120 _t
+({<filename>})_S 600 4463 _m
+(Description:)_S 120 _t
+(This)_S 120 _t
+(allows)_S 120 _t
+(you)_S 120 _t
+(to)_S 120 _t
+(save)_S 120 _t
+(all)_S 120 _t
+(of)_S 120 _t
+(your)_S 120 _t
+(aliases,)_S 600 4263 _m
+(actions,)_S 120 _t
+(subs,)_S 120 _t
+(etc.)_S 120 _t
+(to)_S 120 _t
+(a)_S 120 _t
+(file)_S 120 _t
+(for)_S 120 _t
+(later)_S 120 _t
+(retrieval.)_S 240 _t
+600 3863 _m
+(Example:)_S 600 3663 _m
+(#write)_S 120 _t
+({grimmy})_S 600 _t
+(<=)_S 120 _t
+(writes)_S 120 _t
+(all)_S 120 _t
+(commands)_S 120 _t
+(to)_S 120 _t
+('grimmy'.)_S 600 3263 _m
+(===============================)_S 600 3063 _m
+(COMMAND:)_S 120 _t
+(Zap)_S 600 2663 _m
+(Syntax:)_S 120 _t
+(#zap)_S 600 2263 _m
+(Description:)_S 120 _t
+(Closes)_S 120 _t
+(active)_S 120 _t
+(session.)_S 240 _t
+600 1863 _m
+(***)_S 120 _t
+(Warning!)_S 120 _t
+(***)_S 120 _t
+(This)_S 120 _t
+(command)_S 120 _t
+(does)_S 120 _t
+(not)_S 120 _t
+(rent)_S 120 _t
+(you)_S 120 _t
+(on)_S 120 _t
+(a)_S 120 _t
+(mud.)_S 240 _t
+(It)_S 600 1663 _m
+(just)_S 120 _t
+(terminates)_S 120 _t
+(the)_S 120 _t
+(connection)_S 120 _t
+(to)_S 120 _t
+(the)_S 120 _t
+(mud.)_S 240 _t
+600 1263 _m
+(Example:)_S 600 1063 _m
+(#zap)_S 720 _t
+(<=)_S 120 _t
+(Seeya!!!)_S 120 _t
+(You've)_S 120 _t
+(just)_S 120 _t
+(killed)_S 120 _t
+(your)_S 120 _t
+(session.)_S 4680 663 _m
+(29)_S _ep
+_bp /CourierR 600 _ff
+0 13200 10200 _ornt 
+/_r      { sflg {/_t {0 rmoveto}bdef /ron false def}
+         { /_S /show load def /_t {0 rmoveto}bdef /ron false def}ifelse
+     }bdef
+600 12463 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(History)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 240 _t
+(=========)_S 600 12063 _m
+(I)_S 120 _t
+(\(Bill\))_S 120 _t
+(started)_S 120 _t
+(mudding)_S 120 _t
+(in)_S 120 _t
+(January)_S 120 _t
+(of)_S 120 _t
+(1993,)_S 120 _t
+(and)_S 120 _t
+(I)_S 120 _t
+(almost)_S 120 _t
+(immediately)_S 600 11863 _m
+(found)_S 120 _t
+(a)_S 120 _t
+(copy)_S 120 _t
+(of)_S 120 _t
+(tintin3.0)_S 120 _t
+(on)_S 120 _t
+(an)_S 120 _t
+(FTP)_S 120 _t
+(server.)_S 240 _t
+(I)_S 120 _t
+(liked)_S 120 _t
+(the)_S 120 _t
+(ease)_S 120 _t
+(of)_S 600 11663 _m
+(the)_S 120 _t
+(commands,)_S 120 _t
+(the)_S 120 _t
+(power)_S 120 _t
+(and)_S 120 _t
+(flexibility)_S 120 _t
+(possible,)_S 120 _t
+(and)_S 120 _t
+(the)_S 120 _t
+(ease)_S 120 _t
+(of)_S 600 11463 _m
+(creating)_S 120 _t
+(sessions.)_S 240 _t
+(There)_S 120 _t
+(were,)_S 120 _t
+(however,)_S 120 _t
+(a)_S 120 _t
+(couple)_S 120 _t
+(of)_S 120 _t
+(bugs)_S 120 _t
+(in)_S 600 11263 _m
+(tintin3,)_S 120 _t
+(and)_S 120 _t
+(I)_S 120 _t
+(started)_S 120 _t
+(by)_S 120 _t
+(fixing)_S 120 _t
+(those.)_S 240 _t
+(I)_S 120 _t
+(then)_S 120 _t
+(asked)_S 120 _t
+(some)_S 600 11063 _m
+(friends)_S 120 _t
+(what)_S 120 _t
+(they'd)_S 120 _t
+(like)_S 120 _t
+(to)_S 120 _t
+(see)_S 120 _t
+(in)_S 120 _t
+(tintin,)_S 120 _t
+(and)_S 120 _t
+(after)_S 120 _t
+(a)_S 120 _t
+(few)_S 120 _t
+(weeks,)_S 600 10863 _m
+(I)_S 120 _t
+(had)_S 120 _t
+(made)_S 120 _t
+(some)_S 120 _t
+(noticeable)_S 120 _t
+(changes)_S 120 _t
+(that)_S 120 _t
+(I)_S 120 _t
+(wanted)_S 120 _t
+(to)_S 120 _t
+(share.)_S 240 _t
+(Along)_S 600 10663 _m
+(with)_S 120 _t
+(the)_S 120 _t
+(new)_S 120 _t
+(power)_S 120 _t
+(of)_S 120 _t
+(the)_S 120 _t
+(program)_S 120 _t
+(came)_S 120 _t
+(new)_S 120 _t
+(difficulties,)_S 120 _t
+(and)_S 120 _t
+(it)_S 600 10463 _m
+(became)_S 120 _t
+(apparent)_S 120 _t
+(that)_S 120 _t
+(format)_S 120 _t
+(changes)_S 120 _t
+(were)_S 120 _t
+(necessary.)_S 240 _t
+(This)_S 120 _t
+(version)_S 600 10263 _m
+(includes)_S 120 _t
+(those)_S 120 _t
+(changes,)_S 120 _t
+(as)_S 120 _t
+(well)_S 120 _t
+(as)_S 120 _t
+(a)_S 120 _t
+(horde)_S 120 _t
+(of)_S 120 _t
+(new)_S 120 _t
+(features,)_S 120 _t
+(and)_S 120 _t
+(a)_S 600 10063 _m
+(converter)_S 120 _t
+(program)_S 120 _t
+(to)_S 120 _t
+(convert)_S 120 _t
+(your)_S 120 _t
+(old)_S 120 _t
+(coms)_S 120 _t
+(file)_S 120 _t
+(to)_S 120 _t
+(t++v1.1)_S 600 9863 _m
+(format.)_S 600 9463 _m
+(First)_S 120 _t
+(there)_S 120 _t
+(was)_S 120 _t
+(TinTin)_S 120 _t
+(I,)_S 120 _t
+(and)_S 120 _t
+(people)_S 120 _t
+(were)_S 120 _t
+(happy,)_S 120 _t
+(but)_S 120 _t
+(then)_S 120 _t
+(they)_S 600 9263 _m
+(cried)_S 120 _t
+(for)_S 120 _t
+(more.)_S 240 _t
+(Then)_S 120 _t
+(TinTin)_S 120 _t
+(II)_S 120 _t
+(came)_S 120 _t
+(out,)_S 120 _t
+(and)_S 120 _t
+(once)_S 120 _t
+(again,)_S 120 _t
+(people)_S 600 9063 _m
+(were)_S 120 _t
+(happy.)_S 240 _t
+(They)_S 120 _t
+(turned)_S 120 _t
+(unhappy,)_S 120 _t
+(and)_S 120 _t
+(then)_S 120 _t
+(TinTin)_S 120 _t
+(III)_S 120 _t
+(was)_S 600 8863 _m
+(created.)_S 240 _t
+(And)_S 120 _t
+(life)_S 120 _t
+(was)_S 120 _t
+(grand.)_S 240 _t
+(Bugs)_S 120 _t
+(in)_S 120 _t
+(III)_S 120 _t
+(were)_S 120 _t
+(discovered,)_S 120 _t
+(and)_S 600 8663 _m
+(many)_S 120 _t
+(left)_S 120 _t
+(TinTin)_S 120 _t
+(completely)_S 120 _t
+(for)_S 120 _t
+(use)_S 120 _t
+(of)_S 120 _t
+(PMF.)_S 600 8263 _m
+(First)_S 120 _t
+(version)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 120 _t
+(was)_S 120 _t
+(v0.6)_S 240 _t
+(This)_S 120 _t
+(version)_S 120 _t
+(corrected)_S 1440 _t
+600 8063 _m
+120 _t
+120 _t
+(bug)_S 120 _t
+(involving)_S 120 _t
+(repetitive)_S 120 _t
+(actions,)_S 120 _t
+(and)_S 120 _t
+(added)_S 120 _t
+(other)_S 120 _t
+(features.)_S 600 7663 _m
+(Other)_S 120 _t
+(versions)_S 120 _t
+(followed,)_S 120 _t
+(that)_S 120 _t
+(were)_S 120 _t
+(just)_S 120 _t
+(bug)_S 120 _t
+(fixes)_S 120 _t
+(to)_S 120 _t
+(previous)_S 600 7463 _m
+(improvements.)_S 240 _t
+(With)_S 120 _t
+(the)_S 120 _t
+(introduction)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 120 _t
+(v1.0b,)_S 120 _t
+(a)_S 120 _t
+(new)_S 120 _t
+600 7263 _m
+(bracing)_S 120 _t
+(convention)_S 120 _t
+(was)_S 120 _t
+(created.)_S 240 _t
+(With)_S 120 _t
+(all)_S 120 _t
+(the)_S 120 _t
+(new)_S 120 _t
+(commands,)_S 120 _t
+(many)_S 600 7063 _m
+(were)_S 120 _t
+(happy,)_S 120 _t
+(but)_S 120 _t
+(there)_S 120 _t
+(were)_S 120 _t
+(still)_S 120 _t
+(some)_S 120 _t
+(bugs)_S 120 _t
+(to)_S 120 _t
+(be)_S 120 _t
+(squashed.)_S 240 _t
+(Bill)_S 600 6863 _m
+(and)_S 120 _t
+(Dave)_S 120 _t
+(and)_S 120 _t
+(others)_S 120 _t
+(were)_S 120 _t
+(greatly)_S 120 _t
+(responsible)_S 120 _t
+(for)_S 120 _t
+(the)_S 120 _t
+(quality)_S 600 6663 _m
+(product)_S 170 _t
+(of)_S 170 _t
+(TinTin++)_S 170 _t
+(v1.0b.)_S 340 _t
+(Joann)_S 170 _t
+(got)_S 170 _t
+(involved)_S 170 _t
+(for)_S 170 _t
+(v1.1b)_S 170 _t
+(and)_S 170 _t
+(is)_S 170 _t
+(a)_S 600 6463 _m
+(development)_S 120 _t
+(team)_S 120 _t
+(member)_S 120 _t
+(along)_S 120 _t
+(with)_S 120 _t
+(David)_S 120 _t
+(Wagner.)_S 600 6063 _m
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+120 _t
+(=========)_S 240 _t
+(The)_S 120 _t
+(Future)_S 120 _t
+(of)_S 120 _t
+(TinTin++)_S 240 _t
+(========)_S 600 5663 _m
+(In)_S 120 _t
+(the)_S 120 _t
+(distribution,)_S 120 _t
+(a)_S 120 _t
+(file)_S 120 _t
+(called)_S 120 _t
+(TODO)_S 120 _t
+(will)_S 120 _t
+(briefly)_S 120 _t
+(describe)_S 600 5463 _m
+(what)_S 146 _t
+(is)_S 146 _t
+(in)_S 145 _t
+(store)_S 146 _t
+(for)_S 146 _t
+(the)_S 146 _t
+(next)_S 145 _t
+(release)_S 146 _t
+(of)_S 146 _t
+(TinTin++.)_S 291 _t
+(If)_S 146 _t
+(you)_S 146 _t
+(have)_S 145 _t
+(any)_S 600 5263 _m
+(suggestions,)_S 131 _t
+(don't)_S 131 _t
+(hesitate)_S 131 _t
+(to)_S 131 _t
+(mail)_S 131 _t
+(us.)_S 262 _t
+(Our)_S 131 _t
+(mailing)_S 131 _t
+(addresses)_S 131 _t
+(can)_S 130 _t
+(be)_S 600 5063 _m
+(found)_S 120 _t
+(in)_S 120 _t
+(the)_S 120 _t
+(CREDITS)_S 120 _t
+(file.)_S 600 4663 _m
+(ENJOY!!!)_S 4680 663 _m
+(30)_S _ep
+_ed end end
+

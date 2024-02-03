@@ -1,0 +1,17 @@
+This is a development version of tintin++.
+
+Origional work on v2.0 was done by:
+-- Dave Wagner 
+
+Current Work being done by:
+-- Davin Chan	(davinchan@earthlink.net)
+-- Robert Ellsworth  (rse@newclear.net)
+
+NOTE:  Readline has been removed as of version 1.65pl1.  If Tintin++ does not
+install, it might be because you do not have a version of Readline installed.
+Try getting it from ftp.gnu.org, install it, then try installing tintin++ 
+again.
+
+The most current version of tintin can be downloaded from 
+www.newclear.net/tintin as well as the lastest information can be found
+there.  Also be sure to check the webboard for anouncements.

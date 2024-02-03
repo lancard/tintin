@@ -1,0 +1,16 @@
+
+Known Bugs - These are bugs that are known issues with tintin that need to be 
+	     fixed.  If you would like to help, feel free to fix them.  Or if
+	     you have any bugs you wish to be added, please email us at
+	     tintin@newclear.net.
+
+Parse has a bug with multi command lines
+Functions do not work completely.  The @rnd function doesn't work.
+under solaris #help gives a broken pipe
+
+Unverified Bugs - I have not verified these and may or may not be issues.  
+		  But they need to be checked to determine if they are 
+		  problems.
+
+History has been reported to get the wrong line number sometimes.  Needs to be
+investigated further.

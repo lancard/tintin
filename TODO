@@ -1,0 +1,16 @@
+
+TODO: - This is a list of new features/improvements that are planned.  See 
+	BUGS for bugs that need to be fixed.  If there is anything that you
+        would like to see added, feel free to email us (tintin@newclear.net).  
+
+  fix hack on #newread for the #nop command/rewrite #newread
+  add support for bindkey (aka hotkeys)
+  msp support
+  mccp support
+  keep the .tt_help up to date
+  keep the docs up to date
+  improve example.script
+  implement full telnet support
+  scrollback
+  grep on scrollback
+  add X window support (?)

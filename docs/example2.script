@@ -1,0 +1,346 @@
+#nop This is a sample script that Greg Milford sent me to demostrate how the
+#nop rewritten tintin command file could be formatted.  It's also a very
+#nop nice example of some of the things that you can do with tintin.  My
+#nop tintin command files tend to be much more simple and probably less
+#nop interesting to other people to look at. -- Davin
+
+#alias {`} {#h}
+ 
+#alias {ab} {cas acid $0}
+ 
+#alias {ah} {ass hurin}
+ 
+#alias {all} {#all}
+ 
+#alias {ar+} {
+  #action {mv:comp.fatig>} {
+    #if {$alreadytired<1} {
+      ref me;
+      #math {alreadytired} {$alreadytired+1};
+      #action {mv:hyper>} {
+        #var alreadytired 0;
+        #unaction {mv:hyper>};
+        #unaction {mv:exerted>};
+        #unaction {mv:aches>}
+      };
+      #action {mv:exerted>} {
+        #var alreadytired 0;
+        #unaction {mv:hyper>};
+        #unaction {mv:exerted>};
+        #unaction {mv:aches>}
+      };
+      #action {mv:aches>} {
+        #var alreadytired 0;
+        #unaction {mv:hyper>};
+        #unaction {mv:exerted>};
+        #unaction {mv:aches>}
+      }
+    }
+  };
+  #action {-- %%1: I am exhausted} {ref %%1}
+}
+ 
+#alias {as+} {
+  #action {-- Hurin: ** LOST STONESKIN **} {sto hurin}
+}
+ 
+#alias {as-} {
+  #unaction {-- Hurin: ** LOST STONESKIN **}
+}
+ 
+#alias {atr+} {
+  #action {The trail of your quarry leads %1.} {
+    %1;
+    #var atrack 0
+  };
+  #action {You lose the trail} {track %%1};
+  #action {You can't find the trail} {
+    #if {$atrack<4} {
+      track %%%1;
+      #math {atrack} {$atrack+1}
+    }
+  };
+  #action {Your quarry is here} {
+    %%2 %%1;
+    atr-;
+    gt *** [%%1] found ***
+  };
+  #action {Umm.. look around} {
+    %%2 %%1;
+    gt *** [%%1] found ***;
+    atr-
+  };
+  #alias {bb} {
+    atr+ %%1 %%2;
+    #var atrack 0;
+    track %%1
+  };
+  #alias {nn} {
+    #if {$direct=1} {retreat s};
+    #if {$direct=2} {retreat n};
+    #if {$direct=3} {retreat w};
+    #if {$direct=4} {retreat e};
+    #if {$direct=5} {retreat d};
+    #if {$direct=6} {retreat u};
+    #if {$direct=7} {retreat se};
+    #if {$direct=8} {retreat sw};
+    #if {$direct=9} {retreat ne};
+    #if {$direct=10} {retreat nw}
+  };
+  gt [Auto-track] TargetSet [%1] FindAction [%2 %1]
+}
+ 
+#alias {atr-} {
+  #unaction {The trail of your quarry leads %1.};
+  #unaction {You lose the trail};
+  #unaction {You can't find the trail};
+  #unaction {Your quarry is here};
+  #unaction {Umm.. look around};
+  gt [Auto-track] Disabled
+}
+ 
+#alias {bn} {cas burn $0}
+ 
+#alias {bs} {cas bark $0}
+ 
+#alias {cb} {cas cure-blind $0}
+ 
+#alias {cc} {cas cure-critic}
+ 
+#alias {cch} {cas cure-critic hurin}
+ 
+#alias {chur} {emp h;Hurin;#read hur}
+ 
+#alias {cl} {cas cure-light}
+ 
+#alias {clh} {cas cure-light hurin}
+ 
+#alias {crad} {emp r;Radagast;curse;#read rad}
+ 
+#alias {cs} {cas cure-serious}
+ 
+#alias {csh} {cas cure-serious hurin}
+ 
+#alias {da} {` disarm}
+ 
+#alias {emp} {#session {%%0} {imperium.mudservices.com 9000}}
+ 
+#alias {ff} {all recite yellow.parchment}
+ 
+#alias {fq} {
+  #action {^The trail of your quarry leads north} {n};
+  #action {^The trail of your quarry leads south} {s};
+  #action {^The trail of your quarry leads east} {e};
+  #action {^The trail of your quarry leads west} {w};
+  #action {^The trail of your quarry leads northwest} {nw};
+  #action {^The trail of your quarry leads northeast} {ne};
+  #action {^The trail of your quarry leads southwest} {sw};
+  #action {^The trail of your quarry leads southeast} {se};
+  #action {^The trail of your quarry leads up} {u};
+  #action {^The trail of your quarry leads down} {d}
+}
+ 
+#alias {fr} {ca faerie $0}
+ 
+#alias {hk} {` kill $0}
+ 
+#alias {hp} {
+  get ebony.wand scabbard;
+  rem shield;
+  hold ebony.wand;
+  use ebony.wand %1;
+  rem ebony.wand;
+  wear shield
+}
+ 
+#alias {int+} {
+  w- all.tusk;
+  w+ all.gold.medallion;
+  w- silver.mask;
+  w+ crown.insight;
+  w- all.granite.ring;
+  w+ all.hierophant.ring;
+  w- bone.breastplate;
+  w+ moldy.tunic;
+  w- all.padded.sleeve;
+  w+ all.obsidian.bracer;
+  w- red.green.cloak;
+  w+ druidic.robe
+}
+ 
+#alias {int-} {
+  w- all.gold.medallion;
+  w+ all.tusk;
+  w- crown.insight;
+  w+ silver.mask;
+  w- all.hierophant.ring;
+  w+ all.granite.ring;
+  w- moldy.tunic;
+  w+ bone.breastplate;
+  w- all.obsidian.bracer;
+  w+ all.padded.sleeve;
+  w- druidic.robe;
+  w+ red.green.cloak
+}
+ 
+#alias {my} {cas mystic $0}
+ 
+#alias {northeast} {neast}
+ 
+#alias {northwest} {nwest}
+ 
+#alias {ref} {cas refresh $0}
+ 
+#alias {rr} {` rescue rad}
+ 
+#alias {satr} {
+  #action {^You lose the trail} {
+    #math {nothere} {$nothere+1};
+    track %%0;
+    #if {$nothere>5} {uatr}
+  }
+}
+ 
+#alias {sk} {#snoop h}
+ 
+#alias {sm+} {
+  #alias {s} {
+    sneak;
+    south;
+    hide
+  };
+  #alias {n} {
+    sneak;
+    north;
+    hide
+  };
+  #alias {e} {
+    sneak;
+    east;
+    hide
+  };
+  #alias {w} {
+    sneak;
+    west;
+    hide
+  };
+  #alias {d} {
+    sneak;
+    down;
+    hide
+  };
+  #alias {u} {
+    sneak;
+    up;
+    hide
+  };
+  #alias {nw} {
+    sneak;
+    nwest;
+    hide
+  };
+  #alias {ne} {
+    sneak;
+    neast;
+    hide
+  };
+  #alias {sw} {
+    sneak;
+    swest;
+    hide
+  };
+  #alias {se} {
+    sneak;
+    seast;
+    hide
+  }
+}
+ 
+#alias {sm-} {
+  #unalias {s};
+  #unalias {n};
+  #unalias {e};
+  #unalias {w};
+  #unalias {d};
+  #unalias {u};
+  #unalias {nw};
+  #unalias {ne};
+  #unalias {sw};
+  #unalias {se}
+}
+ 
+#alias {southeast} {seast}
+ 
+#alias {southwest} {swest}
+ 
+#alias {sph} {
+  cas thorn hurin;
+  cas bark hurin;
+  cas stone hurin
+}
+ 
+#alias {spt} {
+  sto $tank;
+  bs $tank;
+  tf $tank;
+  my $tank
+}
+ 
+#alias {sr} {cas sunray $0}
+ 
+#alias {sto} {cas stone $0}
+ 
+#alias {tf} {cas thorn $0}
+ 
+#alias {ufq} {
+  #unaction {^The trail of your quarry leads north};
+  #unaction {^The trail of your quarry leads south};
+  #unaction {^The trail of your quarry leads east};
+  #unaction {^The trail of your quarry leads west};
+  #unaction {^The trail of your quarry leads northwest};
+  #unaction {^The trail of your quarry leads northeast};
+  #unaction {^The trail of your quarry leads southwest};
+  #unaction {^The trail of your quarry leads southeast};
+  #unaction {^The trail of your quarry leads up};
+  #unaction {^The trail of your quarry leads down}
+}
+ 
+#alias {w+} {
+  get %1 purse;
+  wear %1
+}
+ 
+#alias {w-} {
+  rem %1;
+  put %1 purse
+}
+ 
+#alias {wr} {cas word}
+#action {^You are hungry} {ee} {5}
+#action {^You are thirsty} {drink water} {5}
+#substitute {Ok, you'll try to move silently for a while.} {.}
+#substitute {You attempt to hide yourself.} {.}
+#variable {nothere} {0}
+#highlight {white} {Bayard}
+#highlight {green} {Druid}
+#highlight {red} {Ember}
+#highlight {blue} {Gunthar}
+#highlight {yellow} {Hurin}
+#highlight {magenta} {Kalac}
+#highlight {white} {Knight of the Round Table}
+#highlight {light blue} {Matrim}
+#highlight {charcoal} {Nix}
+#highlight {white} {Parsalian}
+#highlight {brown} {Radagast}
+#highlight {yellow} {Thalion}
+#highlight {brown} {You}
+#highlight {brown} {barkskin}
+#highlight {green} {druid}
+#highlight {yellow} {gold}
+#highlight {yellow} {hurin}
+#highlight {red} {massacres}
+#highlight {charcoal} {nix}
+#highlight {white} {parsalian}
+#highlight {green} {refresh}
+#highlight {yellow} {sunray}
+#highlight {b} {yellow hurin}

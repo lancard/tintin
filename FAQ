@@ -1,0 +1,185 @@
+This document will hopefully answer 95% of all questions regarding
+tintin++ (tt++).  Please let me (Davin Chan - tintin@newclear.net)
+know if you have any corrections, comments or suggestions regarding
+this document.
+
+Last updated: 3/28/01
+
+
+Q1) What machines does tintin work on?
+
+A1)	Tintin should compile on almost any UNIX machine.  The following
+machines are known to work (tested by myself):
+
+	Irix 6.5.X
+	Linux 2.0.X/2.2.X
+	Solaris 2.X
+	FreeBSD
+
+Platforms that others compiled tintin on:
+	HP-UX
+	Mac OS X
+	Linux 2.4.X
+
+Addition OSs work but have not been verified by myself.  Pretty much any
+UNIX machine with a (modern) compiler should work.
+
+
+Q2) What version should I use 1.5pl9 or 1.8.0+?
+
+A2)	Use 1.8.0+ unless you have a particular reason for using 1.5pl9
+(If you do, let me know as I would like to get everybody to running 1.8.0+).
+1.5pl9 is not supported (but I will help if I can) and all the bug fixes
+and new features are going into 1.8.0+.
+
+
+Q3) Where can I get the readline library?
+
+A3)	You can get the readline library from many ftp sites.  The main ftp
+site for the readline library is ftp.gnu.org.  The most recent version
+should be available there.  Tintin has been tested with readline 4.0 and 4.1.
+It has been reported to me that readline 2.0 does not work, so make sure you
+get a recent version of readline.
+
+
+Q4) When I do a ./configure, it complains that it can't find the readline
+   library.  How do I fix that?
+
+A4)	Configure normally only checks the standard default directories for
+the readline library and the readline header files.  If you don't have them
+there, you need to tell configure where to find them.  You can (as if tintin
+version 1.82) do a 
+
+"./configure --includedir=<directory name> --libdir=<directory name>"
+
+to tell ./configure where to find them.  
+
+If you put readline in /tmp/readline-4.1 then you would need to do the 
+following:
+
+   1) rename it to be called readline (mv readline-4.1 readline)
+
+   2) tell configure to look there (./configure --includedir=/tmp --libdir=tmp)
+
+NOTE: You must use the full path when specifying the directory.
+
+
+
+Q5) I was able to configure it but I'm getting an error when I'm compiling.
+    The error message says 
+    "utils.c:81: `sys_errlist' undeclared (first use in this function)"
+
+A5)	 This problem should go away as of 1.82, but if you are running this
+    before 1.82 (Please report if you get this error message if you are running
+    1.82 or later), you need to modify utils.c. Start up your favorite
+    text editor and open the utils.c file.  Goto line 75 of the file and you
+    will see something like this:
+
+
+	void syserr(const char *msg)
+	{
+  		extern int errno, sys_nerr;
+ 
+		  /*#if !defined(BSD) || (BSD < 199306)
+		  extern const char *const sys_errlist[]; 
+		  #endif
+  		  */
+	<continues on>
+
+	
+    Remove the /* and the */, so that it reads like this:
+
+
+
+
+	void syserr(const char *msg)
+	{
+  		extern int errno, sys_nerr;
+ 
+		  #if !defined(BSD) || (BSD < 199306)
+		  extern const char *const sys_errlist[]; 
+		  #endif
+  		  
+	
+    and then save the file and recompile.
+
+
+
+Q6) I can't get tintin compiled still.  Where can I get more help?
+
+A6)	You can get help from a couple of places.  The first place to start
+is to take a look at the webboard (there is a link from the tintin homepage, 
+www.newclear.net/tintin).  Check to see if your problem has been asked before
+and if there is a solution.  If you don't see anything that looks like your
+problem, post a note and ask.  Please provide as much information as possible
+(such as the OS, compiler, error messages, etc).  If you still can't solve
+the problem, you can use the "gripe" command in tintin++/src to send an email
+to the developers of tintin.  
+
+
+Q7) I can't get tintin compiled, can't you send me a binary of tintin?
+
+A7)	No, the machines that I have available are limited and I may not have
+access to the same version of the OS or machine type that you are trying to
+run tintin on.  There may be precompiled versions of tintin avail by other
+tintin users, but they may or may not work.  I am more than happy to help
+you try to get tintin to compile on your machine.  Or if you can give me
+access (check with your sysadmin first!), I may be able to log in and try
+to get it compile for you.  Please note that my time is limited and I may
+not have time to help people individually, but feel free to ask and I'll see
+what I can do.
+
+
+Q8) I would like to help, how can I contribute to tintin?
+
+A8) If you can code and would like to fix bugs or add new features, you can
+do that.  You can submit patches to me at tintin@newclear.net and I'll be
+happy to look them over and add them.  There is also a (great) need for people
+willing to write documents and to write sample tintin script files.  You can
+submit those as well to me at tintin@newclear.net.  I don't always have the
+time to write documents (and keep them up to date) and this would be a great
+help.  Another way to help is to assist people that post on the webboard
+if you know the answer to the question. Submitting bug reports and suggestions
+for addition features would be welcomed.
+
+
+
+Q9) Tintin is so awesome, how can I thank you guys for spending all that time
+    to write tintin for free?? :)
+
+A9) Fan mail is always welcomed :)  It means alot to hear that people use and
+    enjoy tintin.  It helps alot on those days when I just don't feel like
+    working on tintin.
+
+
+Q10) How do I disable the chat feature?
+
+A10) To disable the chat feature, edit the tt.conf file and change the line
+     that says ENABLE : 1~ to ENABLE : 0~.
+
+
+Q11) Can I use code from tintin?
+
+A11) Yes, provided that you follow the terms of the license.  The license
+     used for tintin is GPL.  Any questions/requests regarding the license,
+     please contact me (Davin Chan).
+
+Q12) I contributed code X, why isn't my name listed in the CREDITS file?
+
+A12) Most likely your name slipped by before I (Davin Chan) started
+     maintaining tintin and adding people to the CREDITS file.  If you
+     believe you have contributed code to tintin, please email me and
+     let me know.
+
+Q13) I would like to put all of my tintin files in a common directory,
+     how can I do that?
+
+A13) You can set enviroment variables for the help files and the configuration
+     files with the TINTIN_HELP, TINTIN_CONF and TINTIN_HISTORY.  The syntax 
+     depends on your shell, but for csh it's 
+       setenv TINTIN_HELP <path to help file>
+     and for bash it's 
+      TINTIN_HELP=<path to help file>;export TINTIN_HELP.
+
+Please let me know, if you think there is a common question that isn't
+answered by this FAQ, but should be.

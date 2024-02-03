@@ -1,0 +1,39 @@
+Special thanks to the following
+-------------------------------
+Harald Evensen				many bug insights.  
+    (GrimneMUD plug: grimne.pvv.unit.no port 4000.)
+Peter Unold				the original Tintin III.
+Jeremy C. Jack				work on directional paths.
+David Hedbot				original setup of Gnu's autoconfigure.
+jes3659@gold.acns.fsu.edu (Jeff Sandler) #if string-comparison code.
+Andrew Chernov <ache@astral.msk.su>	FreeBSD bug fixes.
+Jim Goddard <jgoddard@sun470.rd.qms.com> SOCKS #ifdefs.
+Greg Jarman <amigo@deakin.edu.au>	#if-else code.
+Yoon-Chan Jhi <bonywine@super.inha.ac.kr> fixes and new code (walk feature)
+Greg Milford				new read_command code
+chitchat				some fixes and improvements
+Kuang-che Wu				work on functions
+Sean Butler				chat code
+Sverre <sverreno@stud.ntnu.no>          see docs/MODIFICATIONS
+
+Testers
+-------
+Too many to list at this current time.  We thank you all though!
+You are important to tt++'s success.
+
+Retired Tintin++ Development Team
+---------------------------------
+Bill Reiss - Valgar 
+David Wagner - Mizirian
+
+Current Tintin++ Developement Team
+----------------------------------
+Davin Chan - Rohan - (davinchan@earthlink.net)
+Robert Ellsworth - Grimmy - (rse@newclear.net)
+
+The development team alias is currently tintin@newclear.net;
+mail to there goes to the whole development team.  The gripe command
+under src/ is useful for bug reports.
+
+We're happy to help, but *please* don't spam us with silly email!
+Read the docs first!  <moan>

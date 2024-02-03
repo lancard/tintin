@@ -1,0 +1,148 @@
+#nop This is a sample tintin file.  This should be useful in some examples on
+#nop on to do things.  This is just some basic ways that you can use tintin.
+#nop This is geared more for newbies needing some help on how to use tintin
+#nop I'll try to add more to this as I can.
+#nop By Davin Chan aka Rohan 4/09/00.
+
+#nop {These commands are necessary if you want #path, #return, ... to work.}
+#nop {Please leave them in your alias file.}
+#nop This *MUST* be in your tintin file in order for the #path command to work.
+#pathdir {e} {w}
+#pathdir {w} {e}
+#pathdir {n} {s}
+#pathdir {s} {n}
+#pathdir {u} {d}
+#pathdir {d} {u}
+
+#nop turn on the fixed math routines.  Currently (as of v1.80) tintin uses
+#nop the very old broken math by default and it can produce odd math results.
+#nop Having fixedmath on by default will change soon, but for now you need to
+#nop manually enable it.
+#fixedmath
+
+#nop On most muds after you log in, the mud will display a MOTD and ask
+#nop you to press return to get to the main menu.  To skip past that and get
+#nop to the main menu, the following action will just do a return for you so
+#nop you can get on with mudding and not bother with reading the MOTD
+#action { ** Press Return } {#cr}
+
+
+#nop The following will set it so that when you get disarmed (assuming that
+#nop the mud you play sends you a "<weapon> flies from your grasp" when you
+#nop get disarmed.  If you change weapons/wield something else, all you need
+#nop to do is to do a #variable {weapon} {<new weapon name>} and the action
+#nop will be set up for your new wielding item.
+#variable {weapon} {sword}
+#action {$weapon flies from your grasp} {get $weapon;wield $weapon;save}
+
+
+
+#nop below is the reconnect script that Yoon-Chan Jhi wrote to make use of the
+#nop reconnect feature he added. it's very nice and it's a good example of how
+#nop to use variables, alias, and actions together.
+
+#nop *** This is a sample script for zombi mode session.
+#nop *** Once a session is turned into a zombi mode, it will
+#nop *** try to reconnect every time it is disconnected.
+#nop *** Change variables and the address of mud to be suitable
+#nop *** for you and just enter 'connect'.
+
+#variable {username} {#nop your name here}
+#variable {passwd} {#nop your passwd here}
+
+#alias {connect} {#ses testses ip.address.of.mud.site port;#zombion}
+#action {What's your name :}  {$username}
+#action {password :} {$passwd}
+
+#nop *** Simply type 'connect' will start connecting.
+#nop *** When you want to stop reconneting, type '#zombioff'.
+#nop *** You can type '#end' while reconnecting if you want to quit.
+#nop *** And you also can read scripts while tintin is trying to
+#nop *** reconnect.(though I didn't tested heavily)
+
+#nop the following is from a sample script sent to me by Greg Milford
+#nop should how the new syntax tintin will allow
+#nop This style will probably be most attractive to people that write
+#nop complex scripts as it makes it easier to read and find errors.
+#nop but the one line style will continue to work.
+
+#alias {sm+} {
+  #alias {s} {
+    sneak;
+    south;
+    hide
+  };
+  #alias {n} {
+    sneak;
+    north;
+    hide
+  };
+  #alias {e} {
+    sneak;
+    east;
+    hide
+  };
+  #alias {w} {
+    sneak;
+    west;
+    hide
+  };
+  #alias {d} {
+    sneak;
+    down;
+    hide
+  };
+  #alias {u} {
+    sneak;
+    up;
+    hide
+  };
+  #alias {nw} {
+    sneak;
+    nwest;
+    hide
+  };
+  #alias {ne} {
+    sneak;
+    neast;
+    hide
+  };
+  #alias {sw} {
+    sneak;
+    swest;
+    hide
+  };
+  #alias {se} {
+    sneak;
+    seast;
+    hide
+  }
+}
+ 
+#alias {sm-} {
+  #unalias {s};
+  #unalias {n};
+  #unalias {e};
+  #unalias {w};
+  #unalias {d};
+  #unalias {u};
+  #unalias {nw};
+  #unalias {ne};
+  #unalias {sw};
+  #unalias {se}
+}
+
+#nop The following is for the use of the #encrypt and #decrypt commands.
+#nop The following will work, but i'm sure somebody can write a better way
+#nop of doing the same thing.  The first alias will send an encrypted reply
+#nop (assuming the mud you play has a reply command).
+#nop The action will take all tells to you and run it through the decrypt
+#nop function.
+#nop The last alias will send a tell to somebody but it leaves the name of
+#nop the player you are telling to as part of the encrypted message
+#nop ie tell rohan test
+#nop    will encrypt "rohan" and "test" and send that to rohan.  
+
+#alias {ereply} {#unvar {bleh};#crypt {$$0} {bleh};reply $bleh;#unvar {bleh}}
+#action {tells you, '%0'} {#unvar {bleh};#decrypt {$$0} {bleh}; #showme {$bleh};#unvar {bleh}} {5}
+#alias {etell} {#unvar {bleh};#var {tellee} {$$1};#crypt {$$0} {bleh};tell $tellee $bleh;#unvar {bleh};#unvar {tellee}}
