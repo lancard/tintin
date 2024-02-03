@@ -51,7 +51,8 @@ This program is protected under the GNU GPL (See COPYING)
 #include "include/rl.h"
 #include "include/variables.h"
 
-extern int readline_echoing_p;
+int readline_echoing_p;
+int timeofday;
 
 static int var_len[10];
 static const char *var_ptr[10];
