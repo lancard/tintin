@@ -205,7 +205,7 @@ This program is protected under the GNU GPL (See COPYING)
 #define BLOCK_SIZE 500
 
 
-int timeofday;
+extern int timeofday;
 /************************ structures *********************/
 
 struct listnode {
