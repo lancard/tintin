@@ -53,7 +53,7 @@ LIBS = @MYLIB@ -lreadline -lhistory @LIBS@
 # If you prefer to be able to enter ISO latin-1 characters instead
 # of being able to use the meta key for special emacs-like commands
 # uncomment the following line.
-#F1 = -DUSE_ISO_LATIN_ONE
+F1 = -DUSE_ISO_LATIN_ONE
 
 # If you need to make connections through a SOCKS server, uncomment
 # these 2 lines.  You also need to modify LIBSOCKS to point to the location
